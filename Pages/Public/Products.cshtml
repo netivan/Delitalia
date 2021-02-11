@@ -1,0 +1,109 @@
+﻿@page
+@model DelliItalia_Razor.Pages.Public.ProductsModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+<h1>Produkter</h1>
+<br />
+<td>
+    <input id="btnMestValda" type="button" value="Mest Valda Produkter" />
+    <input id="btnNyaste" type="button" value="Nyaste produkter" />
+    <input id="btnReaProdukt" type="button" value="Rea Produkter" />
+</td>
+<td>
+    <br />
+    <h4>Kategorier:</h4><br />
+    <input id="btnPasta" type="button" value="Pasta" />
+    <input id="btnSalumi" type="button" value="Salumi" />
+    <input id="btnOst" type="button" value="Ost" />
+    <input id="btnNyaste" type="button" value="Nyaste produkter" />
+    <input id="btnOvrigt" type="button" value="Övriga Produkter" />
+</td>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].PhotoAdress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].DateIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ProductModel)
+        {
+        <tr>
+            <td>
+                <img src="~/ImageProduct/@item.PhotoNamn"
+                     height="80" width="80" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale_Percent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chosen)
+            </td>
+            <td>
+
+                <a asp-page="/WebAdmin/Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
+
+                <a asp-page="" asp-route-id="@item.Id">Minus</a> |
+                <input id="Antal" type="number" width="10" /> |
+
+                <a asp-page="" asp-route-id="@item.Id">Plus</a>
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

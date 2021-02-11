@@ -1,0 +1,79 @@
+﻿@page
+@model DelliItalia_Razor.Pages.WebAdmin.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProductModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.PhotoAdress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.PhotoAdress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Sale)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Sale)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.DateIn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.DateIn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Chosen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Chosen)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ProductModel.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
