@@ -1,5 +1,20 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+.test-bg {
+    bottom: 60px;
+}
+
+.test-bg::after {
+        content: "";
+        background-image: url('../Image/Europa.jpg');
+        background-size: cover;
+        position: absolute;
+        top: 220px;
+        right: 0px;
+        bottom: 60px;
+        left: 0px;
+        opacity: 0.25;
+    }
 
 a.navbar-brand {
   white-space: normal;
@@ -58,10 +73,11 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+body{
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
