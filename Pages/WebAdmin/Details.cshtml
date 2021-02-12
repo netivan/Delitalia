@@ -12,6 +12,13 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.PhotoAdress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.PhotoNamn)
+        </dd>
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProductModel.Name)
         </dt>
         <dd class="col-sm-10">
@@ -23,12 +30,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ProductModel.Price)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductModel.PhotoAdress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductModel.PhotoAdress)
-        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProductModel.Description)
         </dt>
