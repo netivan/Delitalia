@@ -7,22 +7,23 @@
 
 <h1>Produkt detalj:</h1>
 
-<table>
-    <td>
+<table style="width:80%">
+    <td width="50%">
 
         <dl class="row">
 
             <dd class="col-sm-10">
                 <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="650" width="650" />
-                <div style="font-size:25 larger">
+                <div  style="font-size:2em; color:forestgreen;">
                     @Html.DisplayNameFor(model => model.ProductModel.Eco)
                     @Html.DisplayFor(model => model.ProductModel.Eco)
                 </div>
             </dd>
+        </dl>
 
     </td>
 
-    <td>
+    <td width="50%">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ProductModel.Name)
         </dt>
@@ -79,12 +80,12 @@
             @Html.DisplayFor(model => model.ProductModel.Chosen)
         </dd>
         </dl>
-        <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.ProductModel.Id">Details</a> |
-        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
-
-        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a> 
-        <input id="Antal" type="number" style="width:40px" /> 
-        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Plus</a>
+        <dd style="width:100%; text-align:center" >
+            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
+            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a>
+            <input id="Antal" type="number" style="width:40px" />
+            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Plus</a>
+        </dd>
     </td>
    
 </table>
