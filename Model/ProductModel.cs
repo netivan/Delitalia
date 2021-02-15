@@ -13,6 +13,8 @@ namespace DelliItalia_Razor
         [Required]
         [DisplayName("Namn:")]
         public string Name { get; set; }
+        [DisplayName("Ekologisk:")]
+        public bool Eco { get; set; }
         [Required]
         [DisplayName("Pris:")]
         public decimal Price { get; set; }

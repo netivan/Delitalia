@@ -69,6 +69,11 @@
                 <input type="file" name="uplImage" />
                 <span asp-validation-for="produkt.PhotoNamn" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="produkt.Eco" class="control-label"></label>
+                <input type="checkbox" name="Ekologisk" />
+                <span asp-validation-for="produkt.Eco" class="text-danger"></span>
+            </div>
             <div class="form-group" width="300px" align="right">
                 <input type="submit" value="Lägg till produkt" class="btn btn-primary" />
             </div>
