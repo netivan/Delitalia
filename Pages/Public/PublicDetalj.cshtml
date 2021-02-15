@@ -1,0 +1,90 @@
+﻿@page
+@model DelliItalia_Razor.Pages.Public.PublicDetaljModel
+
+@{
+    ViewData["Title"] = "PublicDetalj";
+}
+
+<h1>Produkt detalj:</h1>
+
+<table>
+    <td>
+
+        <dl class="row">
+
+            <dd class="col-sm-10">
+                <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="650" width="650" />
+                <div style="font-size:25 larger">
+                    @Html.DisplayNameFor(model => model.ProductModel.Eco)
+                    @Html.DisplayFor(model => model.ProductModel.Eco)
+                </div>
+            </dd>
+
+    </td>
+
+    <td>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Price)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Sale)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Sale)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.DateIn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.DateIn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductModel.Chosen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductModel.Chosen)
+        </dd>
+        </dl>
+        <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.ProductModel.Id">Details</a> |
+        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
+
+        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a> 
+        <input id="Antal" type="number" style="width:40px" /> 
+        <a asp-page="" asp-route-id="@Model.ProductModel.Id">Plus</a>
+    </td>
+   
+</table>
