@@ -13,74 +13,89 @@
         <dl class="row">
 
             <dd class="col-sm-10">
-                <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="650" width="650" />
-                <div  style="font-size:2em; color:forestgreen;">
+                <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="500" width="500" />
+                @if (!Model.ProductModel.Eco)
+                {                   
+                    <div style="font-size:2em; color:forestgreen;" hidden>
+                        @Html.DisplayNameFor(model => model.ProductModel.Eco)
+                        @Html.DisplayFor(model => model.ProductModel.Eco)
+                    </div>
+                }
+                else
+                {
+                    
                     @Html.DisplayNameFor(model => model.ProductModel.Eco)
                     @Html.DisplayFor(model => model.ProductModel.Eco)
-                </div>
+                }
             </dd>
         </dl>
 
     </td>
 
     <td width="50%">
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Price)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Price)
         </dd>
 
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Description)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Description)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Category)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Category)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductModel.Sale)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductModel.Sale)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
-        </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.DateIn)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.DateIn)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Quantity)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm" hidden>
             @Html.DisplayFor(model => model.ProductModel.Quantity)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm" hidden>
             @Html.DisplayNameFor(model => model.ProductModel.Chosen)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Chosen)
         </dd>
         </dl>
-        <dd style="width:100%; text-align:center" >
+        @if (Model.ProductModel.Sale > 0)
+        {
+            <dt class="col-sm" style="color:red">
+                @Html.DisplayNameFor(model => model.ProductModel.Sale)
+            </dt>
+            <dd class="col-sm" style="color:red">
+                @Html.DisplayFor(model => model.ProductModel.Sale)
+            </dd>
+        }
+        @if (Model.ProductModel.Sale_Percent > 0)
+        {
+            <dt class="col-sm" style="color:red">
+                @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
+            </dt>
+            <dd class="col-sm" style="color:red">
+                @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
+            </dd>
+        }
+        <dd style="width:100%; text-align:center">
             <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
             <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a>
             <input id="Antal" type="number" style="width:40px" />

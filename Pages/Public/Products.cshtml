@@ -38,21 +38,28 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductModel[0].Category)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.ProductModel[0].DateIn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductModel[0].Quantity)
             </th>
-            <th>
+            <th hidden>
                 @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
             </th>
+            @if (Model.ProductModel[0].Sale > 0)
+            {
+                <th >
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
+                </th>
+            }
+            @if (Model.ProductModel[0].Sale_Percent > 0)
+            {
+                <th >
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
+                </th>
+            }
             <th></th>
         </tr>
     </thead>
@@ -76,30 +83,37 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sale)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sale_Percent)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DateIn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.Chosen)
             </td>
+            @if (item.Sale > 0)
+            {
+        <td style="color:red">
+            @Html.DisplayFor(modelItem => item.Sale) rea i kronor
+        </td>
+            }
+            @if (item.Sale_Percent > 0)
+            {
+        <td style="color:red">
+            @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
+        </td>
+            }
             <td>
 
                 <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
-
-                <a asp-page="" asp-route-id="@item.Id">Minus</a> |
-                <input id="Antal" type="number" style="width:30px" /> |
-
-                <a asp-page="" asp-route-id="@item.Id">Plus</a>
+                <div class="col-sm" style="width:150px">
+                    <a asp-page="" asp-route-id="@item.Id">Minus</a>
+                    <input id="Antal" type="number" style="width:30px" />
+                    <a asp-page="" asp-route-id="@item.Id">Plus</a>
+                </div>
 
             </td>
         </tr>
