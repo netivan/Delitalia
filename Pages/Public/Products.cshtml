@@ -48,18 +48,11 @@
             <th hidden>
                 @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
             </th>
-           
-            @(Model.ProductModel[0].Eco)
-            {
+
             <th style="font-size:1em; color:forestgreen;">
             @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
             </th>
-            }else{
-            <th hidden>
-            @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
-            </th>
-            }
-            
+
             @if (Model.ProductModel[0].Sale > 0)
             {
                 <th>
