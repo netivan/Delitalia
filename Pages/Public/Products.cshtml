@@ -48,15 +48,27 @@
             <th hidden>
                 @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
             </th>
+           
+            @(Model.ProductModel[0].Eco)
+            {
+            <th style="font-size:1em; color:forestgreen;">
+            @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
+            </th>
+            }else{
+            <th hidden>
+            @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
+            </th>
+            }
+            
             @if (Model.ProductModel[0].Sale > 0)
             {
-                <th >
+                <th>
                     @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
                 </th>
             }
             @if (Model.ProductModel[0].Sale_Percent > 0)
             {
-                <th >
+                <th>
                     @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
                 </th>
             }
@@ -93,30 +105,44 @@
             <td hidden>
                 @Html.DisplayFor(modelItem => item.Chosen)
             </td>
-            @if (item.Sale > 0)
-            {
-        <td style="color:red">
-            @Html.DisplayFor(modelItem => item.Sale) rea i kronor
-        </td>
+            
+                @if (item.Eco == true)
+                {
+                <td style="font:1em; color:forestgreen">
+                    @Html.DisplayNameFor(modelItem => item.Eco)
+                </td>
             }
-            @if (item.Sale_Percent > 0)
+            else
             {
-        <td style="color:red">
-            @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
-        </td>
+                <td style="font:1em; color:black">
+                    @Html.DisplayFor(modelItem => item.Eco) -----
+                </td>
             }
-            <td>
+                
+                @if (item.Sale > 0)
+                {
+                    <td style="color:red">
+                        @Html.DisplayFor(modelItem => item.Sale) rea i kronor
+                    </td>
+                }
+                @if (item.Sale_Percent > 0)
+                {
+                    <td style="color:red">
+                        @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
+                    </td>
+                }
+                <td>
 
-                <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
-                <div class="col-sm" style="width:150px">
-                    <a asp-page="" asp-route-id="@item.Id">Minus</a>
-                    <input id="Antal" type="number" style="width:30px" />
-                    <a asp-page="" asp-route-id="@item.Id">Plus</a>
-                </div>
+                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
+                    <div class="col-sm" style="width:150px">
+                        <a asp-page="" asp-route-id="@item.Id">Minus</a>
+                        <input id="Antal" type="number" style="width:30px" />
+                        <a asp-page="" asp-route-id="@item.Id">Plus</a>
+                    </div>
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
