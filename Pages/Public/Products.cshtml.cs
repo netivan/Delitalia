@@ -13,17 +13,55 @@ namespace DelliItalia_Razor.Pages.Public
     public class ProductsModel : PageModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
+        [BindProperty(SupportsGet =true)]
+        public string SearchProduct { get; set; }
+        [BindProperty(SupportsGet =true)]
+        public string Category { get; set; }
 
         public ProductsModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context)
         {
             _context = context;
         }
 
-        public IList<ProductModel> ProductModel { get;set; }
+        public List<ProductModel> ProductModel { get;set; }
 
         public async Task OnGetAsync()
         {
-            ProductModel = await _context.ProductModel.ToListAsync();
+            await GetList();
+            await GetCategory();
+        }  
+        public async Task<List<ProductModel>> GetList()
+        {
+            
+            if (string.IsNullOrEmpty(SearchProduct))
+            {
+                return ProductModel =  await _context.ProductModel.ToListAsync();
+            }            
+              return ProductModel = _context.ProductModel.Where(p => p.Name.Contains(SearchProduct)).ToList();            
+        }
+        public async Task<List<ProductModel>> GetCategory()
+        {
+          if (string.IsNullOrEmpty(Category))
+            {
+                return ProductModel = await _context.ProductModel.ToListAsync();
+            }
+            else
+                try
+                {
+                    if (!string.IsNullOrEmpty(Category))
+                    {
+                       ProductModel = _context.ProductModel.Where(p => p.Category.Contains(Category)).ToList();
+                        if (ProductModel.Count == 0)
+                        {
+                            ViewData["IngaProd"] = "Kategori "+ Category + " har inga produkter";
+                            return ProductModel = _context.ProductModel.ToList();
+                        }
+                        return ProductModel;
+                    }
+                    return ProductModel = _context.ProductModel.ToList();
+                }
+                catch(ArgumentOutOfRangeException) { return ProductModel = _context.ProductModel.ToList(); }
+            
         }
     }
 }

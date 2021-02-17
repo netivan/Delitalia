@@ -5,137 +5,148 @@
     ViewData["Title"] = "Products";
 }
 <h1>Produkter</h1>
-<br />
-<td>
-    <input id="btnMestValda" type="button" value="Mest Valda Produkter" />
-    <input id="btnNyaste" type="button" value="Nyaste produkter" />
-    <input id="btnReaProdukt" type="button" value="Rea Produkter" />
-</td>
-<td>
+<form method="get"  >
+    <div style="width:350px;">
+    @*<input class="input-group">*@
+        <input class="form-control" asp-for="SearchProduct" />
+        <button type="submit"> Sök</button>
+       
+    </div>
+    </form>
     <br />
-    <h4>Kategorier:</h4><br />
-    <input id="btnPasta" type="button" value="Pasta" />
-    <input id="btnSalumi" type="button" value="Salumi (Chark)" />
-    <input id="btnOst" type="button" value="Formaggio (Ost)" />
-    <input id="btnOvrigt" type="button" value="Övriga Produkter" />
-</td>
-<br />
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].PhotoAdress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Category)
-            </th>
+    <td>
+        <input id="btnMestValda" type="button" value="Mest Valda Produkter" />
+        <input id="btnNyaste" type="button" value="Nyaste produkter" />
+        <input id="btnReaProdukt" type="button" value="Rea Produkter" />
+    </td>
+    <td>
+        <br /><br />
+        <h4>Kategorier:</h4>
+        <a href="?Category=Pasta"><button> Pasta </button></a>
+        <a href="?Category=Chark"><button> Salumi (Chark) </button></a>
+        <a href="?Category=Ost"><button> Formaggio (Ost) </button></a>
+        <a href="?Category=Övrigt"><button> Övriga Produkter</button></a> <br />
+       <p style="color:red"> @ViewData["IngaProd"] </p>
 
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].DateIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Quantity)
-            </th>
-            <th hidden>
-                @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
-            </th>
 
-            <th style="font-size:1em; color:forestgreen;">
-            @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
-            </th>
-
-            @if (Model.ProductModel[0].Sale > 0)
-            {
+    </td>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
+                    @Html.DisplayNameFor(model => model.ProductModel[0].PhotoAdress)
                 </th>
-            }
-            @if (Model.ProductModel[0].Sale_Percent > 0)
-            {
                 <th>
-                    @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Name)
                 </th>
-            }
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ProductModel)
-        {
-        <tr>
-            <td>
-                <img src="~/ImageProduct/@item.PhotoNamn"
-                     height="80" width="80" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Category)
+                </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.DateIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td hidden>
-                @Html.DisplayFor(modelItem => item.Chosen)
-            </td>
-            
-                @if (item.Eco == true)
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].DateIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Quantity)
+                </th>
+                <th hidden>
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Chosen)
+                </th>
+
+                <th style="font-size:1em; color:forestgreen;">
+                    @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
+                </th>
+
+                @if (Model.ProductModel[0].Sale > 0)
                 {
-                <td style="font:1em; color:forestgreen">
-                    @Html.DisplayNameFor(modelItem => item.Eco)
-                </td>
-            }
-            else
-            {
-                <td style="font:1em; color:black">
-                    @Html.DisplayFor(modelItem => item.Eco) -----
-                </td>
-            }
-                
-                @if (item.Sale > 0)
-                {
-                    <td style="color:red">
-                        @Html.DisplayFor(modelItem => item.Sale) rea i kronor
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
+                    </th>
                 }
-                @if (item.Sale_Percent > 0)
+                @if (Model.ProductModel[0].Sale_Percent > 0)
                 {
-                    <td style="color:red">
-                        @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
+                    </th>
                 }
-                <td>
-
-                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
-                    <div class="col-sm" style="width:150px">
-                        <a asp-page="" asp-route-id="@item.Id">Minus</a>
-                        <input id="Antal" type="number" style="width:30px" />
-                        <a asp-page="" asp-route-id="@item.Id">Plus</a>
-                    </div>
-
-                </td>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ProductModel)
+            {
+                <tr>
+                    <td>
+                        <img src="~/ImageProduct/@item.PhotoNamn"
+                             height="80" width="80" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(modelItem => item.Chosen)
+                    </td>
+
+                    @if (item.Eco == true)
+                    {
+                        <td style="font:1em; color:forestgreen">
+                            @Html.DisplayNameFor(modelItem => item.Eco)
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="font:1em; color:black">
+                            @Html.DisplayFor(modelItem => item.Eco) -----
+                        </td>
+                    }
+
+                    @if (item.Sale > 0)
+                    {
+                        <td style="color:red">
+                            @Html.DisplayFor(modelItem => item.Sale) rea i kronor
+                        </td>
+                    }
+                    @if (item.Sale_Percent > 0)
+                    {
+                        <td style="color:red">
+                            @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
+                        </td>
+                    }
+                    <td>
+
+                        <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
+                        <div class="col-sm" style="width:150px">
+                            <a asp-page="" asp-route-id="@item.Id">Minus</a>
+                            <input id="Antal" type="number" style="width:30px" />
+                            <a asp-page="" asp-route-id="@item.Id">Plus</a>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

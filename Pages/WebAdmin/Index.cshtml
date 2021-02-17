@@ -30,9 +30,16 @@
         </td>
         <td width="300px">
             <div class="form-group">
-                <label asp-for="produkt.Category" class="control-label"></label>
-                <input asp-for="produkt.Category" class="form-control" />
-                <span asp-validation-for="produkt.Category" class="text-danger"></span>
+                <label asp-for="produkt.Category" class="control-label" ></label>
+                <br />
+                <select id="select1" asp-for="produkt.Category" class="control-label" style="font:1em; height:30px; width:350px;">
+                    <option selected disabled> --select--</option>
+                    <option>Chark</option>
+                    <option>Ost</option>
+                    <option>Pasta</option>
+                    <option>Övrigt</option>
+                </select>
+
             </div>
             <div class="form-group">
                 <label asp-for="produkt.Sale" class="control-label"></label>
