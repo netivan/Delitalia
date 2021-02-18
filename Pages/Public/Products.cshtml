@@ -14,11 +14,13 @@
     <td>
         <br /><br />
         <h4>Kategorier:</h4>
+        <a href="?Ekologisk=True"><Button style="color:forestgreen" runat="server" onclick="GetEco"> Ekologisk</Button></a>
+       
         <a href="?Category=Pasta"><button> Pasta </button></a>
         <a href="?Category=Chark"><button> Salumi (Chark) </button></a>
         <a href="?Category=Ost"><button> Formaggio (Ost) </button></a>
         <a href="?Category=Övrigt"><button> Övriga Produkter</button></a> <br />
-       <p style="color:red"> @ViewData["IngaProd"] </p>
+        <p style="color:red"> @ViewData["IngaProd"] </p>
 
 
     </td>
