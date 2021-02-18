@@ -30,9 +30,16 @@
         </td>
         <td width="300px">
             <div class="form-group">
-                <label asp-for="produkt.Category" class="control-label"></label>
-                <input asp-for="produkt.Category" class="form-control" />
-                <span asp-validation-for="produkt.Category" class="text-danger"></span>
+                <label asp-for="produkt.Category" class="control-label" ></label>
+                <br />
+                <select id="select1" asp-for="produkt.Category" class="control-label" style="font:1em; height:30px; width:350px;">
+                    <option selected disabled> --select--</option>
+                    <option>Chark</option>
+                    <option>Ost</option>
+                    <option>Pasta</option>
+                    <option>Övrigt</option>
+                </select>
+
             </div>
             <div class="form-group">
                 <label asp-for="produkt.Sale" class="control-label"></label>
@@ -70,9 +77,12 @@
                 <span asp-validation-for="produkt.PhotoNamn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="produkt.Eco" class="control-label"></label>
+                @*<label asp-for="produkt.Eco" class="control-label"></label>
                 <input type="checkbox" name="Ekologisk" />
-                <span asp-validation-for="produkt.Eco" class="text-danger"></span>
+                <span asp-validation-for="produkt.Eco" class="text-danger"></span>*@
+                @Html.LabelFor( p => p.produkt.Eco, "Ekologisk")
+                @Html.CheckBoxFor(p => p.produkt.Eco, new { @class = "css-checkbox9 all_check" })
+                <label for="Ekologisk" class="css-label9" checked="checked"></label>
             </div>
             <div class="form-group" width="300px" align="right">
                 <input type="submit" value="Lägg till produkt" class="btn btn-primary" />
@@ -115,49 +125,64 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ProductModelList[0].Chosen)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModelList[0].Eco)
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.ProductModelList)
             {
-                <tr>
-                    <td>
-                        <img src="~/ImageProduct/@item.PhotoNamn" height="35" width="35" />
+            <tr>
+                <td>
+                    <img src="~/ImageProduct/@item.PhotoNamn" height="35" width="35" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale_Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chosen)
+                </td>
+                @if (item.Eco == true)
+                {
+                    <td style="color:forestgreen">
+                        @Html.DisplayFor(modelItem => item.Eco) Ekologisk
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                }
+                else
+                {
+                    <td >
+                        @Html.DisplayFor(modelItem => item.Eco)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sale)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sale_Percent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateIn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Chosen)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
+                }
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
