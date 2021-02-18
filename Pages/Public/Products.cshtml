@@ -7,13 +7,13 @@
 <h1>Produkter</h1>
 <br />
 <td>
-    <input id="btnMestValda" type="button" value="Mest Valda Produkter" />
-    <input id="btnNyaste" type="button" value="Nyaste produkter" />
-    <input id="btnReaProdukt" type="button" value="Rea Produkter" />
+    <input id="btnMestValda" type="button" value="Mest Valda Produkter" hidden />
+    <input id="btnNyaste" type="button" value="Nyaste produkter" hidden />
+    <input id="btnReaProdukt" type="button" value="Rea Produkter" hidden />
 </td>
 <td>
     <br />
-    <h4>Kategorier:</h4><br />
+    <h4>Kategorier:</h4>
     <input id="btnPasta" type="button" value="Pasta" />
     <input id="btnSalumi" type="button" value="Salumi (Chark)" />
     <input id="btnOst" type="button" value="Formaggio (Ost)" />
@@ -93,7 +93,7 @@
             </td>
             <td>
 
-                <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Detalj</a> |
                 <a asp-page="" asp-route-id="@item.Id">Köp</a><br />
 
                 <a asp-page="" asp-route-id="@item.Id">Minus</a> |
