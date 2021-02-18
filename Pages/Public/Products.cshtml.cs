@@ -29,15 +29,21 @@ namespace DelliItalia_Razor.Pages.Public
         {
             await GetList();
             await GetCategory();
-        }  
+        }
         public async Task<List<ProductModel>> GetList()
-        {
-            
+        {            
+            if (string.IsNullOrEmpty(SearchProduct))
+                {
+                    return ProductModel = await _context.ProductModel.ToListAsync();
+                }
             if (string.IsNullOrEmpty(SearchProduct))
             {
-                return ProductModel =  await _context.ProductModel.ToListAsync();
-            }            
-              return ProductModel = _context.ProductModel.Where(p => p.Name.Contains(SearchProduct)).ToList();            
+                return ProductModel = _context.ProductModel.Where(p => p.Name.Contains(SearchProduct)).ToList();
+            }
+            if(ProductModel.Count == 0)
+            { return ProductModel = _context.ProductModel.ToList(); }
+            else
+                return ProductModel = await _context.ProductModel.ToListAsync();
         }
         public async Task<List<ProductModel>> GetCategory()
         {

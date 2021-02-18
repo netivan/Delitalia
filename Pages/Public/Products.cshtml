@@ -64,13 +64,13 @@
                     @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
                 </th>
 
-                @if (Model.ProductModel[0].Sale > 0)
+                @if ((Model.ProductModel.Count != 0) && (Model.ProductModel[0].Sale !=0))
                 {
                     <th>
                         @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
                     </th>
                 }
-                @if (Model.ProductModel[0].Sale_Percent > 0)
+                @if ((Model.ProductModel.Count !=0)&&(Model.ProductModel[0].Sale_Percent != 0))
                 {
                     <th>
                         @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
@@ -123,13 +123,13 @@
                         </td>
                     }
 
-                    @if (item.Sale > 0)
+                    @if (item.Sale != 0)
                     {
                         <td style="color:red">
                             @Html.DisplayFor(modelItem => item.Sale) rea i kronor
                         </td>
                     }
-                    @if (item.Sale_Percent > 0)
+                    @if (item.Sale_Percent != 0)
                     {
                         <td style="color:red">
                             @Html.DisplayFor(modelItem => item.Sale_Percent)  rea i Procent
