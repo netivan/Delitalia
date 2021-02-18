@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="ProductModel.Id" />
             <div class="form-group">
                 <label asp-for="ProductModel.Name" class="control-label"></label>
-                @Model.ProductModel.Name                
+                <input asp-for="ProductModel.Name" class="form-control" />             
                 <span asp-validation-for="ProductModel.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,9 +25,9 @@
                 <span asp-validation-for="ProductModel.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductModel.PhotoAdress" class="control-label"></label>
-                <input asp-for="ProductModel.PhotoAdress" class="form-control" />
-                <span asp-validation-for="ProductModel.PhotoAdress" class="text-danger"></span>
+                <label asp-for="ProductModel.PhotoNamn" class="control-label"></label>
+                <input type="file" name="uplImage" />
+                <span asp-validation-for="ProductModel.PhotoNamn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProductModel.Description" class="control-label"></label>
