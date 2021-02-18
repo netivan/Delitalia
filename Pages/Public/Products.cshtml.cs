@@ -75,7 +75,7 @@ namespace DelliItalia_Razor.Pages.Public
                         ProductModel = _context.ProductModel.Where(p => p.Eco==(true)).ToList();
                         if (ProductModel.Count == 0)
                         {
-                            ViewData["IngaProd"] = "Kategori " + Category + " har inga produkter";
+                            ViewData["IngaProd"] = "Kategori Ekologisk har inga produkter";
                             return ProductModel = _context.ProductModel.ToList();
                         }
                         return ProductModel;
