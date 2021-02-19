@@ -1,8 +1,8 @@
 ﻿
 @model DelliItalia_Razor.Model.BaseModel
 
-<div>
-    <form class="col row mr-auto" asp-page="/Public/Products" method="get">
+@*<div>
+    <form class="col row mr-auto" asp-page-handler="/Products?handler=GetSearch" method="get">
         <div class="form-inline my-2 my-lg-0 ml-auto">
             <td>
                 <input class="form-control mr-sm-2" type="search"
@@ -11,15 +11,12 @@
             </td>
         </div>
     </form>
+</div>*@
+
+<div>
+    <form asp-page="/Public/Products" asp-page-handler="search" asp-route-query="">
+        <input class="form-control" type="search" name="query" /> 
+        <button>Sök</button>
+
+    </form>
 </div>
-
-@*asp-page="/Public/Products"
-        <!--<form method="get">
-         <div>
-               <input class="input-group">-->
-               @*<input class="form-control" asp-for="SearchProduct" />
-                <!--<button type="submit" asp-page="/Public/Products" value="SearchProduct">Sök</button>
-
-        </div>
-    </form>-->
-*@

@@ -44,33 +44,31 @@ namespace DelliItalia_Razor.Pages.Public
             //await GetSearch();
         }
 
-        public async Task<List<ProductModel>> GetSearch()
-        {//kalla på metoden istället för OnGet
-            if (string.IsNullOrEmpty(SearchProduct))
+        public async Task OnPostSearchAsync(string query)
+        {
+            if (string.IsNullOrEmpty(query))
             {
-
-                return await GetCategory();
+                await GetCategory();
+                
             }
-            else
-                try
+            
+                ProductModel = await _context.ProductModel.AsNoTracking()
+                    .Where(p => !string.IsNullOrEmpty(p.Name) && p.Name.Contains(query)).ToListAsync();
+                if(ProductModel.Count == 0)
                 {
-                    if (!string.IsNullOrEmpty(SearchProduct))
-                    {
-                        ProductModel = _context.ProductModel.Where(p => p.Name.Contains(SearchProduct)).ToList();
-                        if (ProductModel.Count == 0)
-                        {
-                            ViewData["IngaProd"] = "Kategori Ekologisk har inga produkter";
-                            return ProductModel = _context.ProductModel.ToList();
-                        }
-                        return ProductModel;
-                    }
-                    return ProductModel = _context.ProductModel.ToList();
-                }
-                catch (ArgumentOutOfRangeException)
+                    ProductModel = await _context.ProductModel.ToListAsync();
+                if (!string.IsNullOrEmpty(query))
                 {
-                    return ProductModel = _context.ProductModel.ToList();
+                    ViewData["IngaProd"] = "Ingen produkt med namnet: " + query + " hittades i webbutiken";
                 }
+                else 
+                { ViewData["IngaProd"] = "För att söka en produkt glöm inte att skriva namnet på produkten"; }
+                }
+            
+            
         }
+
+        
 
         public async Task<List<ProductModel>> GetCategory()
         {

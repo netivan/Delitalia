@@ -10,10 +10,11 @@ using DelliItalia_Razor.Data;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using DelliItalia_Razor.Model;
 
 namespace DelliItalia_Razor.Pages.WebAdmin
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
         private readonly IWebHostEnvironment _webHost;
