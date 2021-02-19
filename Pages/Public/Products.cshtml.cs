@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 using DelliItalia_Razor.Data;
+using DelliItalia_Razor.Model;
 
 namespace DelliItalia_Razor.Pages.Public
 {
-    public class ProductsModel : PageModel
+    public class ProductsModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
 
@@ -19,6 +20,8 @@ namespace DelliItalia_Razor.Pages.Public
 
         [BindProperty(SupportsGet =true)]
         public string Category { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchProduct { get; set; }
 
         public ProductsModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context)
         {
@@ -27,13 +30,48 @@ namespace DelliItalia_Razor.Pages.Public
 
         public List<ProductModel> ProductModel { get;set; }
 
+        //public async Task OnGetAsync()
+        //{
+        //        await GetCategory();
+            
+        //        await GetEco();
+        //}
         public async Task OnGetAsync()
         {
-                await GetCategory();
             
-                await GetEco();
+            await GetCategory();
+            await GetEco();
+            //await GetSearch();
         }
-      
+
+        public async Task<List<ProductModel>> GetSearch()
+        {//kalla på metoden istället för OnGet
+            if (string.IsNullOrEmpty(SearchProduct))
+            {
+
+                return await GetCategory();
+            }
+            else
+                try
+                {
+                    if (!string.IsNullOrEmpty(SearchProduct))
+                    {
+                        ProductModel = _context.ProductModel.Where(p => p.Name.Contains(SearchProduct)).ToList();
+                        if (ProductModel.Count == 0)
+                        {
+                            ViewData["IngaProd"] = "Kategori Ekologisk har inga produkter";
+                            return ProductModel = _context.ProductModel.ToList();
+                        }
+                        return ProductModel;
+                    }
+                    return ProductModel = _context.ProductModel.ToList();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return ProductModel = _context.ProductModel.ToList();
+                }
+        }
+
         public async Task<List<ProductModel>> GetCategory()
         {
           if (string.IsNullOrEmpty(Category))

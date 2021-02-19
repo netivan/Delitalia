@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DelliItalia_Razor.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DelliItalia_Razor.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BaseModel
     {
         private readonly ILogger<IndexModel> _logger;
 

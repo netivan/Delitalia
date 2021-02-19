@@ -18,40 +18,40 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <a asp-page="/Public/Cart"><img src="~/Image/vagn-logo.jpg" width="30" height="30" alt="Cart" /> </a>
+                    <partial name="_Search" />
+                        <a asp-page="/Public/Cart"><img src="~/Image/vagn-logo.jpg" width="30" height="30" alt="Cart" /> </a>
 
-                    @*<input type="text" /><a asp-action="/Public/Products/OnGetAsync" class="nav-link text-dark">Sök</a>
-                                                    SearchProduct
-                    *@
-                    <form method="get">
-                        <div>
-                            <input class="input-group">
-                            @*<input class="form-control" asp-for="SearchProduct" />*@
-                            <button type="submit" asp-page="/Public/Products" value="SearchProduct">Sök</button>
+                        @*<form method="get">
+                            <div>
+                                <input class="input-group">
+                                <input class="form-control" asp-for="SearchProduct" />
+                                <button type="submit" asp-page="/Public/Products" value="SearchProduct">Sök</button>
 
-                        </div>
-                    </form>
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Index">Hem</a>
-                        </li>
+                            </div>
+                        </form>*@
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
-                        </li>
-                    </ul>
+                    
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Index">Hem</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
     <div class="container">

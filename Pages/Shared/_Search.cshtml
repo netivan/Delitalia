@@ -1,0 +1,25 @@
+﻿
+@model DelliItalia_Razor.Model.BaseModel
+
+<div>
+    <form class="col row mr-auto" asp-page="/Public/Products" method="get">
+        <div class="form-inline my-2 my-lg-0 ml-auto">
+            <td>
+                <input class="form-control mr-sm-2" type="search"
+                       aria-label="Search" name="SearchProduct" value="@Model.Filter" />
+                <input type="submit" value="Search" class="btn btn-outline-success my-2 my-sm-0" />
+            </td>
+        </div>
+    </form>
+</div>
+
+@*asp-page="/Public/Products"
+        <!--<form method="get">
+         <div>
+               <input class="input-group">-->
+               @*<input class="form-control" asp-for="SearchProduct" />
+                <!--<button type="submit" asp-page="/Public/Products" value="SearchProduct">Sök</button>
+
+        </div>
+    </form>-->
+*@
