@@ -18,14 +18,14 @@ max-width:30.5%;">
                 }
             </h5>
             <h5 style="color:red">
-                @{ var rea = "Rea:" + Model.Sale + " %";}
+                @{ var rea = "Rea: -" + Model.Sale + " kr";}
                 @if (Model.Sale != 0)
                 {
                     @Html.DisplayFor(modelItem => rea)
                 }
             </h5>
             <h5 style="color:red">
-                @{ var reaP = "Rea:"+ Model.Sale_Percent +" kr";}
+                @{ var reaP = "Rea: -"+ Model.Sale_Percent +" %";}
                 @if (Model.Sale_Percent != 0)
                 {
                     @Html.DisplayFor(modelItem => reaP)

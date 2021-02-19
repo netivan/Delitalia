@@ -23,17 +23,18 @@
     <p style="color:red"> @ViewData["IngaProd"] </p>
 </td>
 <br /> 
-@*<div class="card-deck">
+
+<div class="card-deck">
     @foreach(var item in Model.ProductModel)
     {
         <partial name="_DisplayProductPartial" model="item" />
     }
 
-</div>*@
+</div>
     
     
     
-    <table class="table">
+    @*<table class="table">
         <thead>
             <tr>
                 <th>
@@ -143,5 +144,5 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table>*@
 
