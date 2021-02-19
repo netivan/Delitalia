@@ -1,0 +1,53 @@
+﻿@model ProductModel
+
+@{
+}
+
+<div class="col-lg-4 col-md-6 mb-4" style="min-width:18rem;
+max-width:30.5%;">
+    <div class="card h-100">
+        <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
+            <img class="card-img-top" src="~/ImageProduct/@Model.PhotoNamn" height="120" width="80">
+        </a>
+
+        <div class="card-body">
+            <h5 style="font:1em; color:forestgreen">
+                @if (Model.Eco == true)
+                {
+                    @Html.DisplayNameFor(modelItem => Model.Eco)
+                }
+            </h5>
+            <h5 style="color:red">
+                @{ var rea = "Rea:" + Model.Sale + " %";}
+                @if (Model.Sale != 0)
+                {
+                    @Html.DisplayFor(modelItem => rea)
+                }
+            </h5>
+            <h5 style="color:red">
+                @{ var reaP = "Rea:"+ Model.Sale_Percent +" kr";}
+                @if (Model.Sale_Percent != 0)
+                {
+                    @Html.DisplayFor(modelItem => reaP)
+                }
+            </h5>
+            <h4 class="card-title">
+                @Html.DisplayFor(modelItem => Model.Name)
+            </h4>
+            <h6>Kategori: @Html.DisplayFor(modelItem => Model.Category)</h6>
+            <h5>Pris: @Html.DisplayFor(modelItem => Model.Price) kr</h5>
+            <p>
+                @Html.DisplayFor(modelItem => Model.Description)
+            </p>
+        </div>
+        <div class="card-footer" style="text-align:center">
+            <div class="col-sm" style="width:150px;
+                    align-items:center; text-align:center; vertical-align:middle">
+                <a asp-page="" asp-route-id="@Model.Id">Minus</a>
+                <input id="Antal" type="number" style="width:30px" />
+                <a asp-page="" asp-route-id="@Model.Id">Plus</a>
+            </div>
+            <a asp-page="" asp-route-id="@Model.Id">Köp</a><br />
+        </div>
+    </div>
+</div>

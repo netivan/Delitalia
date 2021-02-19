@@ -5,25 +5,33 @@
     ViewData["Title"] = "Products";
 }
 <h1>Produkter</h1>
-    <br />
-    <td>
-        <input id="btnMestValda" type="button" value="Mest Valda Produkter" hidden/>
-        <input id="btnNyaste" type="button" value="Nyaste produkter" hidden/>
-        <input id="btnReaProdukt" type="button" value="Rea Produkter" hidden/>
-    </td>
-    <td>
-        <br /><br />
-        <h4>Kategorier:</h4>
-        <a href="?Ekologisk=True"><Button style="color:forestgreen" runat="server" onclick="GetEco"> Ekologisk</Button></a>       
-        <a href="?Category=Pasta"><button> Pasta </button></a>
-        <a href="?Category=Chark"><button> Salumi (Chark) </button></a>
-        <a href="?Category=Ost"><button> Formaggio (Ost) </button></a>
-        <a href="?Category=Övrigt"><button> Övriga Produkter</button></a> <br />
-        <p style="color:red"> @ViewData["IngaProd"] </p>
+<br />
+<td>
+    <input id="btnMestValda" type="button" value="Mest Valda Produkter" hidden />
+    <input id="btnNyaste" type="button" value="Nyaste produkter" hidden />
+    <input id="btnReaProdukt" type="button" value="Rea Produkter" hidden />
+</td>
+<td>
+    <br /><br />
+    <h4>Kategorier:</h4>
+    <a href="?Ekologisk=True"><Button style="color:forestgreen" runat="server" onclick="GetEco"> Ekologisk</Button></a>
+    <a href="?Category=Pasta"><button> Pasta </button></a>
+    <a href="?Category=Chark"><button> Salumi (Chark) </button></a>
+    <a href="?Category=Ost"><button> Formaggio (Ost) </button></a>
+    <a href="?Category=Övrigt"><button> Övriga Produkter</button></a> <br />
+    <p style="color:red"> @ViewData["IngaProd"] </p>
+</td>
+<br /> 
+@*<div class="card-deck">
+    @foreach(var item in Model.ProductModel)
+    {
+        <partial name="_DisplayProductPartial" model="item" />
+    }
 
-
-    </td>
-    <br />
+</div>*@
+    
+    
+    
     <table class="table">
         <thead>
             <tr>
@@ -57,13 +65,13 @@
                     @Html.DisplayNameFor(model => model.ProductModel[0].Eco)
                 </th>
 
-                @if ((Model.ProductModel.Count != 0) && (Model.ProductModel[0].Sale !=0))
+                @if ((Model.ProductModel.Count != 0) && (Model.ProductModel[0].Sale != 0))
                 {
                     <th>
                         @Html.DisplayNameFor(model => model.ProductModel[0].Sale)
                     </th>
                 }
-                @if ((Model.ProductModel.Count !=0)&&(Model.ProductModel[0].Sale_Percent != 0))
+                @if ((Model.ProductModel.Count != 0) && (Model.ProductModel[0].Sale_Percent != 0))
                 {
                     <th>
                         @Html.DisplayNameFor(model => model.ProductModel[0].Sale_Percent)
@@ -143,3 +151,4 @@
             }
         </tbody>
     </table>
+
