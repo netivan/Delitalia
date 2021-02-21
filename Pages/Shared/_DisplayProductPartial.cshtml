@@ -7,7 +7,7 @@
 max-width:30.5%;">
     <div class="card h-100">
         <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
-            <img class="card-img-top" src="~/ImageProduct/@Model.PhotoNamn" height="120" width="80">
+            <img class="card-img-top" src="~/ImageProduct/@Model.PhotoNamn" height="140" width="80">
         </a>
 
         <div class="card-body">
@@ -41,13 +41,13 @@ max-width:30.5%;">
             </p>
         </div>
         <div class="card-footer" style="text-align:center">
-            <div class="col-sm" style="width:150px;
-                    align-items:center; text-align:center; vertical-align:middle">
-                <a asp-page="" asp-route-id="@Model.Id">Minus</a>
+            <div class="col-sm" style="width:150px;  display:inline-flex;">
+
+                <a style="padding:5px;" asp-page="" asp-route-id="@Model.Id">Minus</a>
                 <input id="Antal" type="number" style="width:30px" />
-                <a asp-page="" asp-route-id="@Model.Id">Plus</a>
-            </div>
-            <a asp-page="" asp-route-id="@Model.Id">Köp</a><br />
+                <a style="padding:5px;" asp-page="" asp-route-id="@Model.Id">Plus</a>
+            </div><br />
+            <a asp-page="" asp-route-id="@Model.Id">Köp</a>
         </div>
     </div>
 </div>
