@@ -1,0 +1,89 @@
+﻿@page
+@model DelliItalia_Razor.Pages.Public.CartPageModel
+
+@{
+    ViewData["Title"] = "CartPage";
+}
+
+<h1>Köpvagn</h1>
+
+<p>
+    <a asp-page="./Products">Produkt sidan</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].PhotoNamn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].Sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].Sale_Percent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CartModel[0].Quantity)
+            </th>
+            <th>
+                <p>Kostnad</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{ decimal SLutTotalPris = 0;}
+
+        @foreach (var item in Model.CartModel)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="~/ImageProduct/@Model.CartModel[0].PhotoNamn" alt="Bild Saknas" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale_Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @{
+                        var pris = @item.Price * @item.Quantity;
+                        decimal slut_pris = 0;
+                        if (item.Sale != 0) { slut_pris = pris - (item.Sale * item.Quantity); }
+                        else if (item.Sale_Percent != 0) { slut_pris = pris - ((item.Sale_Percent * item.Price) * item.Quantity); }
+                        else slut_pris = pris;
+                        SLutTotalPris += slut_pris;
+                    }
+                    <p> Total Kostna: @slut_pris </p>
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Minus</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Plus</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Ta bort</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tr style=" column-span:all; font-size:1.5em; align-self:flex-end">
+        <td style="width:70%;">Slut Total Pris:</td>
+        <td style="width:30%;"> @SLutTotalPris kr</td>
+    </tr>
+</table>

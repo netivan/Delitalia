@@ -7,6 +7,10 @@
     "mssql2": {
       "type": "mssql.local",
       "connectionId": "DelliItalia_RazorContext"
+    },
+    "mssql3": {
+      "type": "mssql.local",
+      "connectionId": "CartPageContext"
     }
   }
 }
