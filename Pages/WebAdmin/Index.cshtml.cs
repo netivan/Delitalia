@@ -24,7 +24,6 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         {
             _context = context;
             _webHost = webHost;
-
         }
 
         [BindProperty]
@@ -35,6 +34,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         public async Task OnGetAsync()
         {
             ProductModelList = await _context.ProductModel.ToListAsync();
+            
         }
       
         public async Task<IActionResult> OnPostAsync(IFormFile uplImage, ProductModel produkt)
@@ -64,5 +64,6 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
             return RedirectToPage("./Index");
         }
+
     }
 }
