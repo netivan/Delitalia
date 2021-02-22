@@ -8,15 +8,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 using DelliItalia_Razor.Data;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DelliItalia_Razor.Pages.WebAdmin
 {
     public class EditModel : PageModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
+        private readonly IWebHostEnvironment _webHost;
 
-        public EditModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context)
+        public EditModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context, IWebHostEnvironment webHost)
         {
+            _webHost = webHost;
             _context = context;
         }
 
@@ -41,11 +46,28 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile uplImage)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
+
+            }
+            if (uplImage == null)
+            {
+                ViewData["IngaBild"] = "Glöm inte att välja produkt bild";
+                return Page();
+            }
+            if (uplImage != null)
+            {
+                var prodSave = Path.Combine(_webHost.WebRootPath, "ImageProduct", uplImage.FileName);
+                using (var stream = new FileStream(prodSave, FileMode.Create))
+                {
+                    await uplImage.CopyToAsync(stream);
+                }
+
+                ProductModel.PhotoNamn = uplImage.FileName;
+                ProductModel.PhotoAdress = prodSave;
             }
 
             _context.Attach(ProductModel).State = EntityState.Modified;
