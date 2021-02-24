@@ -30,18 +30,11 @@ namespace DelliItalia_Razor.Pages.Public
 
         public List<ProductModel> ProductModel { get;set; }
 
-        //public async Task OnGetAsync()
-        //{
-        //        await GetCategory();
-            
-        //        await GetEco();
-        //}
+       
         public async Task OnGetAsync()
         {
-            
             await GetCategory();
             await GetEco();
-            //await GetSearch();
         }
 
         public async Task OnPostSearchAsync(string query)
@@ -59,16 +52,12 @@ namespace DelliItalia_Razor.Pages.Public
                     ProductModel = await _context.ProductModel.ToListAsync();
                 if (!string.IsNullOrEmpty(query))
                 {
-                    ViewData["IngaProd"] = "Ingen ProductModel med namnet: " + query + " hittades i webbutiken";
+                    ViewData["IngaProd"] = "Ingen produkt med namnet: " + query + " hittades i webbutiken";
                 }
                 else 
-                { ViewData["IngaProd"] = "För att söka en ProductModel glöm inte att skriva namnet på produkten"; }
+                { ViewData["IngaProd"] = "För att söka en produkt glöm inte att skriva namnet på produkten"; }
                 }
-            
-            
         }
-
-        
 
         public async Task<List<ProductModel>> GetCategory()
         {
