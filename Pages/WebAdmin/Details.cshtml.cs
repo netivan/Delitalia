@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 using DelliItalia_Razor.Data;
+using DelliItalia_Razor.Model;
 
 namespace DelliItalia_Razor.Pages.WebAdmin
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
 

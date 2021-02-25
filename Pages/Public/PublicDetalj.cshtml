@@ -58,21 +58,15 @@
             @Html.DisplayFor(model => model.ProductModel.Category)
         </dd>
         <dt class="col-sm">
-            @Html.DisplayNameFor(model => model.ProductModel.DateIn)
-        </dt>
-        <dd class="col-sm">
-            @Html.DisplayFor(model => model.ProductModel.DateIn)
-        </dd>
-        <dt class="col-sm">
             @Html.DisplayNameFor(model => model.ProductModel.Quantity)
         </dt>
-        <dd class="col-sm" hidden>
+        <dd class="col-sm">
             @Html.DisplayFor(model => model.ProductModel.Quantity)
         </dd>
         <dt class="col-sm" hidden>
             @Html.DisplayNameFor(model => model.ProductModel.Chosen)
         </dt>
-        <dd class="col-sm">
+        <dd class="col-sm" hidden>
             @Html.DisplayFor(model => model.ProductModel.Chosen)
         </dd>
         </dl>
@@ -94,12 +88,15 @@
                 @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
             </dd>
         }
-        <dd style="width:100%; text-align:center">
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a>
-            <input id="Antal" type="number" style="width:40px" />
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Plus</a>
-        </dd>
+    <dd style="width:100%; text-align:center">
+        <div class="card-footer" style="text-align:center">
+            <div class="col-sm" style="width:150px;  display:inline-flex;">
+                <a style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.ProductModel.Id">Detalj</a>
+                <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
+                    <button><i class="fas fa-cart-plus"></i></button>
+                </a>
+            </div>
+    </dd>
     </td>
    
 </table>

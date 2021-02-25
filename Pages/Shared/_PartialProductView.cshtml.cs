@@ -6,9 +6,9 @@ using DelliItalia_Razor.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DelliItalia_Razor.Pages.Public
+namespace DelliItalia_Razor.Pages.Shared
 {
-    public class ContactModel : BaseModel
+    public class _PartialProductViewModel : BaseModel
     {
         public void OnGet()
         {

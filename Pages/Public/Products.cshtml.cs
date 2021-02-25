@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 using DelliItalia_Razor.Data;
+using DelliItalia_Razor.Model;
 
 namespace DelliItalia_Razor.Pages.Public
 {
-    public class ProductsModel : PageModel
+    public class ProductsModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
+
         [BindProperty(SupportsGet =true)]
-        public string SearchProduct { get; set; }
+        public string Ekologisk { get; set; }
+
         [BindProperty(SupportsGet =true)]
         public string Category { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchProduct { get; set; }
 
         public ProductsModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context)
         {
@@ -25,16 +30,40 @@ namespace DelliItalia_Razor.Pages.Public
 
         public List<ProductModel> ProductModel { get;set; }
 
+       
         public async Task OnGetAsync()
         {
-           
             await GetCategory();
+            await GetEco();
         }
-      
+
+        public async Task OnPostSearchAsync(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                await GetCategory();
+                
+            }
+            
+                ProductModel = await _context.ProductModel.AsNoTracking()
+                    .Where(p => !string.IsNullOrEmpty(p.Name) && p.Name.Contains(query)).ToListAsync();
+                if(ProductModel.Count == 0)
+                {
+                    ProductModel = await _context.ProductModel.ToListAsync();
+                if (!string.IsNullOrEmpty(query))
+                {
+                    ViewData["IngaProd"] = "Ingen produkt med namnet: " + query + " hittades i webbutiken";
+                }
+                else 
+                { ViewData["IngaProd"] = "För att söka en produkt glöm inte att skriva namnet på produkten"; }
+                }
+        }
+
         public async Task<List<ProductModel>> GetCategory()
         {
           if (string.IsNullOrEmpty(Category))
             {
+                
                 return ProductModel = await _context.ProductModel.ToListAsync();
             }
             else
@@ -52,8 +81,37 @@ namespace DelliItalia_Razor.Pages.Public
                     }
                     return ProductModel = _context.ProductModel.ToList();
                 }
-                catch(ArgumentOutOfRangeException) { return ProductModel = _context.ProductModel.ToList(); }
-            
+                catch(ArgumentOutOfRangeException) { return ProductModel = _context.ProductModel.ToList();
+                }
         }
+
+        public async Task<List<ProductModel>> GetEco()
+        {
+            if (string.IsNullOrEmpty(Ekologisk))
+            {
+               
+                return   await GetCategory();
+            }
+            else
+                try
+                {
+                    if (!string.IsNullOrEmpty(Ekologisk))
+                    {
+                        ProductModel = _context.ProductModel.Where(p => p.Eco==(true)).ToList();
+                        if (ProductModel.Count == 0)
+                        {
+                            ViewData["IngaProd"] = "Kategori Ekologisk har inga produkter";
+                            return ProductModel = _context.ProductModel.ToList();
+                        }
+                        return ProductModel;
+                    }
+                    return ProductModel = _context.ProductModel.ToList();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return ProductModel = _context.ProductModel.ToList();
+                }
+        }
+
     }
 }

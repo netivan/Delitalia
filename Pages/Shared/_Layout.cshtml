@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DeliItalia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+          crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body style="background-color:lightgray">
+    @using Microsoft.AspNetCore.Http
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -17,20 +21,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <a asp-page="/Public/Cart"><img src="~/Image/vagn-logo.jpg" width="30" height="30" alt="Cart" /> </a>
+                    <th> <partial name="_LoginPartial" /></th>
+                    <th>
+                        @{
+                            string session = Context.Session.GetString("cart");
+                        }
+                        @if (session == null)
+                        {
+                            <a asp-page="/Public/Cart" hidden><button> <i class="fas fa-cart-plus"></i></button></a>
+                        }
+                        else
+                        {
+                            <a asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>}
+                    </th>
+                    <th style="min-width:100px;"><partial name="_Search" /></th>
 
-                    @*<input type="text" /><a asp-action="/Public/Products/OnGetAsync" class="nav-link text-dark">Sök</a>
-                                                    SearchProduct
-                    *@
-                    <form method="get">
-                        <div>
-                            <input class="input-group">
-                            @*<input class="form-control" asp-for="SearchProduct" />*@
-                            <button type="submit" asp-page="/Public/Products" value="SearchProduct">Sök</button>
 
-                        </div>
-                    </form>
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Index">Hem</a>

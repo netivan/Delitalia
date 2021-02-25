@@ -7,92 +7,92 @@
 
 <h1>Uppdatera Produkt</h1>
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProductModel.Id" />
-            <table cellpadding="10" width="1200px">
-                <td width="300px">
+    <div class="row">
+            <div class="col-md-4">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductModel.Id" />
+                    <table cellpadding="10" width="1200px">
+                        <td width="300px">
 
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Name" class="control-label"></label>
-                        <input asp-for="ProductModel.Name" class="form-control" />
-                        <span asp-validation-for="ProductModel.Name" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Price" class="control-label"></label>
-                        <input asp-for="ProductModel.Price" class="form-control" />
-                        <span asp-validation-for="ProductModel.Price" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Description" class="control-label"></label>
-                        <input asp-for="ProductModel.Description" class="form-control" />
-                        <span asp-validation-for="ProductModel.Description" class="text-danger"></span>
-                    </div>
-                </td>
-                <td width="300px">
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Category" class="control-label"></label>
-                        <br />
-                        <select id="select1" asp-for="ProductModel.Category" class="control-label" style="font:1em; height:30px; width:350px;">
-                            <option selected disabled> --select--</option>
-                            <option>Chark</option>
-                            <option>Ost</option>
-                            <option>Pasta</option>
-                            <option>Övrigt</option>
-                        </select>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Name" class="control-label"></label>
+                                <input asp-for="ProductModel.Name" class="form-control" />
+                                <span asp-validation-for="ProductModel.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Price" class="control-label"></label>
+                                <input asp-for="ProductModel.Price" class="form-control" />
+                                <span asp-validation-for="ProductModel.Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Description" class="control-label"></label>
+                                <input asp-for="ProductModel.Description" class="form-control" />
+                                <span asp-validation-for="ProductModel.Description" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td width="300px">
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Category" class="control-label"></label>
+                                <br />
+                                <select id="select1" asp-for="ProductModel.Category" class="control-label" style="font:1em; height:30px; width:350px;">
+                                    <option selected disabled> --select--</option>
+                                    <option>Chark</option>
+                                    <option>Ost</option>
+                                    <option>Pasta</option>
+                                    <option>Övrigt</option>
+                                </select>
 
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Sale" class="control-label"></label>
-                        <input asp-for="ProductModel.Sale" class="form-control" />
-                        <span asp-validation-for="ProductModel.Sale" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Sale_Percent" class="control-label"></label>
-                        <input asp-for="ProductModel.Sale_Percent" class="form-control" />
-                        <span asp-validation-for="ProductModel.Sale_Percent" class="text-danger"></span>
-                    </div>
-                </td>
-                <td width="300px">
-                    <div class="form-group">
-                        <label asp-for="ProductModel.DateIn" class="control-label"></label>
-                        <input asp-for="ProductModel.DateIn" class="form-control" />
-                        <span asp-validation-for="ProductModel.DateIn" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Quantity" class="control-label"></label>
-                        <input asp-for="ProductModel.Quantity" class="form-control" />
-                        <span asp-validation-for="ProductModel.Quantity" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ProductModel.Chosen" class="control-label"></label>
-                        <input asp-for="ProductModel.Chosen" class="form-control" />
-                        <span asp-validation-for="ProductModel.Chosen" class="text-danger"></span>
-                    </div>
-                </td>
-                <td width="300px">
-                    <div class="form-group">
-                        <label asp-for="ProductModel.PhotoNamn" class="control-label"></label>
-                        <input type="file" name="uplImage" />
-                        <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" style="widows:150px; height:150px" />
-                        <span asp-validation-for="ProductModel.PhotoNamn" class="text-danger"></span>
-                        <p style="color:red"> @ViewData["IngaBild"] </p>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Spara" class="btn btn-primary" />
-                    </div>
-                </td>
-            </table>
-        </form>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Sale" class="control-label"></label>
+                                <input asp-for="ProductModel.Sale" class="form-control" />
+                                <span asp-validation-for="ProductModel.Sale" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Sale_Percent" class="control-label"></label>
+                                <input asp-for="ProductModel.Sale_Percent" class="form-control" />
+                                <span asp-validation-for="ProductModel.Sale_Percent" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td width="300px">
+                            <div class="form-group">
+                                <label asp-for="ProductModel.DateIn" class="control-label"></label>
+                                <input asp-for="ProductModel.DateIn" class="form-control" />
+                                <span asp-validation-for="ProductModel.DateIn" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Quantity" class="control-label"></label>
+                                <input asp-for="ProductModel.Quantity" class="form-control" />
+                                <span asp-validation-for="ProductModel.Quantity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductModel.Chosen" class="control-label"></label>
+                                <input asp-for="ProductModel.Chosen" class="form-control" />
+                                <span asp-validation-for="ProductModel.Chosen" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td width="300px">
+                            <div class="form-group">
+                                <label asp-for="ProductModel.PhotoNamn" class="control-label"></label>
+                                <input type="file" name="uplImage" />
+                                <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" style="widows:150px; height:150px" />
+                                <span asp-validation-for="ProductModel.PhotoNamn" class="text-danger"></span>
+                                <p style="color:red"> @ViewData["IngaBild"] </p>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Spara" class="btn btn-primary" />
+                            </div>
+                            </td>
+                    </table>
+</form>
+            </div>
+        </div>
+
+    <div>
+        <a asp-page="./Index">Tillbaka till produktlistan</a>
     </div>
-</div>
 
-<div>
-    <a asp-page="./Index">Tillbaka till produktlistan</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

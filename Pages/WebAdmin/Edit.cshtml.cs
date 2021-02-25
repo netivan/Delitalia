@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 using DelliItalia_Razor.Data;
-using System.IO;
-using Microsoft.AspNetCore.Http;
+using DelliItalia_Razor.Model;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace DelliItalia_Razor.Pages.WebAdmin
 {
-    public class EditModel : PageModel
+    public class EditModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
         private readonly IWebHostEnvironment _webHost;
@@ -57,6 +58,22 @@ namespace DelliItalia_Razor.Pages.WebAdmin
             {
                 ViewData["IngaBild"] = "Glöm inte att välja produkt bild";
                 return Page();
+                
+            }
+            if(uplImage == null)
+            {
+                ViewData["IngaBild"] = "Glöm inte att välja produkt bild";
+                return Page(); }
+            if (uplImage != null)
+            {
+                var prodSave = Path.Combine(_webHost.WebRootPath, "ImageProduct", uplImage.FileName);
+                using (var stream = new FileStream(prodSave, FileMode.Create))
+                {
+                    await uplImage.CopyToAsync(stream);
+                }
+
+                ProductModel.PhotoNamn = uplImage.FileName;
+                ProductModel.PhotoAdress = prodSave;
             }
             if (uplImage != null)
             {

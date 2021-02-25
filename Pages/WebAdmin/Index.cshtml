@@ -10,11 +10,12 @@
     <!-- <a asp-page="Create">Create New</a> -->
 <form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <table cellpadding="10" width="1200px">
+    <table cellpadding="10" width="1200px" id="table">
         <td width="300px">
+            
             <div class="form-group">
                 <label asp-for="produkt.Name" class="control-label"></label>
-                <input asp-for="produkt.Name" class="form-control" />
+                <input asp-for="produkt.Name" class="form-control" id="Namn"/>
                 <span asp-validation-for="produkt.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -77,9 +78,6 @@
                 <span asp-validation-for="produkt.PhotoNamn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="produkt.Eco" class="control-label"></label>
-                <input type="checkbox" name="Ekologisk" />
-                <span asp-validation-for="produkt.Eco" class="text-danger"></span>*@
                 @Html.LabelFor( p => p.produkt.Eco, "Ekologisk")
                 @Html.CheckBoxFor(p => p.produkt.Eco, new { @class = "css-checkbox9 all_check" })
                 <label for="Ekologisk" class="css-label9" checked="checked"></label>
@@ -89,12 +87,12 @@
             </div>
         </td>
     </table>
-
-
-
+    <!-- Lägg till Produkt Slut -->
+    <!-- ProduktListan -->
     <table class="table">
         <thead>
             <tr>
+                <th hidden> @Model.ProductModelList[0].Id</th>
                 <th>
                     @Html.DisplayNameFor(model => model.ProductModelList[0].PhotoNamn)
                 </th>
@@ -136,6 +134,7 @@
             {
             <tr>
                 <td>
+                    <input type="hidden" asp-for="@item.Id" />
                     <img src="~/ImageProduct/@item.PhotoNamn" height="35" width="35" />
                 </td>
                 <td>
@@ -177,14 +176,15 @@
                         @Html.DisplayFor(modelItem => item.Eco)
                     </td>
                 }
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Uppdatera</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Detaljer</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Radera</a>
-                </td>
+            <td>
+                @*<partial name="_PartialEdit" />*@
+
+                <a asp-page="./Edit" asp-route-id="@item.Id">Uppdatera</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Radera</a>
+            </td>
             </tr>
             }
         </tbody>
     </table>
-
 </form>

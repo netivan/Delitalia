@@ -10,10 +10,11 @@ using DelliItalia_Razor.Data;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using DelliItalia_Razor.Model;
 
 namespace DelliItalia_Razor.Pages.WebAdmin
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BaseModel
     {
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
         private readonly IWebHostEnvironment _webHost;
@@ -23,7 +24,6 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         {
             _context = context;
             _webHost = webHost;
-
         }
 
         [BindProperty]
@@ -34,6 +34,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         public async Task OnGetAsync()
         {
             ProductModelList = await _context.ProductModel.ToListAsync();
+            
         }
       
         public async Task<IActionResult> OnPostAsync(IFormFile uplImage, ProductModel produkt)
@@ -63,5 +64,6 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
             return RedirectToPage("./Index");
         }
+
     }
 }
