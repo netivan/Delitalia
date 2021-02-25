@@ -1,0 +1,129 @@
+﻿@model ProductModel
+@{
+}
+<a class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalUppdatera">Uppdatera</a>
+
+<!-- Modal -->
+<div id="ModalUppdatera" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Uppdatera produkt</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Update Modal Form Start -->
+<div style="align-self:flex-start;">
+    <div id="UppdateraModal" class="modal fade" role="dialog"
+         data-keyboard="false" data-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="margin-left:5%; margin-top:3%">
+            <!-- Modal content-->
+            <div class="modal-content justify-content-center" style="width:1200px">
+                <div class="modal-header">
+                    <h4 class="modal-title">Uppdatera produkt</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="~/pages/WebAdmin/Index.OnGetFind" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <table cellpadding="10" width="100%">
+                            <td width="300px">
+                                <input asp-for="@Model.Id" type="hidden" />
+                                <div class="form-group">
+                                    <label asp-for="@Model.Name" class="control-label"></label>
+                                    <input asp-for="@Model.Name" class="form-control" />
+                                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Price" class="control-label"></label>
+                                    <input asp-for="@Model.Price" class="form-control" />
+                                    <span asp-validation-for="@Model.Price" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Description" class="control-label"></label>
+                                    <input asp-for="@Model.Description" class="form-control" />
+                                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td width="300px">
+                                <div class="form-group">
+                                    <label asp-for="@Model.Category" class="control-label"></label>
+                                    <br />
+                                    <select id="select1" asp-for="@Model.Category" class="control-label" style="font:1em; height:30px; width:350px;">
+                                        <option selected disabled> --select--</option>
+                                        <option>Chark</option>
+                                        <option>Ost</option>
+                                        <option>Pasta</option>
+                                        <option>Övrigt</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Sale" class="control-label"></label>
+                                    <input asp-for="@Model.Sale" class="form-control" />
+                                    <span asp-validation-for="@Model.Sale" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Sale_Percent" class="control-label"></label>
+                                    <input asp-for="@Model.Sale_Percent" class="form-control" />
+                                    <span asp-validation-for="@Model.Sale_Percent" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td width="300px">
+
+                                <div class="form-group">
+                                    <label asp-for="@Model.DateIn" class="control-label"></label>
+                                    <input asp-for="@Model.DateIn" class="form-control" />
+                                    <span asp-validation-for="@Model.DateIn" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Quantity" class="control-label"></label>
+                                    <input asp-for="@Model.Quantity" class="form-control" />
+                                    <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Chosen" class="control-label"></label>
+                                    <input asp-for="@Model.Chosen" class="form-control" />
+                                    <span asp-validation-for="@Model.Chosen" class="text-danger"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label asp-for="@Model.PhotoNamn" class="control-label"></label>
+                                    <input type="file" name="uplImage" />
+                                    <span asp-validation-for="@Model.PhotoNamn" class="text-danger"></span>
+                                    <img src="~/ImageProduct/@Model.PhotoNamn" style="width:200px; height:200px;" />
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(p => Model.Eco, "Ekologisk")
+                                    @Html.CheckBoxFor(p => Model.Eco, new { @class = "css-checkbox9 all_check" })
+                                    <label for="Ekologisk" class="css-label9" checked="checked"></label>
+                                </div>
+                                <div class="form-group" width="300px" align="right">
+                                    <input type="submit" value="Uppdatera produkt" class="btn btn-primary" asp-page="Index" />
+                                </div>
+                            </td>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- UPdate Modal Form End -->

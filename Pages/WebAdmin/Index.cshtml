@@ -10,11 +10,12 @@
     <!-- <a asp-page="Create">Create New</a> -->
 <form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <table cellpadding="10" width="1200px">
+    <table cellpadding="10" width="1200px" id="table">
         <td width="300px">
+            
             <div class="form-group">
                 <label asp-for="produkt.Name" class="control-label"></label>
-                <input asp-for="produkt.Name" class="form-control" />
+                <input asp-for="produkt.Name" class="form-control" id="Namn"/>
                 <span asp-validation-for="produkt.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,9 +31,16 @@
         </td>
         <td width="300px">
             <div class="form-group">
-                <label asp-for="produkt.Category" class="control-label"></label>
-                <input asp-for="produkt.Category" class="form-control" />
-                <span asp-validation-for="produkt.Category" class="text-danger"></span>
+                <label asp-for="produkt.Category" class="control-label" ></label>
+                <br />
+                <select id="select1" asp-for="produkt.Category" class="control-label" style="font:1em; height:30px; width:350px;">
+                    <option selected disabled> --select--</option>
+                    <option>Chark</option>
+                    <option>Ost</option>
+                    <option>Pasta</option>
+                    <option>Övrigt</option>
+                </select>
+
             </div>
             <div class="form-group">
                 <label asp-for="produkt.Sale" class="control-label"></label>
@@ -69,17 +77,22 @@
                 <input type="file" name="uplImage" />
                 <span asp-validation-for="produkt.PhotoNamn" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                @Html.LabelFor( p => p.produkt.Eco, "Ekologisk")
+                @Html.CheckBoxFor(p => p.produkt.Eco, new { @class = "css-checkbox9 all_check" })
+                <label for="Ekologisk" class="css-label9" checked="checked"></label>
+            </div>
             <div class="form-group" width="300px" align="right">
                 <input type="submit" value="Lägg till produkt" class="btn btn-primary" />
             </div>
         </td>
     </table>
-
-
-
+    <!-- Lägg till Produkt Slut -->
+    <!-- ProduktListan -->
     <table class="table">
         <thead>
             <tr>
+                <th hidden> @Model.ProductModelList[0].Id</th>
                 <th>
                     @Html.DisplayNameFor(model => model.ProductModelList[0].PhotoNamn)
                 </th>
@@ -110,51 +123,68 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ProductModelList[0].Chosen)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductModelList[0].Eco)
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.ProductModelList)
             {
-                <tr>
-                    <td>
-                        <img src="~/ImageProduct/@item.PhotoNamn" height="35" width="35" />
+            <tr>
+                <td>
+                    <input type="hidden" asp-for="@item.Id" />
+                    <img src="~/ImageProduct/@item.PhotoNamn" height="35" width="35" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale_Percent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chosen)
+                </td>
+                @if (item.Eco == true)
+                {
+                    <td style="color:forestgreen">
+                        @Html.DisplayFor(modelItem => item.Eco) Ekologisk
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                }
+                else
+                {
+                    <td >
+                        @Html.DisplayFor(modelItem => item.Eco)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sale)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sale_Percent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateIn)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Chosen)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
+                }
+            <td>
+                @*<partial name="_PartialEdit" />*@
+
+                <a asp-page="./Edit" asp-route-id="@item.Id">Uppdatera</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Radera</a>
+            </td>
+            </tr>
             }
         </tbody>
     </table>
-
 </form>

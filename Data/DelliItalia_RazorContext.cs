@@ -15,5 +15,15 @@ namespace DelliItalia_Razor.Data
         }
 
         public DbSet<DelliItalia_Razor.ProductModel> ProductModel { get; set; }
+
+        private List<ProductModel> ProductModelList;
+        public List<ProductModel> findAll()
+        {
+            return ProductModelList;
+        }
+        public ProductModel finById(int id)
+        {
+            return ProductModelList.Where(p => p.Id == id).FirstOrDefault();
+        }
     }
 }

@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DeliItalia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+          crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-color:white">
+<body style="background-color:lightgray">
+    @using Microsoft.AspNetCore.Http
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -17,17 +21,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <a asp-controller="Home" asp-action="Cart"><img src="~/Image/vagn-logo.jpg" width="30" height="30" alt="Cart" /> </a>
-                    @*<input type="text" /><a asp-controller="Home" asp-action="Product" class="nav-link text-dark">Sök</a>*@
-                    @*<form class="d-flex">
-                        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Sök</button>
-                    </form>*@
-                    <form asp-page="/Public/Products" class="nav-item" method="get">
-                        <input type="text" placeholder="Search..." name="SearchString" class="search nav-link">
-                        <input type="submit" hidden>
-                    </form>
+                    <th> <partial name="_LoginPartial" /></th>
+                    <th>
+                        @{
+                            string session = Context.Session.GetString("cart");
+                        }
+                        @if (session == null)
+                        {
+                            <a asp-page="/Public/Cart" hidden><button> <i class="fas fa-cart-plus"></i></button></a>
+                        }
+                        else
+                        {
+                            <a asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>}
+                    </th>
+                    <th style="min-width:100px;"><partial name="_Search" /></th>
+
+
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/Index">Hem</a>
