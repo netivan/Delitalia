@@ -88,12 +88,15 @@
                 @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
             </dd>
         }
-        <dd style="width:100%; text-align:center">
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Köp</a><br />
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Minus</a>
-            <input id="Antal" type="number" style="width:40px" />
-            <a asp-page="" asp-route-id="@Model.ProductModel.Id">Plus</a>
-        </dd>
+    <dd style="width:100%; text-align:center">
+        <div class="card-footer" style="text-align:center">
+            <div class="col-sm" style="width:150px;  display:inline-flex;">
+                <a style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.ProductModel.Id">Detalj</a>
+                <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
+                    <button><i class="fas fa-cart-plus"></i></button>
+                </a>
+            </div>
+    </dd>
     </td>
    
 </table>

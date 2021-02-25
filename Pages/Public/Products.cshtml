@@ -26,17 +26,17 @@
 </td>
 <br />
 
-@*<div class="card-deck">
+<div class="card-deck">
         @foreach(var item in Model.ProductModel)
         {
             <partial name="_DisplayProductPartial" model="item" />
         }
 
-    </div>*@
+    </div>
 
 
 
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -134,26 +134,11 @@
                     </td>
                 }
             <td>
-
                 <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">Detalj</a> |
-                @*<a asp-page="CartPage" asp-page-handler="buy" asp-route-id="@item.Id">Köp</a>*@
-                <br />
-                @*<div class="col-sm" style="width:150px">
-            <a asp-page="" asp-route-id="@item.Id">Minus</a>
-            <input id="Antal" type="number" style="width:30px" />
-            <a asp-page="" asp-route-id="@item.Id">Plus</a>
-        </div>*@
-                @if (item.Quantity != 0)
-                {
-                    <a type="submit" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@item.Id"><button>
-                        <i class="fas fa-cart-plus"></i>
-                            </button></a>
-                    
-                }
-
-
+                <a type="submit" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@item.Id"><button>
+                        <i class="fas fa-cart-plus"></i></button></a>
             </td>
             </tr>
         }
     </tbody>
-</table>
+</table>*@

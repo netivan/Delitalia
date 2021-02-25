@@ -42,12 +42,11 @@ max-width:30.5%;">
         </div>
         <div class="card-footer" style="text-align:center">
             <div class="col-sm" style="width:150px;  display:inline-flex;">
-
-                <a style="padding:5px;" asp-page="" asp-route-id="@Model.Id">Minus</a>
-                <input id="Antal" type="number" style="width:30px" />
-                <a style="padding:5px;" asp-page="" asp-route-id="@Model.Id">Plus</a>
-            </div><br />
-            <a asp-page="" asp-route-id="@Model.Id">Köp</a>
+                <a style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">Detalj</a>
+                 <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.Id">
+                    <button><i class="fas fa-cart-plus"></i></button>
+                </a>
+            </div>           
         </div>
     </div>
 </div>
