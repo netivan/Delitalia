@@ -18,13 +18,14 @@
                 {                   
                     <div style="font-size:2em; color:forestgreen;" hidden>
                         @Html.DisplayNameFor(model => model.ProductModel.Eco)
-                        @Html.DisplayFor(model => model.ProductModel.Eco)
+                        @Html.DisplayFor(model => model.ProductModel.Eco)                        
                     </div>
                 }
                 else
                 {<div style="font-size:2em; color:forestgreen;">
                 @Html.DisplayNameFor(model => model.ProductModel.Eco)
                 </div>
+
                 }
             </dd>
         </dl>
@@ -88,15 +89,17 @@
                 @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
             </dd>
         }
-    <dd style="width:100%; text-align:center">
-        <div class="card-footer" style="text-align:center">
-            <div class="col-sm" style="width:150px;  display:inline-flex;">
-                <a style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.ProductModel.Id">Detalj</a>
-                <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
-                    <button><i class="fas fa-cart-plus"></i></button>
-                </a>
-            </div>
-    </dd>
+        <dd style="width:100%; text-align:center">
+            <div class="card-footer" style="text-align:center">
+                <div class="col-sm" style="width:250px;  display:inline-flex;">
+                    <a style="75%" asp-page="./Products">Produkt sidan</a>
+                    <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
+                        <button><i class="fas fa-cart-plus"></i></button>
+                    </a>
+                </div>
+       
+        </dd>
+
     </td>
    
 </table>
