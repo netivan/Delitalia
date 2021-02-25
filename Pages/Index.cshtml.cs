@@ -49,6 +49,8 @@ namespace DelliItalia_Razor.Pages
             }
 
             ProductModel = await products.ToListAsync();
+
+            ViewData["SearchString"] = SearchString;
         }
     }
 }
