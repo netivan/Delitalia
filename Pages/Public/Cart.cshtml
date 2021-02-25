@@ -80,10 +80,10 @@
                     </td>
                     <td>
                         @{
-                            var pris = Model.cart[0].product.Price * @item.Quantity;
+                            var pris = item.product.Price * @item.Quantity;
                             decimal slut_pris = 0;
-                            if (item.product.Sale != 0) { slut_pris = pris - (Model.cart[0].product.Sale * item.Quantity); }
-                            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((Model.cart[0].product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
+                            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity); }
+                            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
                             else slut_pris = pris;
                             SLutTotalPris += slut_pris;
                         }
