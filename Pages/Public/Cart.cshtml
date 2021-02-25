@@ -7,8 +7,10 @@
 <h1>Köpvagn</h1>
 
 <p>
-    <a asp-page="./Products">Produkt sidan</a>
+    <a asp-page="./Products">Produkt sidan</a>   
 </p>
+<p>Antal produkter i korgen: @Model.cart.Count <br />
+    </p>
 <form method="post" asp-page="cart">
     <table class="table">
         <thead>
