@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DelliItalia_Razor
 {
@@ -14,6 +15,7 @@ namespace DelliItalia_Razor
         [DisplayName("Ekologisk:")]
         public bool Eco { get; set; }
         [Required]
+        [Column(TypeName = "decimal(18, 2)")]
         [DisplayName("Pris:")]
         public decimal Price { get; set; }
         [DisplayName("Foto namn:")]
@@ -26,8 +28,10 @@ namespace DelliItalia_Razor
         [DisplayName("Produkt kategori")]
         public string Category { get; set; }
         [DisplayName("Rea i kronor:")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Sale { get; set; }
         [DisplayName("Rea i procent:")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Sale_Percent { get; set; }
         [DisplayName("Inköps datum:")]
         public DateTime DateIn { get; set; }

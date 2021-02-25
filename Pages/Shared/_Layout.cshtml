@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body style="background-color:lightgray">
+    @using Microsoft.AspNetCore.Http
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -20,35 +21,44 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <th> <partial name="_LoginPartial" /></th>                    
+                    <th> <partial name="_LoginPartial" /></th>
                     <th>
-                    <a  asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>
+                        @{
+                            string session = Context.Session.GetString("cart");
+                        }
+                        @if (session == null)
+                        {
+                            <a asp-page="/Public/Cart" hidden><button> <i class="fas fa-cart-plus"></i></button></a>
+                        }
+                        else
+                        {
+                            <a asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>}
                     </th>
                     <th style="min-width:100px;"><partial name="_Search" /></th>
-                        
-                    
-                    
+
+
+
                     <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Index">Hem</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Index">Hem</a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
-                            </li>
-                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
+                        </li>
+                    </ul>
 
-                    </div>
                 </div>
+            </div>
         </nav>
     </header>
     <div class="container">

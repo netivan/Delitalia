@@ -55,21 +55,50 @@ namespace DelliItalia_Razor.Pages.Public
             {
                 List<CartItem> cartItem = JsonConvert.DeserializeObject
                     <List<CartItem>>(HttpContext.Session.GetString("cart"));
-               
-                cartItem.Add(new CartItem
+                int index = Exists(Id, cartItem);
+                if (index == -1)
                 {
-                    product = new CartProduct
+                    cartItem.Add(new CartItem
                     {
-                        Id = product.Id,
-                        Name = product.Name,
-                        PhotoNamn = product.PhotoNamn,
-                        Price = product.Price,
-                        Sale = product.Sale,
-                        Sale_Percent = product.Sale_Percent
-                    },
-                    Quantity = 1
-                });
+                        product = new CartProduct
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            PhotoNamn = product.PhotoNamn,
+                            Price = product.Price,
+                            Sale = product.Sale,
+                            Sale_Percent = product.Sale_Percent
+                        },
+                        Quantity = 1
+                    });
+                }
+                else
+                {
+                    cartItem[index].Quantity++;
+                }
+                HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));                
             }
+            return RedirectToPage("Cart");
+        }
+        public IActionResult OnPost(int[] quantity)
+        {
+            List<CartItem> cartItem = JsonConvert.DeserializeObject<List<CartItem>>
+                (HttpContext.Session.GetString("cart"));
+            for(int i=0; i < quantity.Length; i++)
+            {
+                cartItem[i].Quantity = quantity[i];
+            }
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));
+            return RedirectToPage("Cart");
+        }
+        public IActionResult OnGetRemove(int Id)
+        {
+            List<CartItem> cartItem = JsonConvert.DeserializeObject<List<CartItem>>
+                (HttpContext.Session.GetString("cart"));
+            int index = Exists(Id, cartItem);
+            cartItem.RemoveAt(index);
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));
+
             return RedirectToPage("Cart");
         }
         

@@ -9,88 +9,92 @@
 <p>
     <a asp-page="./Products">Produkt sidan</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.PhotoNamn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.Price)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.Sale)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].product.Sale_Percent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cart[0].Quantity)
-            </th>
-            <th>
-                Kostnad
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{ decimal SLutTotalPris = 0;}
-        @foreach (var item in Model.cart)
-        {
+<form method="post" asp-page="cart">
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.product.Id)
-                </td>
-                <td>
-                    <img src="~/ImageProduct/@Model.cart[0].product.PhotoNamn" alt="Bild Saknas"
-                         style="width:75px; height:75px;" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.product.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.product.Price)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.product.Sale)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.product.Sale_Percent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @{
-                        var pris = Model.cart[0].product.Price * @item.Quantity;
-                        decimal slut_pris = 0;
-                        if (item.product.Sale != 0) { slut_pris = pris - (Model.cart[0].product.Sale * item.Quantity); }
-                        else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((Model.cart[0].product.Sale_Percent/100) * item.product.Price) * item.Quantity); }
-                        else slut_pris = pris;
-                        SLutTotalPris += slut_pris;
-                    }
-                    <p> Total Kostnad: @slut_pris </p>
-                </td>
-                @*<td>
-                        <a asp-page="./Edit" asp-route-id="@item.Id">Minus</a> |
-                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Plus</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Ta bort</a>
-                    </td>*@
-            </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.PhotoNamn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.Price)
+                </th>
 
-        }
-    </tbody>
-    <tr style=" column-span:all; font-size:1.5em; align-self:flex-end">
-        <td style="width:70%;">Slut Total Pris:</td>
-        <td style="width:30%;"> @SLutTotalPris kr</td>
-    </tr>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.Sale)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cart[0].product.Sale_Percent)
+                </th>
+                <th>
+                    Antal
+                </th>
+                <th>
+                    Kostnad
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ decimal SLutTotalPris = 0;}
+            @foreach (var item in Model.cart)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Id)
+                    </td>
+                    <td>
+                        <img src="~/ImageProduct/@item.product.PhotoNamn" alt="Bild Saknas"
+                             style="width:75px; height:75px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Price)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Sale)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.product.Sale_Percent)
+                    </td>
+                    <td >
+                        <div class="input-group-append" style="text-align: center; vertical-align: middle " >
+                            <input class="span1" name="quantity" style="max-width: 35px;" placeholder="1"
+                                   size="16" type="number" min="1" value="@item.Quantity" />
+                            <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" class="btn btn-danger" type="button">
+                                <i class="icon-remove icon-white"></i>X<br />
+                            </a>
+                        </div>
+                        <button type="submit" class="btn" style="color:white; background-color:forestgreen"><i class="icon-save"></i>Uppdatera</button>
+                    </td>
+                    <td>
+                        @{
+                            var pris = Model.cart[0].product.Price * @item.Quantity;
+                            decimal slut_pris = 0;
+                            if (item.product.Sale != 0) { slut_pris = pris - (Model.cart[0].product.Sale * item.Quantity); }
+                            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((Model.cart[0].product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
+                            else slut_pris = pris;
+                            SLutTotalPris += slut_pris;
+                        }
+                        <p> @slut_pris.ToString("0.##") kr</p>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+        <tr style="column-span: all; font-size: 1.5em; align-self: flex-end;
+        margin-right: 5px; text-align: right">
+            <td style="width:70%;">Slut Total Pris:</td>
+            <td style="width:30%;"> @SLutTotalPris.ToString("0.##") kr</td>
+        </tr>
+    </table>
+</form>
