@@ -50,6 +50,7 @@ namespace DelliItalia_Razor.Pages.Public
                     Quantity = 1
                 });
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));
+                ViewData["antal"] = cartItem.Count.ToString();
             }
             else
             {

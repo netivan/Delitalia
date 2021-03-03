@@ -7,11 +7,13 @@
 <h1>Köpvagn</h1>
 
 <p>
-    <a asp-page="./Products">Produkt sidan</a>   
+    <a asp-page="./Products">Produkt sidan</a>
 </p>
-<p>Antal produkter i korgen: @Model.cart.Count <br />
-    </p>
-<form method="post" asp-page="cart">
+<p>
+    Antal produkter i korgen: @Model.cart.Count <br />
+    
+</p>
+<form name="FormE" method="post" asp-page="cart">
     <table class="table">
         <thead>
             <tr>
@@ -68,15 +70,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.product.Sale_Percent)
                     </td>
-                    <td >
-                        <div class="input-group-append" style="text-align: center; vertical-align: middle " >
-                            <input class="span1" name="quantity" style="max-width: 35px;" placeholder="1"
-                                   size="16" type="number" min="1" value="@item.Quantity" />
+                    <td>
+                        <div class="input-group-append" style="text-align: center; vertical-align: middle ">
+                            <input class="span1" id="quantity" name="quantity" style="font-size:14px ;max-width: 45px;" placeholder="1"
+                                   size="16" type="number" min="1" value="@item.Quantity" onchange="this.form.submit()" />
+
                             <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" class="btn btn-danger" type="button">
                                 <i class="icon-remove icon-white"></i>X<br />
                             </a>
                         </div>
-                        <button type="submit" class="btn" style="color:white; background-color:lightgreen"><i class="icon-save"></i>Uppdatera</button>
+                        <button hidden id="sub" type="submit" class="btn" style="color:white; background-color:lightgreen"><i class="icon-save"></i>Uppdatera</button>
                     </td>
                     <td>
                         @{
@@ -100,3 +103,21 @@
         </tr>
     </table>
 </form>
+
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+}
+else
+{
+    <a asp-page="./Products">Genomför köpet</a>
+}
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    <p> yeppiiiii du är inloggad</p>
+    if (this.User.IsInRole("Admin"))
+    {
+        <p>Du är inloggad som Admin</p>
+    }
+}

@@ -1,12 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DeliItalia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
           crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -37,7 +42,7 @@
                             <a asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>
                             <p style="margin-left:4px; margin-right:10px"> @ViewData["antal"] </p>
                         }
-                        
+
                     </th>
                     <th style="min-width:100px;"><partial name="_Search" /></th>
 
@@ -45,21 +50,21 @@
 
                     <ul class="navbar-nav flex-grow-1">
                         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Index">Hem</a>
-        </li>
+                                <a class="nav-link text-dark" asp-page="/Index">Hem</a>
+                            </li>
 
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
-        </li>*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
+                            </li>*@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
@@ -101,7 +106,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
