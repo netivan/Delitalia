@@ -1,7 +1,6 @@
 ﻿using DelliItalia_Razor.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,45 +12,44 @@ namespace DelliItalia_Razor.Pages
 {
     public class IndexModel : BaseModel
     {
-      //  private readonly ILogger<IndexModel> _logger;
-
+        private readonly ILogger<IndexModel> _logger;
         private readonly DelliItalia_Razor.Data.DelliItalia_RazorContext _context;
 
-        public IndexModel(DelliItalia_Razor.Data.DelliItalia_RazorContext context)
+        public IndexModel(ILogger<IndexModel> logger, DelliItalia_Razor.Data.DelliItalia_RazorContext context)
         {
+            _logger = logger;
             _context = context;
         }
-
-        public IEnumerable<DelliItalia_Razor.ProductModel> ProductModel { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
-        public SelectList Categories { get; set; }
-        [BindProperty(SupportsGet = true)]
-        public string Category { get; set; }
-
-
-        //public IndexModel(ILogger<IndexModel> logger)
-        //{
-        //    _logger = logger;
-        //}
-
-        //public void OnGet()
-        //{
-
-        //}
-
-        public async Task OnGetAsync()
+        public List<ProductModel> prod { get; set; }
+        public void OnGet()
         {
-            var products = from m in _context.ProductModel
-                         select m;
-            if (!string.IsNullOrEmpty(SearchString))
+        }
+        public async Task<List<ProductModel>> GetItem()
+        {
+            if (prod.Count == 0)
             {
-                products = products.Where(s => s.Name.Contains(SearchString));
+
+                return prod = await _context.ProductModel.ToListAsync();
             }
-
-            ProductModel = await products.ToListAsync();
-
-            ViewData["SearchString"] = SearchString;
+            else
+                try
+                {
+                    if (prod.Count != 0)
+                    {
+                        prod = _context.ProductModel.Where(p => p.DateIn != null).ToList();
+                        if (prod.Count == 0)
+                        {
+                            //ViewData["IngaProd"] = "Kategori " + Category + " har inga produkter";
+                            return prod = _context.ProductModel.ToList();
+                        }
+                        return prod;
+                    }
+                    return prod = _context.ProductModel.ToList();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return prod = _context.ProductModel.ToList();
+                }
         }
     }
 }

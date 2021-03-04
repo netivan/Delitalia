@@ -33,7 +33,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
         public async Task OnGetAsync()
         {
-             ProductModelList = await _context.ProductModel.OrderByDescending(p => p.DateIn).ToListAsync();
+            ProductModelList = await _context.ProductModel.OrderByDescending(p => p.DateIn).ToListAsync();
             
         }
       

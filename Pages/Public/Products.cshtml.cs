@@ -38,6 +38,12 @@ namespace DelliItalia_Razor.Pages.Public
             await GetEco();
         }
 
+        public async Task OnPostNyasteAsync()
+        {
+           ProductModel = await _context.ProductModel.OrderByDescending(p => p.DateIn).Take(5) .ToListAsync();
+           
+        }
+
         public async Task OnPostSearchAsync(string query)
         {
             if (string.IsNullOrEmpty(query))
@@ -72,7 +78,16 @@ namespace DelliItalia_Razor.Pages.Public
                 {
                     if (!string.IsNullOrEmpty(Category))
                     {
-                       ProductModel = _context.ProductModel.Where(p => p.Category.Contains(Category)).ToList();
+                        if(Category.Equals("Nyaste"))
+                        {
+                            return ProductModel = await _context.ProductModel.OrderByDescending(p => p.DateIn).Take(5).ToListAsync();
+                        }
+                        else if (Category.Equals("Rea"))
+                        {
+                            return ProductModel = await _context.ProductModel.Where(p => ((p.Sale != 0)||(p.Sale_Percent != 0)) ).ToListAsync();
+                        }
+
+                        ProductModel = _context.ProductModel.Where(p => p.Category.Contains(Category)).ToList();
                         if (ProductModel.Count == 0)
                         {
                             ViewData["IngaProd"] = "Kategori "+ Category + " har inga produkter";
