@@ -5,7 +5,7 @@
     ViewData["Title"] = "PublicDetalj";
 }
 
-<h1>Produkt detalj:</h1>
+@*<h1>Produkt detalj:</h1>*@
 
 <table style="width:80%">
     <td width="50%">
@@ -92,7 +92,7 @@
         <dd style="width:100%; text-align:center">
             <div class="card-footer" style="text-align:center">
                 <div class="col-sm" style="width:250px;  display:inline-flex;">
-                    <a style="75%" asp-page="./Products">Produkt sidan</a>
+                    <a style="75%" asp-page="./Products">Produktsidan</a>
                     <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
                         <button><i class="fas fa-cart-plus"></i></button>
                     </a>

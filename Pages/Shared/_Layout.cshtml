@@ -10,7 +10,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-color:lightgray">
+<body style="background-color:white">
     @using Microsoft.AspNetCore.Http
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -47,10 +47,10 @@
                             <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
+                            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om oss</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
+                            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta oss</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
@@ -61,17 +61,65 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div style="width 100%" @*class="container"*@>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - DeliItalia -
         </div>
+    </footer>*@
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="/Public/AboutUs">Om oss</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="/Public/Contact">Kontakta oss</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Köpvillkor</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Personuppgifter</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; DeliItalia 2021. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

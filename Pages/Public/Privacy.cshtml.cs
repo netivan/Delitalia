@@ -20,5 +20,7 @@ namespace DelliItalia_Razor.Pages
         public void OnGet()
         {
         }
+
+        public int Rad { get; set; }
     }
 }
