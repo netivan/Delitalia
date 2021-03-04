@@ -7,15 +7,17 @@
     Layout = "_LayoutIndex";
 }
 
-<!--Branch Sano Merge-->
 <td>
     <input id="btnMestValda" type="button" value="Mest Valda Produkter" hidden />
     <input id="btnNyaste" type="button" value="Nyaste produkter" hidden />
     <input id="btnReaProdukt" type="button" value="Rea Produkter" hidden />
 </td>
+
+
 <br />
 
 <div class="container; col-12">
+
     <div class="card-group">
         <div class="row col-12">
             <div class="col-lg-2">
@@ -40,7 +42,12 @@
         </div>
     </div>
 </div>
-<br /> <br /> <br /> <br /> <br /> <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 @*<h1>Produkter</h1>
     <br />
@@ -49,7 +56,6 @@
         <a href="?Category=Nyaste"><button> Nyaste Produkter </button></a>
         <a href="?Category=Rea"><button> Rabatterade Produkter </button></a>
     </td>
-
     <td>
         <br /><br />
         <h4>Kategorier:</h4>
@@ -62,11 +68,9 @@
         <p style="color:red"> @ViewData["IngaProd"] </p>
     </td>
     <br />
-
     <div class="card-deck">
             @foreach(var item in Model.ProductModel)
             {
                 <partial name="_DisplayProductPartial" model="item" />
             }
-
         </div>*@

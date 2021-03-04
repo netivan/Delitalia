@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DeliItalia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
           crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-color:white">
+<body style="background-color:lightgray">
     @using Microsoft.AspNetCore.Http
     @using DelliItalia_Razor.Pages.Public
     <header>
@@ -37,7 +37,7 @@
                             <a asp-page="/Public/Cart"><button> <i class="fas fa-cart-plus"></i></button></a>
                             <p style="margin-left:4px; margin-right:10px"> @ViewData["antal"] </p>
                         }
-                        
+
                     </th>
                     <th style="min-width:100px;"><partial name="_Search" /></th>
 
@@ -45,21 +45,20 @@
 
                     <ul class="navbar-nav flex-grow-1">
                         @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Index">Hem</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
-        </li>*@
+                                <a class="nav-link text-dark" asp-page="/Index">Hem</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
+                            </li>*@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
@@ -101,65 +100,17 @@
             </div>
         </nav>
     </header>
-    <div style="width 100%" @*class="container"*@>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    @*<footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - DeliItalia -
         </div>
-    </footer>*@
-
-    <!-- Footer -->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item">
-                            <a href="/Public/AboutUs">Om oss</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="/Public/Contact">Kontakta oss</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Köpvillkor</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Personuppgifter</a>
-                        </li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; DeliItalia 2021. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-facebook fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-instagram fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
