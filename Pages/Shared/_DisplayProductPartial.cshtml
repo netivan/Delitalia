@@ -38,12 +38,15 @@
                 @Html.DisplayFor(modelItem => Model.Description)
             </p>
         </div>
-        <div class="card-footer" style="text-align:left">
+        <div class="card-footer" style="text-align:center">
             <div class="col-sm" style="width:150px;  display:inline-flex;">
-                <a style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">Detalj</a>
-                 <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.Id">
-                    <button><i class="fas fa-cart-plus"></i></button>
+                <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
+                    <button class="btn btn-secondary">Detalj</button>
                 </a>
-            </div>           
+                <a type="submit" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.Id">
+                    @*<button><i class="fas fa-cart-plus"></i></button>*@
+                    <button class="btn btn-secondary">Köp</button>
+                </a>
+            </div>
         </div>
 </div>
