@@ -33,6 +33,7 @@ namespace DelliItalia_Razor
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddRazorPages();
 
             services.AddDbContext<DelliItalia_RazorContext>(options =>
