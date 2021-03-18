@@ -102,7 +102,16 @@ namespace DelliItalia_Razor.Pages.Public
 
             return RedirectToPage("Cart");
         }
-        
+        public IActionResult OnGetRemoveAll()
+        {
+            List<CartItem> cartItem = JsonConvert.DeserializeObject<List<CartItem>>
+                (HttpContext.Session.GetString("cart"));
+            cartItem.Clear();
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));
+
+            return RedirectToPage("Privacy");
+        }
+
         //kontroll om varan är redan i korg
         private int Exists(int? id, List<CartItem> item)
         {
