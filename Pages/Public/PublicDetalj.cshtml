@@ -95,13 +95,13 @@
                     @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
                 </dd>
             }
-            <dd style="width:100%; text-align:center">
+            <div style="width:100%; text-align:center">
                 <div class="card-footer" style="text-align:center">
                     <div class="row">
-                        <div class="input-group-append" style="text-align: center; vertical-align: middle; margin-left: 10px">
+                        @*<div class="input-group-append" style="text-align: center; vertical-align: middle; margin-left: 10px">
                             <input class="span1" id="quantity" name="quantity" style="font-size:14px ;max-width: 45px;" placeholder="1"
                                    size="16" type="number" min="1" value="" onchange="this.form.submit()" />
-                        </div>
+                        </div>*@
                         <div class="col-sm" style="width:250px;  display:inline-flex;">
                             @*<a style="75%" asp-page="./Products">Produktsidan</a>*@
                             <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
 
-            </dd>
+            </div>
 
         </td>
 

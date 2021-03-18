@@ -22,9 +22,10 @@ namespace DelliItalia_Razor.Model
         public string  Address { get; set; }
 
         [Display(Name = "Postkod:")]
-        public string  PostCode { get; set; }
+        public string PostCode { get; set; }
 
         [Display(Name = "Stad:")]
         public string City { get; set; }
     }
 }
+//hej

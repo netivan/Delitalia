@@ -2,6 +2,8 @@
 @model DelliItalia_Razor.Pages.Public.CartModel
 @{ ViewData["Title"] = "Cart"; }
 
+
+
 <h1>Köpvagn</h1>
 
 <p>
@@ -11,7 +13,8 @@
     Antal produkter i korgen: @Model.cart.Count <br />
 </p>
 <h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
-
+@using Microsoft.AspNetCore.Http
+@using DelliItalia_Razor.Pages.Public
 
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
@@ -87,27 +90,28 @@
     </td>
     <td>
         @{ var pris = item.product.Price * @item.Quantity;
-                            decimal slut_pris = 0;
-                            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity); }
-                            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
-                            else slut_pris = pris;
-                            SLutTotalPris += slut_pris; }
+            decimal slut_pris = 0;
+            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity); }
+            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
+            else slut_pris = pris;
+            SLutTotalPris += slut_pris; }
         <p> @slut_pris.ToString("0.##") kr</p>
     </td>
-</tr>            }
+</tr>
+}
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
-                        InkMoms = MomsPris + SLutTotalPris;
-                        if (InkMoms <= 200)
-                        {
-                            InkMoms += Frakt;
-                            if (SLutTotalPris == 0)
-                            {
-                                Frakt = 0;
-                                InkMoms = 0;
-                            }
-                        }
-                        else { Frakt = 0; } }
+            InkMoms = MomsPris + SLutTotalPris;
+            if (InkMoms <= 200)
+            {
+                InkMoms += Frakt;
+                if (SLutTotalPris == 0)
+                {
+                    Frakt = 0;
+                    InkMoms = 0;
+                }
+            }
+            else { Frakt = 0; } }
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Kostnad:</td>
@@ -133,53 +137,79 @@
 
 @if (!this.User.Identity.IsAuthenticated)
 {
-    <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
-}
+<a asp-area="Identity" asp-page="/Account/Login">Logga in först!</a> }
 else
 {
-    @if (Model.cart.Count != 0)
-    {
-        <!--<div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
-            <div class="row">
-                <div class="card" style="width: 18rem; margin-right: 40px">
-                    <img src="/Image/swedbank.jpg" class="card-img-top" alt="bank" style="height: 150px">
-                    <div class="card-body; text-center">
-                        <input type="radio" />
-                        <label for="bank">Banköverföring</label>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
-                    <div class="card-body; text-center">-->
-                        @*<button class="btn btn-primary">Betala med swish</button>*@
-                        <!--<input type="radio" />
-                        <label for="swish">Betala med swish</label>
-                    </div>
-                </div>
-
+@if (Model.cart.Count != 0)
+{
+<div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
+    <div class="row">
+        <div class="card" style="width: 18rem; margin-right: 40px">
+            <img src="/Image/swedbank.jpg" class="card-img-top" alt="bank" style="height: 150px">
+            <div class="card-body; text-center">
+                <input type="radio" />
+                <label for="bank">Banköverföring</label>
             </div>
-        </div>-->
-
-        <div style="margin-left: 30%">
-            <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./CartFinal'">Genomför köpet</button>
-            <a asp-page="./Products"></a>
         </div>
-    }
-    @*<a asp-page="./Products">Genomför köpet</a>
+        <div class="card" style="width: 18rem;">
+            <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
+            <div class="card-body; text-center">
+                @*<button class="btn btn-primary">Betala med swish</button>*@
+                <input type="radio" />
+                <label for="swish">Betala med swish</label>
+            </div>
+        </div>
 
-    <p> yeppiiiii du är inloggad</p>*@
-    @if (this.User.IsInRole("Admin"))
+    </div>
+</div>
+
+                    <div style="margin-left: 30%">
+                        <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./Privacy'">Slutför köpet</button>
+                        @*<a asp-page="./Products"></a>*@
+                        @*@{string session = Context.Session.GetString("cart"); }*@
+
+                    </div>} @*<a asp-page="./Products">Genomför köpet</a>*@
+
+                @*<p> yeppiiiii du är inloggad</p>*@
+                                @if (this.User.IsInRole("Admin"))
+                                {
+                <p>Du är inloggad som Admin</p>}}
+
+<br />
+<br />
+<br />
+<br />
+
+
+@*@if (Model.cart.Count != 0)
     {
-        <p>Du är inloggad som Admin</p>
+        @if (!this.User.Identity.IsAuthenticated)
+        {
+            <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+        }
+        else
+        {
+            <a asp-page="./Products">Genomför köpet</a>
+        }
+    }
+    else
+    {
+        <a asp-page="./Products" hidden>Genomför köpet</a>
     }
 
+        <p> yeppiiiii du är inloggad</p>
+        @if (this.User.IsInRole("Admin"))
+        {
+            <p>Du är inloggad som Admin</p>
+        }
 
 
 
 
-}
 
-<br />
-<br />
-<br />
-<br />
+    }
+
+    <br />
+    <br />
+    <br />
+    <br />*@

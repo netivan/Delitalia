@@ -115,5 +115,11 @@ namespace DelliItalia_Razor.Pages.Public
             }
             return -1;
         }
+
+        public void DeleteItems()
+        {
+            string sessionCart = HttpContext.Session.GetString("cart");
+            sessionCart = null;
+        }
     }
 }
