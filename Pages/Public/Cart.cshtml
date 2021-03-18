@@ -11,8 +11,10 @@
 </p>
 <p>
     Antal produkter i korgen: @Model.cart.Count <br />
-
 </p>
+<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
+
+
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
         <thead>
@@ -46,7 +48,11 @@
             </tr>
         </thead>
         <tbody>
-            @{ decimal SLutTotalPris = 0;}
+            @{ decimal SLutTotalPris = 0;
+                decimal Moms = 0.12m;
+                decimal MomsPris = 0;
+                decimal InkMoms = 0;
+                decimal Frakt = 50;}
             @foreach (var item in Model.cart)
             {
                 <tr>
@@ -96,49 +102,55 @@
 
             }
         </tbody>
+        @{
+            MomsPris = SLutTotalPris * Moms;
+            InkMoms = MomsPris + SLutTotalPris;
+            if (InkMoms <= 200)
+            { InkMoms += Frakt;
+                if (SLutTotalPris == 0) { Frakt = 0;
+                    InkMoms = 0;
+                }
+            }
+            else {  Frakt = 0; }
+        }
+        <tr style="column-span: all; font-size: 1em; align-self: flex-end;
+        margin-right: 5px; text-align: right">
+            <td style="width:70%;">Kostnad:</td>
+            <td style="width:30%;"> @SLutTotalPris.ToString("0.##") kr</td>
+        </tr>
+        <tr style="column-span: all; font-size: 1em; align-self: flex-end;
+        margin-right: 5px; text-align: right">
+            <td style="width:70%;">Moms (12%):</td>
+            <td style="width:30%;"> @MomsPris.ToString("0.##") kr</td>
+        </tr>
+        <tr style="column-span: all; font-size: 1em; align-self: flex-end;
+        margin-right: 5px; text-align: right">
+            <td style="width:70%;">Frakt:</td>
+            <td style="width:30%;"> @Frakt.ToString("0.##") kr</td>
+        </tr>
         <tr style="column-span: all; font-size: 1.5em; align-self: flex-end;
         margin-right: 5px; text-align: right">
-            <td style="width:70%;">Slut Total Pris:</td>
-            <td style="width:30%;"> @SLutTotalPris.ToString("0.##") kr</td>
+            <td style="width:70%;">Total kostnad (ink moms):</td>
+            <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
         </tr>
     </table>
 </form>
 
-@if (!this.User.Identity.IsAuthenticated)
+@if (Model.cart.Count != 0)
 {
-    <a asp-area="Identity" asp-page="/Account/Login">Logga in först!</a>
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+    }
+    else
+    {
+        <a asp-page="./Products">Genomför köpet</a>
+    }
 }
 else
 {
-    @if (Model.cart.Count != 0)
-    {
-        <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
-            <div class="row">
-                <div class="card" style="width: 18rem; margin-right: 40px">
-                    <img src="/Image/swedbank.jpg" class="card-img-top" alt="bank" style="height: 150px">
-                    <div class="card-body; text-center">
-                        <input type="radio" />
-                        <label for="bank">Banköverföring</label>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
-                    <div class="card-body; text-center">
-                        @*<button class="btn btn-primary">Betala med swish</button>*@
-                        <input type="radio" />
-                        <label for="swish">Betala med swish</label>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div style="margin-left: 30%">
-            <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./Privacy'">Genomför köpet</button>
-            <a asp-page="./Products"></a>
-        </div>
-    }
-    <a asp-page="./Products">Genomför köpet</a>
+    <a asp-page="./Products" hidden>Genomför köpet</a>
+}
 
     <p> yeppiiiii du är inloggad</p>
     @if (this.User.IsInRole("Admin"))

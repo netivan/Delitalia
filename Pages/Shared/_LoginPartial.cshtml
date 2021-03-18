@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using DelliItalia_Razor.Model
+@inject SignInManager<WebshopUser> SignInManager
+@inject UserManager<WebshopUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
