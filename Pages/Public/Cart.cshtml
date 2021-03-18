@@ -12,8 +12,8 @@
 <p>
     Antal produkter i korgen: @Model.cart.Count <br />
 </p>
-    <h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
-    
+<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
+
 
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
@@ -106,8 +106,12 @@
             MomsPris = SLutTotalPris * Moms;
             InkMoms = MomsPris + SLutTotalPris;
             if (InkMoms <= 200)
-            { InkMoms += Frakt; }
-            else { Frakt = 0; }
+            { InkMoms += Frakt;
+                if (SLutTotalPris == 0) { Frakt = 0;
+                    InkMoms = 0;
+                }
+            }
+            else {  Frakt = 0; }
         }
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
@@ -132,13 +136,20 @@
     </table>
 </form>
 
-@if (!this.User.Identity.IsAuthenticated)
+@if (Model.cart.Count != 0)
 {
-    <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+    }
+    else
+    {
+        <a asp-page="./Products">Genomför köpet</a>
+    }
 }
 else
 {
-    <a asp-page="./Products">Genomför köpet</a>
+    <a asp-page="./Products" hidden>Genomför köpet</a>
 }
 
 @if (this.User.Identity.IsAuthenticated)
