@@ -2,6 +2,7 @@
 
 @{
 }
+
 <div class="card" style="width:16rem; margin: 6px">
     <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
         <img class="card-img-top" src="~/ImageProduct/@Model.PhotoNamn" style="height:180px">
@@ -30,7 +31,9 @@
             }
         </h5>
         <h4 class="card-title">
-            @Html.DisplayFor(modelItem => Model.Name)
+            <a asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
+                @Html.DisplayFor(modelItem => Model.Name)
+            </a>   
         </h4>
         <h6>Kategori: @Html.DisplayFor(modelItem => Model.Category)</h6>
         <h5>Pris: @Html.DisplayFor(modelItem => Model.Price) kr</h5>
@@ -39,12 +42,12 @@
             </p>*@
 
     </div>
-    <div class="card-footer" style="text-align:center">
+    <div class="card-footer">
         <div class="col-sm" style="width:150px;  display:inline-flex;">
-            <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">
+            <!--<a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="/Public/PublicDetalj" asp-route-id="@Model.Id">-->
                 @*<button><i class="fas fa-cart-plus"></i></button>*@
-                <button class="btn btn-secondary">Detalj</button>
-            </a>
+                <!--<button class="btn btn-secondary">Detalj</button>
+            </a>-->
             <a type="submit" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.Id">
                 @*<button><i class="fas fa-cart-plus"></i></button>*@
                 <button class="btn btn-secondary">Köp</button>

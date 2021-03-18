@@ -18,14 +18,14 @@ namespace DelliItalia_Razor
         [Column(TypeName = "decimal(18, 2)")]
         [DisplayName("Pris:")]
         public decimal Price { get; set; }
-        [DisplayName("Foto namn:")]
+        [DisplayName("Fotonamn:")]
         public string PhotoNamn { get; set; }
         [DisplayName("Foto:")]
         public string PhotoAdress { get; set; }
         
         [DisplayName("Beskrivning:")]
         public string Description { get; set; }
-        [DisplayName("Produkt kategori")]
+        [DisplayName("Produktkategori:")]
         public string Category { get; set; }
         [DisplayName("Rea i kronor:")]
         [Column(TypeName = "decimal(18, 2)")]
@@ -33,7 +33,7 @@ namespace DelliItalia_Razor
         [DisplayName("Rea i procent:")]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Sale_Percent { get; set; }
-        [DisplayName("Inköps datum:")]
+        [DisplayName("Inköpsdatum:")]
         public DateTime DateIn { get; set; }
         [DisplayName("Antal i lager:")]
         public int Quantity { get; set; }

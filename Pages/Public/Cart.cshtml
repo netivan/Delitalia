@@ -7,11 +7,11 @@
 <h1>Köpvagn</h1>
 
 <p>
-    <a asp-page="./Products">Produkt sidan</a>
+    <a asp-page="./Products">Produktsidan</a>
 </p>
 <p>
     Antal produkter i korgen: @Model.cart.Count <br />
-    
+
 </p>
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
@@ -106,18 +106,53 @@
 
 @if (!this.User.Identity.IsAuthenticated)
 {
-    <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+    <a asp-area="Identity" asp-page="/Account/Login">Logga in först!</a>
 }
 else
 {
-    <a asp-page="./Products">Genomför köpet</a>
-}
+    @if (Model.cart.Count != 0)
+    {
+        <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
+            <div class="row">
+                <div class="card" style="width: 18rem; margin-right: 40px">
+                    <img src="/Image/swedbank.jpg" class="card-img-top" alt="bank" style="height: 150px">
+                    <div class="card-body; text-center">
+                        <input type="radio" />
+                        <label for="bank">Banköverföring</label>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
+                    <div class="card-body; text-center">
+                        @*<button class="btn btn-primary">Betala med swish</button>*@
+                        <input type="radio" />
+                        <label for="swish">Betala med swish</label>
+                    </div>
+                </div>
 
-@if (this.User.Identity.IsAuthenticated)
-{
+            </div>
+        </div>
+
+        <div style="margin-left: 30%">
+            <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./Privacy'">Genomför köpet</button>
+            <a asp-page="./Products"></a>
+        </div>
+    }
+    <a asp-page="./Products">Genomför köpet</a>
+
     <p> yeppiiiii du är inloggad</p>
-    if (this.User.IsInRole("Admin"))
+    @if (this.User.IsInRole("Admin"))
     {
         <p>Du är inloggad som Admin</p>
     }
+
+    
+
+
+
 }
+
+<br />
+<br />
+<br />
+<br />
