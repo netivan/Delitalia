@@ -15,7 +15,7 @@ namespace DelliItalia_Razor.Model
         [Display(Name = "Efternamn:")]
         public string LastName { get; set; }
         [Phone]
-        [Display(Name = "Mobile:")]
+        [Display(Name = "Mobil:")]
         public string Mobile { get; set; }
 
         [Display(Name = "Gata/väg:")]
