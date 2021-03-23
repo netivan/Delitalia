@@ -15,6 +15,16 @@ namespace DelliItalia_Razor.Data.Migrations
                 name: "LastName",
                 table: "AspNetUsers",
                 nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+               name: "City",
+               table: "AspNetUsers",
+               nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "PostCode",
+                table: "AspNetUsers",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -25,6 +35,14 @@ namespace DelliItalia_Razor.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "LastName",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+               name: "City",
+               table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "PostCode",
                 table: "AspNetUsers");
         }
     }
