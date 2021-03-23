@@ -44,21 +44,6 @@
 
 
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Index">Hem</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/Products">Produkter</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/AboutUS">Om Oss</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
-                            </li>*@
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
@@ -101,6 +86,8 @@
         </nav>
     </header>
     <div style="width 100%">
+        <partial name="_CookiePartial" />
+        
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

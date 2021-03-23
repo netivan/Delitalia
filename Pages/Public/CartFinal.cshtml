@@ -183,37 +183,3 @@ else
             <br />
             <br />
             <br />
-
-
-            @*@if (Model.cart.Count != 0)
-                {
-                    @if (!this.User.Identity.IsAuthenticated)
-                    {
-                        <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
-                    }
-                    else
-                    {
-                        <a asp-page="./Products">Genomför köpet</a>
-                    }
-                }
-                else
-                {
-                    <a asp-page="./Products" hidden>Genomför köpet</a>
-                }
-
-                    <p> yeppiiiii du är inloggad</p>
-                    @if (this.User.IsInRole("Admin"))
-                    {
-                        <p>Du är inloggad som Admin</p>
-                    }
-
-
-
-
-
-                }
-
-                <br />
-                <br />
-                <br />
-                <br />*@

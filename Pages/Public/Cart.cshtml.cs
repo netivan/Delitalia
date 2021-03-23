@@ -109,7 +109,7 @@ namespace DelliItalia_Razor.Pages.Public
             cartItem.Clear();
             HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));
 
-            return RedirectToPage("Privacy");
+            return RedirectToPage("ThanxForBuy");
         }
 
         //kontroll om varan är redan i korg

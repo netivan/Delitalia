@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DelliItalia_Razor
 {
@@ -39,7 +40,14 @@ namespace DelliItalia_Razor
 
             services.AddDbContext<DelliItalia_RazorContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-           
+            
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
             services.AddSession();
             //services.AddMvc();
         }
@@ -58,6 +66,7 @@ namespace DelliItalia_Razor
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCookiePolicy();
             app.UseSession();
             //app.UseMvc();
 

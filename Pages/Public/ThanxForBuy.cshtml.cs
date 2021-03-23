@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DelliItalia_Razor.Pages
 {
-    public class PrivacyModel : PageModel
+    public class ThanxForBuyModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<ThanxForBuyModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public ThanxForBuyModel(ILogger<ThanxForBuyModel> logger)
         {
             _logger = logger;
         }
