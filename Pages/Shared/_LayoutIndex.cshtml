@@ -60,6 +60,9 @@
                                 <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Privacy">Kontakta Oss</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/WebAdmin/AdminIndex">Admin</a>
                             </li>
                         }
@@ -78,6 +81,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Public/Contact">Kontakta Oss</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Privacy">Köpvilkor</a>
+                            </li>
                         }
                     </ul>
 
@@ -86,8 +92,7 @@
         </nav>
     </header>
     <div style="width 100%">
-        <partial name="_CookiePartial" />
-        
+        <partial name="_CookiePartial" />        
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
