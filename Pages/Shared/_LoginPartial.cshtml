@@ -2,26 +2,38 @@
 @using DelliItalia_Razor.Model
 @inject SignInManager<WebshopUser> SignInManager
 @inject UserManager<WebshopUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hej! @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logga ut</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Logga in</a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                @if (!String.IsNullOrEmpty( @user.FirstName) || !String.IsNullOrEmpty( @user.LastName))
+                {
+                  <p>  Hej! @user.FirstName @user.LastName! </p>
+                }
+                else
+                {
+                     <p>  Hej! @User.Identity.Name! </p>
+                }
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logga ut</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Logga in</a>
+        </li>
+    }
 </ul>

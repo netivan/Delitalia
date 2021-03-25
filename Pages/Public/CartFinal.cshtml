@@ -1,4 +1,12 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using DelliItalia_Razor.Model
+@inject SignInManager<WebshopUser> SignInManager
+@inject UserManager<WebshopUser> UserManager
+@{ 
+    var user = await UserManager.GetUserAsync(User);
+}
+
 @model DelliItalia_Razor.Pages.Public.CartModel
 @{ ViewData["Title"] = "Cart"; }
 
@@ -14,7 +22,7 @@
 </p>
 @*<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>*@
 
-
+<!-- Köpkorg artiklar-->
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
         <thead>
@@ -157,6 +165,38 @@
     </table>
 </form>
 
+<hr />
+<!-- Användar Info-->
+<div>
+    <label style="color:blue; font-size:large"> Leverans adress:</label>
+    <table style="font-size:large; margin:5px;">
+        <tr>
+            <td>För- och Efternamn: &nbsp;</td>
+            <td>@user.FirstName&nbsp;@user.LastName </td>
+        </tr>
+        <tr>
+            <td>Mobil: &nbsp;</td>
+            <td>@user.Mobile </td>
+        </tr>
+        <tr>
+            <td>Gatunamn: &nbsp;</td>
+            <td>@user.Address </td>
+        </tr>
+        <tr>
+            <td>Postnummer och stad: &nbsp;</td>
+            <td>@user.PostCode &nbsp; @user.City </td>
+        </tr>
+
+    </table>
+    <a href="~/Identity/Account/Manage" style="color:blue">
+        <h6>Ändra Leverans uppgifter</h6>
+    </a>
+
+
+
+
+</div>
+<hr/>
 
 @if (!this.User.Identity.IsAuthenticated)
 {
@@ -190,15 +230,16 @@ else
     </div>
 </form>
 
-    <form name="FormE" id="FormE" method="post" style="display:none" asp-page="cart">
-        <div style="margin-left: 30%">           
-                    <a asp-page="cart" asp-page-handler="removeAll">
-                        <button class="btn-lg btn-primary col-6" type="button">
-                            Slutför köpet
-                        </button>
-                    </a>                
-        </div>
-    </form>
+        <form name="FormE" method="post" asp-page="cart">
+            <div style="margin-left: 30%">
+                <a asp-page="cart" asp-page-handler="removeAll">
+                    <button class="btn-lg btn-primary col-6" type="button">
+                        Slutför köpet
+                    </button>
+                </a>
+
+            </div>
+        </form>
     }
 
     @*<p> yeppiiiii du är inloggad</p>*@
@@ -206,51 +247,7 @@ else
     {
         <p>Du är inloggad som Admin</p>}}
 
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <script>
-        function myFunction() {
-            document.getElementById("FormE").style.display = "";
-        }
-
-        
-        
-
-    </script>
-
-
-    @*@if (Model.cart.Count != 0)
-        {
-            @if (!this.User.Identity.IsAuthenticated)
-            {
-                <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
-            }
-            else
-            {
-                <a asp-page="./Products">Genomför köpet</a>
-            }
-        }
-        else
-        {
-            <a asp-page="./Products" hidden>Genomför köpet</a>
-        }
-
-            <p> yeppiiiii du är inloggad</p>
-            @if (this.User.IsInRole("Admin"))
-            {
-                <p>Du är inloggad som Admin</p>
-            }
-
-
-
-
-
-        }
-
-        <br />
-        <br />
-        <br />
-        <br />*@
+<br />
+<br />
+<br />
+<br />
