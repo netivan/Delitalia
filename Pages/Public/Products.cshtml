@@ -39,18 +39,7 @@
                 </div>
             </div>
             <div class="container">
-                @*<div class="dropdown" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-                    <button class="btn dropdown-toggle" style="border-color: lightgrey; color:cornflowerblue" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Filtrering
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="/Index">Nyaste produkter</a></li>
-                        <li><a class="dropdown-item" href="#">Mest sålda</a></li>
-                        <li><a class="dropdown-item" href="#">Nedsatta</a></li>
-                        <li><a class="dropdown-item" href="#">Utvalda</a></li>
-                    </ul>
-                </div>*@
+               
                 <h6 style="margin-left:5px; color:red">@ViewData["IngaProd"]</h6><br />
                 <div class="row col-12">
                     @foreach (var item in Model.ProductModel)
@@ -69,29 +58,3 @@
 <br />
 <br />
 <br />
-
-@*<h1>Produkter</h1>
-    <br />
-    <td>
-        <input id="btnMestValda" type="button" value="Mest Valda Produkter" hidden />
-        <a href="?Category=Nyaste"><button> Nyaste Produkter </button></a>
-        <a href="?Category=Rea"><button> Rabatterade Produkter </button></a>
-    </td>
-    <td>
-        <br /><br />
-        <h4>Kategorier:</h4>
-        <a href="?Category="><button>Återställ</button></a>
-        <a href="?Ekologisk=True"><Button style="color:forestgreen" runat="server" onclick="GetEco"> Ekologisk</Button></a>
-        <a href="?Category=Pasta"><button> Pasta </button></a>
-        <a href="?Category=Chark"><button> Salumi (Chark) </button></a>
-        <a href="?Category=Ost"><button> Formaggio (Ost) </button></a>
-        <a href="?Category=Övrigt"><button> Övriga Produkter</button></a> <br />
-        <p style="color:red"> @ViewData["IngaProd"] </p>
-    </td>
-    <br />
-    <div class="card-deck">
-            @foreach(var item in Model.ProductModel)
-            {
-                <partial name="_DisplayProductPartial" model="item" />
-            }
-        </div>*@
