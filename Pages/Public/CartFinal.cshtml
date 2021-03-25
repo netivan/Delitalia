@@ -145,17 +145,28 @@
 <hr />
 <!-- Användar Info-->
 <div>
-    <h4>
-        <label style="color:blue">Leverans adress:</label><br />
-        <label>För- och Efternamn:  @user.FirstName @user.LastName</label><br />
-        <label>Mobil:  @user.Mobile</label><br />
-        <label>Adress:  @user.Address </label><br />
-        <label>Postnummer och stad:  @user.PostCode @user.City</label><br /><br />
-    </h4>
-    <a href="~/Identity/Account/Manage">
-            <button class="btn-lg btn-primary col-sm-3" type="button">
-                Ändra Leverans uppgifter
-            </button>
+    <label style="color:blue; font-size:large"> Leverans adress:</label>
+    <table style="font-size:large; margin:5px;">
+        <tr>
+            <td>För- och Efternamn: &nbsp;</td>
+            <td>@user.FirstName &nbsp; @user.LastName </td>
+        </tr>
+        <tr>
+            <td>Mobil: &nbsp;</td>
+            <td>@user.Mobile </td>
+        </tr>
+        <tr>
+            <td>Gatunamn: &nbsp;</td>
+            <td>@user.Address </td>
+        </tr>
+        <tr>
+            <td>Postnummer och stad: &nbsp;</td>
+            <td>@user.PostCode &nbsp; @user.City </td>
+        </tr>
+
+    </table>
+    <a href="~/Identity/Account/Manage" style="color:blue">
+        <h6>Ändra Leverans uppgifter</h6>
     </a>
 
 
