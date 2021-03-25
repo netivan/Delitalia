@@ -3,7 +3,7 @@
 @using DelliItalia_Razor.Model
 @inject SignInManager<WebshopUser> SignInManager
 @inject UserManager<WebshopUser> UserManager
-@{ 
+@{
     var user = await UserManager.GetUserAsync(User);
 }
 
@@ -105,7 +105,7 @@
                         <p> @slut_pris.ToString("0.##") kr</p>
                     </td>
                 </tr>
-                            }
+            }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
             InkMoms = MomsPris + SLutTotalPris;
@@ -140,28 +140,24 @@
             <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
         </tr>
         @*<tr>
-            <td><h3>Välj fraktsätt</h3></td>
-        </tr>*@
+                <td><h3>Välj fraktsätt</h3></td>
+            </tr>
 
-       
-        @*@if (InkMoms <= 200)
-        {
+                @if (InkMoms <= 200)
+            {
+                <tr>
+                    <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
+                </tr>
+            }
             <tr>
-                <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
-            </tr>
-        }
-        <tr>
-            <td style="border: 1px solid"><input type="radio" name="fraktalternativ"  />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
-        </tr>*@
-        <tr>
-            <td><h3>Välj betalningsmetod</h3></td>
-        </tr>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ"  />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
+            </tr>*@
     </table>
 </form>
 
@@ -196,49 +192,67 @@
 
 
 </div>
-<hr/>
+<hr />
 
 @if (!this.User.Identity.IsAuthenticated)
 {
     <a asp-area="Identity" asp-page="/Account/Login">Logga in först!</a> }
 else
 {
+    <tr>
+        <td><h3>Välj betalningsmetod</h3></td>
+    </tr>
     @if (Model.cart.Count != 0)
     {
-<form>
-    <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
-        <div class="row">
-            <div class="card" style="width: 18rem; margin-right: 40px">
-                <img src="/Image/swedbank2.jpg" class="card-img-top" alt="bank" style="height: 150px">
-                <div class="card-body; text-center">
-                    <input type="radio" name="payment" id="payment" onclick="myFunction()"  />
-                    <label for="bank">Banköverföring</label>
+        <form>
+            <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
+                <div class="row">
+                    <div class="card" style="width: 18rem; margin-right: 40px">
+                        <img src="/Image/swedbank2.jpg" class="card-img-top" alt="bank" style="height: 150px">
+                        <div class="card-body; text-center">
+                            <input type="radio" name="payment" id="payment" onclick="myFunction()" />
+                            <label for="bank">Banköverföring</label>
+
+                        </div>
+
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
+                        <div class="card-body; text-center">
+                            <input type="radio" name="payment" id="payment" onclick="myFunction()" />
+                            <label for="swish">Betala med swish</label>
+                        </div>
+
+                    </div>
 
                 </div>
-                
             </div>
-            <div class="card" style="width: 18rem;">
-                <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
-                <div class="card-body; text-center">
-                    <input type="radio" name="payment" id="payment" onclick="myFunction()" />
-                    <label for="swish">Betala med swish</label>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</form>
+        </form>
 
         <form name="FormE" method="post" asp-page="cart">
-            <div style="margin-left: 30%">
-                <a asp-page="cart" asp-page-handler="removeAll">
-                    <button class="btn-lg btn-primary col-6" type="button">
-                        Slutför köpet
-                    </button>
+            @if (String.IsNullOrEmpty(user.FirstName) ||
+            String.IsNullOrEmpty(user.LastName) ||
+            String.IsNullOrEmpty(user.Address) ||
+            String.IsNullOrEmpty(user.PostCode) ||
+            String.IsNullOrEmpty(user.City) ||
+            String.IsNullOrEmpty(user.Mobile)
+         )
+            {
+                <p style="color:red">Leverans informationen måste ifyllas</p>
+                <a href="~/Identity/Account/Manage" style="color:blue">
+                    <h6>Ändra Leverans uppgifter</h6>
                 </a>
-
-            </div>
+            }
+            else
+            {
+                <div style="margin-left: 30%">
+                    <a asp-page="cart" asp-page-handler="removeAll">
+                        <button class="btn-lg btn-primary col-6" type="button">
+                            Slutför köpet
+                        </button>
+                    </a>
+                </div>
+            }
         </form>
     }
 
