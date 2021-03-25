@@ -97,7 +97,7 @@
                         <p> @slut_pris.ToString("0.##") kr</p>
                     </td>
                 </tr>
-            }
+                            }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
             InkMoms = MomsPris + SLutTotalPris;
@@ -131,12 +131,12 @@
             <td style="width:70%;">Total kostnad (ink moms):</td>
             <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
         </tr>
-        <tr>
+        @*<tr>
             <td><h3>Välj fraktsätt</h3></td>
-        </tr>
+        </tr>*@
 
        
-        @if (InkMoms <= 200)
+        @*@if (InkMoms <= 200)
         {
             <tr>
                 <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
@@ -146,11 +146,11 @@
         {
             <tr>
                 <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
-</tr>
+            </tr>
         }
         <tr>
-            <td style="border: 1px solid"><input type="radio" name="fraktalternativ" />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
-        </tr>
+            <td style="border: 1px solid"><input type="radio" name="fraktalternativ"  />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
+        </tr>*@
         <tr>
             <td><h3>Välj betalningsmetod</h3></td>
         </tr>
