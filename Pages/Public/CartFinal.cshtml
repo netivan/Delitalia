@@ -1,4 +1,12 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using DelliItalia_Razor.Model
+@inject SignInManager<WebshopUser> SignInManager
+@inject UserManager<WebshopUser> UserManager
+@{ 
+    var user = await UserManager.GetUserAsync(User);
+}
+
 @model DelliItalia_Razor.Pages.Public.CartModel
 @{ ViewData["Title"] = "Cart"; }
 
@@ -14,7 +22,7 @@
 </p>
 <h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
 
-
+<!-- Köpkorg artiklar-->
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
         <thead>
@@ -134,6 +142,28 @@
     </table>
 </form>
 
+<hr />
+<!-- Användar Info-->
+<div>
+    <h4>
+        <label style="color:blue">Leverans adress:</label><br />
+        <label>För- och Efternamn:  @user.FirstName @user.LastName</label><br />
+        <label>Mobil:  @user.Mobile</label><br />
+        <label>Adress:  @user.Address </label><br />
+        <label>Postnummer och stad:  @user.PostCode @user.City</label><br /><br />
+    </h4>
+    <a href="~/Identity/Account/Manage">
+            <button class="btn-lg btn-primary col-sm-3" type="button">
+                Ändra Leverans uppgifter
+            </button>
+    </a>
+
+
+
+
+</div>
+<hr/>
+
 @if (!this.User.Identity.IsAuthenticated)
 {
     <a asp-area="Identity" asp-page="/Account/Login">Logga in först!</a> }
@@ -172,14 +202,14 @@ else
 
             </div>
         </form>
-     }
+    }
 
-            @*<p> yeppiiiii du är inloggad</p>*@
-            @if (this.User.IsInRole("Admin"))
-            {
-                <p>Du är inloggad som Admin</p>}}
+    @*<p> yeppiiiii du är inloggad</p>*@
+    @if (this.User.IsInRole("Admin"))
+    {
+        <p>Du är inloggad som Admin</p>}}
 
-            <br />
-            <br />
-            <br />
-            <br />
+<br />
+<br />
+<br />
+<br />
