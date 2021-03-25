@@ -16,6 +16,7 @@ namespace DelliItalia_Razor.Pages.Public
         private readonly DelliItalia_RazorContext _context;
 
         public List<CartItem> cart { get; set; }
+
         public CartModel(DelliItalia_RazorContext context)
         {
             _context = context;
@@ -130,5 +131,7 @@ namespace DelliItalia_Razor.Pages.Public
             string sessionCart = HttpContext.Session.GetString("cart");
             sessionCart = null;
         }
+
+        
     }
 }

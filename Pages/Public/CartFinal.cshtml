@@ -12,7 +12,7 @@
 <p>
     Antal produkter i korgen: @Model.cart.Count <br />
 </p>
-<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>
+@*<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>*@
 
 
 <form name="FormE" method="post" asp-page="cart">
@@ -131,8 +131,32 @@
             <td style="width:70%;">Total kostnad (ink moms):</td>
             <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
         </tr>
+        <tr>
+            <td><h3>Välj fraktsätt</h3></td>
+        </tr>
+
+       
+        @if (InkMoms <= 200)
+        {
+            <tr>
+                <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
+</tr>
+        }
+        <tr>
+            <td style="border: 1px solid"><input type="radio" name="fraktalternativ" />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
+        </tr>
+        <tr>
+            <td><h3>Välj betalningsmetod</h3></td>
+        </tr>
     </table>
 </form>
+
 
 @if (!this.User.Identity.IsAuthenticated)
 {
@@ -141,79 +165,92 @@ else
 {
     @if (Model.cart.Count != 0)
     {
-        <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
-            <div class="row">
-                <div class="card" style="width: 18rem; margin-right: 40px">
-                    <img src="/Image/swedbank2.jpg" class="card-img-top" alt="bank" style="height: 150px">
-                    <div class="card-body; text-center">
-                        <input type="radio" />
-                        <label for="bank">Banköverföring</label>
-                    </div>
+<form>
+    <div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
+        <div class="row">
+            <div class="card" style="width: 18rem; margin-right: 40px">
+                <img src="/Image/swedbank2.jpg" class="card-img-top" alt="bank" style="height: 150px">
+                <div class="card-body; text-center">
+                    <input type="radio" name="payment" id="payment" onclick="myFunction()"  />
+                    <label for="bank">Banköverföring</label>
+
                 </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
-                    <div class="card-body; text-center">
-                        @*<button class="btn btn-primary">Betala med swish</button>*@
-                        <input type="radio" />
-                        <label for="swish">Betala med swish</label>
-                    </div>
+                
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
+                <div class="card-body; text-center">
+                    <input type="radio" name="payment" id="payment" onclick="myFunction()" />
+                    <label for="swish">Betala med swish</label>
                 </div>
 
             </div>
+
         </div>
+    </div>
+</form>
 
-        <form name="FormE" method="post" asp-page="cart">
-            <div style="margin-left: 30%">
-                <a asp-page="cart" asp-page-handler="removeAll">
-                    <button class="btn-lg btn-primary col-6" type="button">
-                        Slutför köpet
-                    </button>
-                </a>
+    <form name="FormE" id="FormE" method="post" style="display:none" asp-page="cart">
+        <div style="margin-left: 30%">           
+                    <a asp-page="cart" asp-page-handler="removeAll">
+                        <button class="btn-lg btn-primary col-6" type="button">
+                            Slutför köpet
+                        </button>
+                    </a>                
+        </div>
+    </form>
+    }
 
-            </div>
-        </form>
-     }
+    @*<p> yeppiiiii du är inloggad</p>*@
+    @if (this.User.IsInRole("Admin"))
+    {
+        <p>Du är inloggad som Admin</p>}}
 
-            @*<p> yeppiiiii du är inloggad</p>*@
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <script>
+        function myFunction() {
+            document.getElementById("FormE").style.display = "";
+        }
+
+        
+        
+
+    </script>
+
+
+    @*@if (Model.cart.Count != 0)
+        {
+            @if (!this.User.Identity.IsAuthenticated)
+            {
+                <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+            }
+            else
+            {
+                <a asp-page="./Products">Genomför köpet</a>
+            }
+        }
+        else
+        {
+            <a asp-page="./Products" hidden>Genomför köpet</a>
+        }
+
+            <p> yeppiiiii du är inloggad</p>
             @if (this.User.IsInRole("Admin"))
             {
-                <p>Du är inloggad som Admin</p>}}
-
-            <br />
-            <br />
-            <br />
-            <br />
-
-
-            @*@if (Model.cart.Count != 0)
-                {
-                    @if (!this.User.Identity.IsAuthenticated)
-                    {
-                        <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
-                    }
-                    else
-                    {
-                        <a asp-page="./Products">Genomför köpet</a>
-                    }
-                }
-                else
-                {
-                    <a asp-page="./Products" hidden>Genomför köpet</a>
-                }
-
-                    <p> yeppiiiii du är inloggad</p>
-                    @if (this.User.IsInRole("Admin"))
-                    {
-                        <p>Du är inloggad som Admin</p>
-                    }
+                <p>Du är inloggad som Admin</p>
+            }
 
 
 
 
 
-                }
+        }
 
-                <br />
-                <br />
-                <br />
-                <br />*@
+        <br />
+        <br />
+        <br />
+        <br />*@
