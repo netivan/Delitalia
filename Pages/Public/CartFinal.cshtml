@@ -7,7 +7,7 @@
     var user = await UserManager.GetUserAsync(User);
 }
 
-@model DelliItalia_Razor.Pages.Public.CartModel
+@model DelliItalia_Razor.Pages.Public.CartFinalModel
 @{ ViewData["Title"] = "Cart"; }
 
 
@@ -246,7 +246,7 @@ else
             else
             {
                 <div style="margin-left: 30%">
-                    <a asp-page="cart" asp-page-handler="removeAll">
+                    <a asp-page="cartfinal" asp-page-handler="UpdateDb">
                         <button class="btn-lg btn-primary col-6" type="button">
                             Slutför köpet
                         </button>
