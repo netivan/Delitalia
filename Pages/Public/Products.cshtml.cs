@@ -51,6 +51,7 @@ namespace DelliItalia_Razor.Pages.Public
                 await GetCategory();
                 
             }
+
             
                 ProductModel = await _context.ProductModel.AsNoTracking()
                     .Where(p => !string.IsNullOrEmpty(p.Name) && p.Name.Contains(query)).ToListAsync();

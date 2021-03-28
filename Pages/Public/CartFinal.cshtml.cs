@@ -49,7 +49,7 @@ namespace DelliItalia_Razor.Pages.Public
                 _context.ProductModel.Update(product); // update databasen
 
 
-                Order item2 = new Order { Quantity = item.Quantity, Name = item.product.Name, Price = item.product.Price, UserId = User.Identity.Name };    //updateDbKöp
+                Order item2 = new Order { Quantity = item.Quantity, Name = item.product.Name, Price = item.product.Price, UserId = User.Identity.Name, Datum = DateTime.Now };    //updateDbKöp     
                 _context.Orders.Add(item2);
 
 

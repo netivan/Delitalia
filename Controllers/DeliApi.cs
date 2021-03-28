@@ -17,7 +17,6 @@ namespace DelliItalia_Razor.Controllers
         private readonly DelliItalia_RazorContext _context;
 
 
-
         public DeliApiController(DelliItalia_RazorContext context)    //  Constructor
         {
             _context = context;
