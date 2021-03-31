@@ -8,6 +8,7 @@
     <script>
         window.addEventListener('load', (event) => {
             //sendApiRequest();
+            //sendApiRequestCuisine();
             console.log('page is fully loaded');
         });
     </script>
@@ -25,9 +26,10 @@
 <table class="col-12">
     <tr>
         <td>
+           
             <div class="input-group col-6 offset-2 ">
                 <input type="text" id="foodSearch" class="form-control"
-                       placeholder="Sök recept"
+                       placeholder="Samtliga recept ska sökas med engelska namn"
                        aria-label="Recipient's username"
                        aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -35,7 +37,7 @@
                 </div>
             </div>
         </td>
-        <td>
+        @*<td>
             <div class="input-group col-6 offset-2 ">
                 <input type="text" id="cuisineSearch" class="form-control"
                        placeholder="Sök enligt kök"
@@ -45,7 +47,7 @@
                     <button class="btn btn-outline-secondary" type="button" id="searchCuisine">Sök kök</button>
                 </div>
             </div>
-        </td>
+        </td>*@
 
     </tr>
 </table>
@@ -70,7 +72,6 @@
     <script>
         let searchButton = document.querySelector("#search");
             let food = document.getElementById("foodSearch");
-            let searchCuisineBTN = document.querySelector("#searchCuisine")
             let cuisine = document.getElementById("cuisineSearch");
 
 
@@ -81,27 +82,30 @@
                 }
                 console.log("Searched " + food.value)
 
-                //sendApiRequest(food)
+                sendApiRequest(food)
             })
-            searchCuisineBTN.addEventListener("click", () => {
-                if (cuisine.value == "") {
-                    document.getElementById("cuisineSearch").setAttribute('value', 'Mediterranean');
-                    alert("Searched " + cuisine.value);
-                }
-                console.log("Searched " + cuisine.value)
+            //searchCuisineBTN.addEventListener("click", () => {
+            //    if (cuisine.value == "") {
+            //        document.getElementById("cuisineSearch").setAttribute('value', 'Mediterranean');
+            //        alert("Searched " + cuisine.value);
+            //    }
+            //    console.log("Searched " + cuisine.value)
 
-                //sendApiRequestCuisine(cuisine)
-            })
+            //    sendApiRequestCuisine(cuisine)
+            //})
 
-            async function sendApiRequest(food) {            
+        async function sendApiRequest(food) {    
+            if (food.value == "") {
+                document.getElementById("foodSearch").setAttribute('value', 'Pasta');                
+            }
             let APP_ID = "aaf0f0d2";
             let APP_KEY = "673b002f8e531fab1bcd45df68955b13";
-            let API_ADR = "https://api.edamam.com/search?app_id=";
-            let API_FOOD = "pizza";
+                let API_ADR = "https://api.edamam.com/search?app_id=";
+                let API_FOOD = food;
 
 
 
-            await fetch(`${API_ADR}${APP_ID}&app_key=${APP_KEY}&=${API_FOOD}`)
+            await fetch(`${API_ADR}${APP_ID}&app_key=${APP_KEY}&q=${API_FOOD}`)
                 .then(resp => {
                     if (!resp.ok) {
                         throw Error("ERROR");
@@ -111,7 +115,6 @@
                 .then(recept => {
                     console.log(recept.hits);
                     const html = recept.hits.map(r => {
-
                         return `
 <div  class="col-md-3 col-sm-3">
 <img class="card-img-top" src="${r.recipe.image}" alt="Card image cap"/>
@@ -134,43 +137,43 @@
                     console.log(error)
                 });
             }
-            async function sendApiRequestCuisine(cuisine) {
-                let APP_ID = "aaf0f0d2";
-                let APP_KEY = "673b002f8e531fab1bcd45df68955b13";
-                let API_ADR = "https://api.edamam.com/search?app_id=";
-                let API_FOOD = "mediterranean&cuisineType=italy&cuisineType=spain";
+//            async function sendApiRequestCuisine(cuisine) {
+//                let APP_ID = "aaf0f0d2";
+//                let APP_KEY = "673b002f8e531fab1bcd45df68955b13";
+//                let API_ADR = "https://api.edamam.com/search?app_id=";
+//                let API_FOOD = "mediterranean";
 
-                await fetch(`${API_ADR}${APP_ID}&app_key=${APP_KEY}&cuisineType=${API_FOOD}`)
-                    .then(resp => {
-                        if (!resp.ok) {
-                            throw Error("ERROR");
-                        }
-                        return resp.json();
-                    })
-                    .then(recept => {
-                        console.log(recept.hits);
-                        const html = recept.hits.map(r => {
+//                await fetch(`${API_ADR}${APP_ID}&app_key=${APP_KEY}&cuisineType=${API_FOOD}`)
+//                    .then(resp => {
+//                        if (!resp.ok) {
+//                            throw Error("ERROR");
+//                        }
+//                        return resp.json();
+//                    })
+//                    .then(recept => {
+//                        console.log(recept.hits);
+//                        const html = recept.hits.map(r => {
 
-                            return `
-<div  class="col-md-3 col-sm-3">
-<img class="card-img-top" src="${r.recipe.image}" alt="Card image cap"/>
-<div class="card-body">
-<h5 class="card-title">${r.recipe.label}</h5>
-<p class="card-text"> From:  ${r.recipe.source}</p>
-<p class="card-text">Cuisine: ${r.recipe.cuisineType}</p>
-<p class="card-text">Meal type: ${r.recipe.mealType}</p>
-<p class="card-text">HealthLabels: ${r.recipe.healthLabels}</p>
-<p class="card-text">Calories: ${r.recipe.calories}</p>
-<a href="${r.recipe.url}" class="btn btn-primary">Till receptet</a>
-</div>
-</div><br>
-`;
-                        }).join("");
-                        console.log(html);
-                        document.querySelector('#content').insertAdjacentHTML('afterbegin', html);
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    });
-            }
+//                            return `
+//<div  class="col-md-3 col-sm-3">
+//<img class="card-img-top" src="${r.recipe.image}" alt="Card image cap"/>
+//<div class="card-body">
+//<h5 class="card-title">${r.recipe.label}</h5>
+//<p class="card-text"> From:  ${r.recipe.source}</p>
+//<p class="card-text">Cuisine: ${r.recipe.cuisineType}</p>
+//<p class="card-text">Meal type: ${r.recipe.mealType}</p>
+//<p class="card-text">HealthLabels: ${r.recipe.healthLabels}</p>
+//<p class="card-text">Calories: ${r.recipe.calories}</p>
+//<a href="${r.recipe.url}" class="btn btn-primary">Till receptet</a>
+//</div>
+//</div><br>
+//`;
+//                        }).join("");
+//                        console.log(html);
+//                        document.querySelector('#content').insertAdjacentHTML('afterbegin', html);
+//                    })
+//                    .catch(error => {
+//                        console.log(error)
+//                    });
+//            }
     </script>
