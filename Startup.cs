@@ -36,6 +36,8 @@ namespace DelliItalia_Razor
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddControllersWithViews();     // Nödvändig för att skapa ett API
+
             services.AddRazorPages();
 
             services.AddDbContext<DelliItalia_RazorContext>(options =>
@@ -81,6 +83,7 @@ namespace DelliItalia_Razor
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller = Home}/{action=Index}/{id?}");   // För att skapa ett API
             });
         }
     }

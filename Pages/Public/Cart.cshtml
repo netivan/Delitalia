@@ -14,6 +14,7 @@
 @*<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>*@
 
 
+
 <form name="FormE" method="post" asp-page="cart">
     <table class="table">
         <thead>
@@ -78,7 +79,7 @@
                     <td>
                         <div class="input-group-append" style="text-align: center; vertical-align: middle ">
                             <input class="span1" id="quantity" name="quantity" style="font-size:14px ;max-width: 45px;" placeholder="1"
-                                   size="16" type="number" min="1" value="@item.Quantity" onchange="this.form.submit()" />
+                                   size="16" type="number" min="0" max="@item.product.Stock" value="@item.Quantity" onchange="this.form.submit()" />     @*///////////////////////////////*@
 
                             <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" class="btn btn-danger" type="button">
                                 <i class="icon-remove icon-white"></i>X<br />
@@ -89,7 +90,9 @@
                     <td>
                         @{ var pris = item.product.Price * @item.Quantity;
                             decimal slut_pris = 0;
-                            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity); }
+                            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity);
+                                if (slut_pris < 0) slut_pris = 0;
+                            }
                             else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
                             else slut_pris = pris;
                             SLutTotalPris += slut_pris; }
