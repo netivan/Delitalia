@@ -45,14 +45,23 @@ namespace DelliItalia_Razor.Pages.Public
             {
                 ID = item.product.Id;
                 ProductModel product = _context.ProductModel.SingleOrDefault(p => p.Id == ID);
-                product.Quantity -= item.Quantity;
-                _context.ProductModel.Update(product); // update databasen
+               
+                int q = product.Quantity - item.Quantity;      // q = quantity
 
+                if(item.Quantity <= product.Quantity)  // produkterna finns i lagret
+                {
+                    product.Quantity -= item.Quantity;
+
+                   _context.ProductModel.Update(product); // update databasen
 
                 Order item2 = new Order { Quantity = item.Quantity, Name = item.product.Name, Price = item.product.Price, UserId = User.Identity.Name, Datum = DateTime.Now };    //updateDbKöp     
                 _context.Orders.Add(item2);
 
-
+                }
+                else
+                {
+                    // Produkten är slut
+                }
             }
 
             _context.SaveChanges();

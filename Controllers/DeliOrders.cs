@@ -42,9 +42,9 @@ namespace DelliItalia_Razor.Controllers
 
                 List<Model.Order> result = new List<Model.Order>();   // skapar en lista result. I det finns rsultatet
 
-            var TabOrders = Db.Orders.ToList();   // i x finns all data som finns i tabell orders (database)
+            var TabOrders = Db.Orders.ToList();   // i TabOrders finns all data som finns i tabellen orders (database)
 
-             var TabOrdDesc = TabOrders.OrderByDescending(x => x.Datum);     //  x3 = lista TabellOredrs modifierad (orderbydesc)  som läggs in i en ny lista x3  
+             var TabOrdDesc = TabOrders.OrderByDescending(x => x.Datum);     //  lista TabOrers modifierad (orderbydesc) som läggs in i en ny lista TabOrdDesc 
                                                  
             int n = 0;
 

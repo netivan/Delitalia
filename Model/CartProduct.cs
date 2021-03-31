@@ -20,6 +20,22 @@ namespace DelliItalia_Razor.Model
         public decimal Sale { get; set; }
         [DisplayName("Rea i procent:")]
         public decimal Sale_Percent { get; set; }
-       
+
+
+
+        public int Stock { get; set; }    ///////////////////////////////////////////////
+            
+            
+        
+
     }
 }
+
+
+
+
+
+
+
+
+
