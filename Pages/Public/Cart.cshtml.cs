@@ -16,6 +16,8 @@ namespace DelliItalia_Razor.Pages.Public
         private readonly DelliItalia_RazorContext _context;
 
         public List<CartItem> cart { get; set; }
+        [BindProperty]
+        public bool Hemleverans { get; set; }
 
         public CartModel(DelliItalia_RazorContext context)
         {
@@ -132,6 +134,6 @@ namespace DelliItalia_Razor.Pages.Public
             sessionCart = null;
         }
 
-        
+
     }
 }
