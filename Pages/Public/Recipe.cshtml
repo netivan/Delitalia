@@ -107,6 +107,7 @@
 
             await fetch(`${API_ADR}${APP_ID}&app_key=${APP_KEY}&q=${API_FOOD}`)
                 .then(resp => {
+                    console.log("Denied from Api-provider "+resp);
                     if (!resp.ok) {
                         throw Error("ERROR");
                     }
@@ -134,7 +135,7 @@
                     document.querySelector('#content').insertAdjacentHTML('afterbegin', html);
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log("Something went wrong "+error)
                 });
             }
 //            async function sendApiRequestCuisine(cuisine) {
