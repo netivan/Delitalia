@@ -7,9 +7,9 @@
 <p>
     <a asp-page="./Products">Produktsidan</a>
 </p>
-<p>
+@*<p>
     Antal produkter i korgen: @Model.cart.Count <br />
-</p>
+</p>*@
 
 @*<h5 style="color:blue"><i>Fraktkostnad 50kr,,, Gratis frakt för köp över 200 kr </i></h5>*@
 
@@ -53,6 +53,8 @@
                 decimal MomsPris = 0;
                 decimal InkMoms = 0;
                 decimal Frakt = 50;}
+            @if (Model.cart.Count != 0)
+            {
             @foreach (var item in Model.cart)
             {
                 <tr>
@@ -90,7 +92,9 @@
                     <td>
                         @{ var pris = item.product.Price * @item.Quantity;
                             decimal slut_pris = 0;
-                            if (item.product.Sale != 0) { slut_pris = pris - (item.product.Sale * item.Quantity);
+                            if (item.product.Sale != 0)
+                            {
+                                slut_pris = pris - (item.product.Sale * item.Quantity);
                                 if (slut_pris < 0) slut_pris = 0;
                             }
                             else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
@@ -99,7 +103,8 @@
                         <p> @slut_pris.ToString("0.##") kr</p>
                     </td>
                 </tr>
-            }
+                            }
+                            }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
             InkMoms = MomsPris + SLutTotalPris;
