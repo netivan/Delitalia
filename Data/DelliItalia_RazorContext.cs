@@ -7,6 +7,7 @@ using DelliItalia_Razor;
 
 namespace DelliItalia_Razor.Data
 {
+    //test --force push
     public class DelliItalia_RazorContext : DbContext
     {
         public DelliItalia_RazorContext (DbContextOptions<DelliItalia_RazorContext> options)

@@ -119,6 +119,28 @@
                 }
             }
             else { Frakt = 0; } }
+                              
+                              <tr>
+            <td><h3>Välj fraktsätt</h3></td>
+        </tr> 
+
+        @if (InkMoms <= 200)
+        {
+            <tr>
+                <td style="border: 1px solid"><input type="radio"  name="fraktalternativ" checked="checked"   />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td style="border: 1px solid"><input type="radio"  name="fraktalternativ" checked="checked"   />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
+            </tr>
+        }
+        <tr>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ"   />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
+        </tr>
+        <tr><td></td></tr>
+                              
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Kostnad:</td>
@@ -139,25 +161,7 @@
             <td style="width:70%;">Total kostnad (ink moms):</td>
             <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
         </tr>
-        @*<tr>
-                <td><h3>Välj fraktsätt</h3></td>
-            </tr>
-
-                @if (InkMoms <= 200)
-            {
-                <tr>
-                    <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
-                </tr>
-            }
-            else
-            {
-                <tr>
-                    <td style="border: 1px solid"><input type="radio" checked="checked" name="fraktalternativ"  />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
-                </tr>
-            }
-            <tr>
-                <td style="border: 1px solid"><input type="radio" name="fraktalternativ"  />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
-            </tr>*@
+       
     </table>
 </form>
 
@@ -245,7 +249,7 @@ else
             }
             else
             {
-                <div style="margin-left: 30%">
+                <div style="margin-left: 30%; display:none" id="CompleteBuy">
                     <a asp-page="cart" asp-page-handler="removeAll">
                         <button class="btn-lg btn-primary col-6" type="button">
                             Slutför köpet
@@ -256,7 +260,7 @@ else
         </form>
     }
 
-    @*<p> yeppiiiii du är inloggad</p>*@
+    
     @if (this.User.IsInRole("Admin"))
     {
         <p>Du är inloggad som Admin</p>}}
@@ -265,3 +269,12 @@ else
 <br />
 <br />
 <br />
+
+<script>
+    function myFunction() {
+        document.getElementById("CompleteBuy").style.display = "";
+    }
+
+    
+    
+</script>
