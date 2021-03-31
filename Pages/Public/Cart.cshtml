@@ -55,56 +55,56 @@
                 decimal Frakt = 50;}
             @if (Model.cart.Count != 0)
             {
-            @foreach (var item in Model.cart)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.product.Id)
-                    </td>
-                    <td>
-                        <img src="~/ImageProduct/@item.product.PhotoNamn" alt="Bild Saknas"
-                             style="width:75px; height:75px;" />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.product.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.product.Price)
-                    </td>
+                @foreach (var item in Model.cart)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Id)
+                        </td>
+                        <td>
+                            <img src="~/ImageProduct/@item.product.PhotoNamn" alt="Bild Saknas"
+                                 style="width:75px; height:75px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Price)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.product.Sale)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.product.Sale_Percent)
-                    </td>
-                    <td>
-                        <div class="input-group-append" style="text-align: center; vertical-align: middle ">
-                            <input class="span1" id="quantity" name="quantity" style="font-size:14px ;max-width: 45px;" placeholder="1"
-                                   size="16" type="number" min="0" max="@item.product.Stock" value="@item.Quantity" onchange="this.form.submit()" />     @*///////////////////////////////*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Sale)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Sale_Percent)
+                        </td>
+                        <td>
+                            <div class="input-group-append" style="text-align: center; vertical-align: middle ">
+                                <input class="span1" id="quantity" name="quantity" style="font-size:14px ;max-width: 45px;" placeholder="1"
+                                       size="16" type="number" min="0" max="@item.product.Stock" value="@item.Quantity" onchange="this.form.submit()" />     @*///////////////////////////////*@
 
-                            <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" class="btn btn-danger" type="button">
-                                <i class="icon-remove icon-white"></i>X<br />
-                            </a>
-                        </div>
-                        <button hidden id="sub" type="submit" class="btn" style="color:white; background-color:lightgreen"><i class="icon-save"></i>Uppdatera</button>
-                    </td>
-                    <td>
-                        @{ var pris = item.product.Price * @item.Quantity;
-                            decimal slut_pris = 0;
-                            if (item.product.Sale != 0)
-                            {
-                                slut_pris = pris - (item.product.Sale * item.Quantity);
-                                if (slut_pris < 0) slut_pris = 0;
-                            }
-                            else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
-                            else slut_pris = pris;
-                            SLutTotalPris += slut_pris; }
-                        <p> @slut_pris.ToString("0.##") kr</p>
-                    </td>
-                </tr>
-                            }
-                            }
+                                    <a asp-page="cart" asp-page-handler="remove" asp-route-id="@item.product.Id" class="btn btn-danger" type="button">
+                                        <i class="icon-remove icon-white"></i>X<br />
+                                    </a>
+                                </div>
+                                <button hidden id="sub" type="submit" class="btn" style="color:white; background-color:lightgreen"><i class="icon-save"></i>Uppdatera</button>
+                            </td>
+                            <td>
+                                @{ var pris = item.product.Price * @item.Quantity;
+                                    decimal slut_pris = 0;
+                                    if (item.product.Sale != 0)
+                                    {
+                                        slut_pris = pris - (item.product.Sale * item.Quantity);
+                                        if (slut_pris < 0) slut_pris = 0;
+                                    }
+                                    else if (item.product.Sale_Percent != 0) { slut_pris = pris - (((item.product.Sale_Percent / 100) * item.product.Price) * item.Quantity); }
+                                    else slut_pris = pris;
+                                    SLutTotalPris += slut_pris; }
+                                <p> @slut_pris.ToString("0.##") kr</p>
+                            </td>
+                        </tr>
+                    }
+            }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
             InkMoms = MomsPris + SLutTotalPris;
@@ -141,45 +141,31 @@
     </table>
     @if (InkMoms <= 200)
     {
-    <div class="text-lg-center">
-        <h5 style="color:blue"><i>Fraktkostnad 50kr, Gratis ordinariefrakt för köp över 200 kr </i></h5>
-    </div>
-    <br />
+        <div class="text-lg-center">
+            <h5 style="color:blue"><i>Fraktkostnad 50kr, Gratis ordinariefrakt för köp över 200 kr </i></h5>
+        </div>
+        <br />
     }
 </form>
 
 @if (!this.User.Identity.IsAuthenticated)
 {
-    <a asp-area="Identity" asp-page="/Account/Login">Genomför köpet</a>
+
+    <div style="margin-left: 30%">
+        <a asp-area="Identity" asp-page="/Account/Login">
+            <button class="btn-lg btn-primary col-6" type="button">Genomför köpet</button>
+        </a>
+
+    </div>
 }
 else
 {
     @if (Model.cart.Count != 0)
     {
-        <!--<div class="container; col-8" style="margin-bottom: 40px; margin-left: 20%">
-            <div class="row">
-                <div class="card" style="width: 18rem; margin-right: 40px">
-                    <img src="/Image/swedbank.jpg" class="card-img-top" alt="bank" style="height: 150px">
-                    <div class="card-body; text-center">
-                        <input type="radio" />
-                        <label for="bank">Banköverföring</label>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="/Image/swish.png" class="card-img-top" alt="swish" style="height: 150px">
-                    <div class="card-body; text-center">-->
-        @*<button class="btn btn-primary">Betala med swish</button>*@
-        <!--<input type="radio" />
-                        <label for="swish">Betala med swish</label>
-                    </div>
-                </div>
-
-            </div>
-        </div>-->
 
         <div style="margin-left: 30%">
             <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./CartFinal'">Genomför köpet</button>
-            <a asp-page="./Products"></a>
+
         </div>
     }
     @*<a asp-page="./Products">Genomför köpet</a>
@@ -189,12 +175,8 @@ else
     {
         <p>Du är inloggad som Admin</p>
     }
-
-
-
-
-
 }
+
 
 <br />
 <br />
