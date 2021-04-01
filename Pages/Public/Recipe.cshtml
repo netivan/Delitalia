@@ -5,13 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script>
-        window.addEventListener('load', (event) => {
-            //sendApiRequest();
-            //sendApiRequestCuisine();
-            console.log('page is fully loaded');
-        });
-    </script>
+   
 }
 
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -98,10 +92,10 @@
             if (food.value == "") {
                 document.getElementById("foodSearch").setAttribute('value', 'Pasta');                
             }
-            let APP_ID = "aaf0f0d2";
-            let APP_KEY = "673b002f8e531fab1bcd45df68955b13";
-                let API_ADR = "https://api.edamam.com/search?app_id=";
-                let API_FOOD = food;
+            let APP_ID = "7c8d646c";
+            let APP_KEY = "09329d7aa9aa5de0c50b4371d40039ce";
+            let API_ADR = "https://api.edamam.com/search?app_id=";
+            let API_FOOD = food.value;
 
 
 
