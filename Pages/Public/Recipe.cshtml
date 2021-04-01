@@ -126,9 +126,10 @@
 <p class="card-text">Meal type: ${r.recipe.mealType}</p>
 <p class="card-text">HealthLabels: ${r.recipe.healthLabels}</p>
 <p class="card-text">Calories: ${r.recipe.calories.toFixed(2)}</p>
-<a href="${r.recipe.url}" class="btn btn-primary">Till receptet</a>
+<a href="${r.recipe.url}" target="_blank" class="btn btn-primary">Till receptet</a>
 </div>
 </div><br>
+
 `;
                     }).join("");
                     console.log(html);
@@ -137,7 +138,9 @@
                 .catch(error => {
                     console.log("Something went wrong "+error)
                 });
-            }
+            
+               
+        }
 //            async function sendApiRequestCuisine(cuisine) {
 //                let APP_ID = "aaf0f0d2";
 //                let APP_KEY = "673b002f8e531fab1bcd45df68955b13";
