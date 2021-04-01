@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20210318021823_UpdateringUser.cs" />
     <Compile Remove="Data\Migrations\20210318021823_UpdateringUser.Designer.cs" />
+    <Compile Remove="Migrations\20210328165907_AddDatum.cs" />
+    <Compile Remove="Migrations\20210328165907_AddDatum.Designer.cs" />
+    <Compile Remove="Migrations\20210328171303_AddDatum.cs" />
+    <Compile Remove="Migrations\20210328171303_AddDatum.Designer.cs" />
+    <Compile Remove="Migrations\20210328171719_AddDatum.cs" />
+    <Compile Remove="Migrations\20210328171719_AddDatum.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

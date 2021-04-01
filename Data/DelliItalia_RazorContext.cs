@@ -17,6 +17,8 @@ namespace DelliItalia_Razor.Data
 
         public DbSet<DelliItalia_Razor.ProductModel> ProductModel { get; set; }
 
+        public DbSet<DelliItalia_Razor.Model.Order> Orders { get; set; }
+
         private List<ProductModel> ProductModelList;
         public List<ProductModel> findAll()
         {

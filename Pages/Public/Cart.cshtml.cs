@@ -46,7 +46,8 @@ namespace DelliItalia_Razor.Pages.Public
                         PhotoNamn = product.PhotoNamn,
                         Price = product.Price,
                         Sale = product.Sale,
-                        Sale_Percent = product.Sale_Percent
+                        Sale_Percent = product.Sale_Percent,
+                        Stock = product.Quantity            /////////////////////////////////////////////added
                     },
                     Quantity = 1
                 });
@@ -69,7 +70,8 @@ namespace DelliItalia_Razor.Pages.Public
                             PhotoNamn = product.PhotoNamn,
                             Price = product.Price,
                             Sale = product.Sale,
-                            Sale_Percent = product.Sale_Percent
+                            Sale_Percent = product.Sale_Percent,
+                            Stock = product.Quantity                      //////////////////////////////////
                         },
                         Quantity = 1
                     });
@@ -80,6 +82,7 @@ namespace DelliItalia_Razor.Pages.Public
                 }
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));                
             }
+
             return RedirectToPage("Cart");
         }
         public IActionResult OnPost(int[] quantity)
@@ -130,6 +133,9 @@ namespace DelliItalia_Razor.Pages.Public
         {
             string sessionCart = HttpContext.Session.GetString("cart");
             sessionCart = null;
+
+
+           
         }
 
 
