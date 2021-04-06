@@ -4,14 +4,16 @@ using DelliItalia_Razor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DelliItalia_Razor.Migrations
 {
     [DbContext(typeof(DelliItalia_RazorContext))]
-    partial class DelliItalia_RazorContextModelSnapshot : ModelSnapshot
+    [Migration("20210405075303_or2")]
+    partial class or2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -38,13 +38,22 @@ namespace DelliItalia_Razor.Pages.Public
 
         public IActionResult OnGetUpdateDb()                                //updateDb
         {
-            List<CartItem> x = JsonConvert.DeserializeObject<List<CartItem>>
+            List<CartItem> cartSano = JsonConvert.DeserializeObject<List<CartItem>>
                    (HttpContext.Session.GetString("cart"));
             int ID;
-            foreach (var item in x)
+
+            Order2 ord = new Order2 { UserName = User.Identity.Name, DatePurchase = DateTime.Now, productsBoughts = new List<ProductsBought>() };
+
+            ord.TotPrice = 0;
+
+
+            foreach (var item in cartSano)
             {
                 ID = item.product.Id;
+            
                 ProductModel product = _context.ProductModel.SingleOrDefault(p => p.Id == ID);
+
+              
                
                 int q = product.Quantity - item.Quantity;      // q = quantity
 
@@ -54,8 +63,12 @@ namespace DelliItalia_Razor.Pages.Public
 
                    _context.ProductModel.Update(product); // update databasen
 
-                Order item2 = new Order { Quantity = item.Quantity, Name = item.product.Name, Price = item.product.Price, UserId = User.Identity.Name, Datum = DateTime.Now };    //updateDbKöp     
-                _context.Orders.Add(item2);
+
+                    ProductsBought item2 = new ProductsBought { Quantity = item.Quantity, ProductName = item.product.Name, IdProduct = product, Price = item.product.Price };    //updateDbKöp     
+
+                    ord.TotPrice += item.Quantity * item.product.Price;      // totalprice av singel order
+
+                    ord.productsBoughts.Add(item2);
 
                 }
                 else
@@ -63,11 +76,12 @@ namespace DelliItalia_Razor.Pages.Public
                     // Produkten är slut
                 }
             }
-
+            
+            _context.Orders2.Add(ord);    
             _context.SaveChanges();
 
-            x.Clear();
-            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(x));
+            cartSano.Clear();
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartSano));
 
             return RedirectToPage("ThanxForBuy");
 
