@@ -1,64 +1,64 @@
-﻿using DelliItalia_Razor.Data;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using DelliItalia_Razor.Data;
+//using Microsoft.AspNetCore.Mvc;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace DelliItalia_Razor.Controllers
-{
+//namespace DelliItalia_Razor.Controllers
+//{
 
-    [Route("/[controller]")]
-    [ApiController]
-
-
-
-    public class DeliOrdersController : ControllerBase
-    {
+//    [Route("/[controller]")]
+//    [ApiController]
 
 
-        private readonly DelliItalia_RazorContext Db;
+
+//    public class DeliOrdersController : ControllerBase
+//    {
 
 
-        public DeliOrdersController(DelliItalia_RazorContext x)   // x = context
-        {
+//        private readonly DelliItalia_RazorContext Db;
 
-            Db = x;
-        }
 
-        [HttpGet]
+//        public DeliOrdersController(DelliItalia_RazorContext x)   // x = context
+//        {
 
-        public IEnumerable<Model.Order> Get()
-        {
+//            Db = x;
+//        }
 
-            return Db.Orders;
-        }
+//        [HttpGet]
 
-        [HttpGet ("{id}")]       
+//        public IEnumerable<Model.Order> Get()
+//        {
 
-        public IEnumerable<Model.Order> Get(int id)
-        {
-            //List<Model.Order> x = new List<Model.Order>();
+//            return Db.Orders;
+//        }
 
-                List<Model.Order> result = new List<Model.Order>();   // skapar en lista result. I det finns rsultatet
+//        [HttpGet ("{id}")]       
 
-            var TabOrders = Db.Orders.ToList();   // i TabOrders finns all data som finns i tabellen orders (database)
+//        public IEnumerable<Model.Order> Get(int id)
+//        {
+//            //List<Model.Order> x = new List<Model.Order>();
 
-             var TabOrdDesc = TabOrders.OrderByDescending(x => x.Datum);     //  lista TabOrers modifierad (orderbydesc) som läggs in i en ny lista TabOrdDesc 
+//                List<Model.Order> result = new List<Model.Order>();   // skapar en lista result. I det finns rsultatet
+
+//            var TabOrders = Db.Orders.ToList();   // i TabOrders finns all data som finns i tabellen orders (database)
+
+//             var TabOrdDesc = TabOrders.OrderByDescending(x => x.Datum);     //  lista TabOrers modifierad (orderbydesc) som läggs in i en ny lista TabOrdDesc 
                                                  
-            int n = 0;
+//            int n = 0;
 
-            foreach(var item in TabOrdDesc)
-            {
-                result.Add(item);
-                n = n + 1;
+//            foreach(var item in TabOrdDesc)
+//            {
+//                result.Add(item);
+//                n = n + 1;
 
-                if (n >= id) break;
-            }
+//                if (n >= id) break;
+//            }
                                  
 
-            return result;
-        }
+//            return result;
+//        }
 
-    }
-}
+//    }
+//}

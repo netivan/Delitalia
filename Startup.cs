@@ -85,7 +85,7 @@ namespace DelliItalia_Razor
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
-               /* endpoints.MapControllerRoute(name: "default", pattern: "{controller = Home}/{action=Index}/{id?}");*/   // För att skapa ett API
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller = Home}/{action=Index}/{id?}");   // För att skapa ett API
             });
         }
     }
