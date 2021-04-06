@@ -108,60 +108,61 @@
             }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
-            InkMoms = MomsPris + SLutTotalPris;
-            if (InkMoms <= 200)
+            //InkMoms = MomsPris + SLutTotalPris;
+            decimal inkFrakt = 0;
+            if (SLutTotalPris <= 200)
             {
-                InkMoms += Frakt;
+                inkFrakt = SLutTotalPris + Frakt;
                 if (SLutTotalPris == 0)
                 {
                     Frakt = 0;
-                    InkMoms = 0;
+                    inkFrakt = 0;
                 }
             }
-            else { Frakt = 0; } }
-                              
-                              <tr>
-            @*<td><h3>Välj fraktsätt</h3></td>
-        </tr> 
+            else { inkFrakt = SLutTotalPris; Frakt = 0; } }
 
-        @if (InkMoms <= 200)
+        <tr>
+            <td><h3>Välj fraktsätt</h3></td>
+        </tr>
+
+        @if (SLutTotalPris <= 200)
         {
             <tr>
-                <td style="border: 1px solid"><input type="radio"  name="fraktalternativ" checked="checked"   />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight50(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
             </tr>
         }
         else
         {
             <tr>
-                <td style="border: 1px solid"><input type="radio"  name="fraktalternativ" checked="checked"   />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight0(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
             </tr>
         }
         <tr>
-                <td style="border: 1px solid"><input type="radio" name="fraktalternativ"   />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
+            <td style="border: 1px solid"><input type="radio" name="fraktalternativ" onchange="changeFreight75(); finalPrice()" />&ensp;<b>Budbee</b>&ensp; &nbsp; Hemleverans&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>75 kr</b></td>
         </tr>
-        <tr><td></td></tr>*@
-                              
+        <tr><td></td></tr>
+
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Kostnad:</td>
-            <td style="width:30%;"> @SLutTotalPris.ToString("0.##") kr</td>
+            <td style="width:30%;" id="price">@SLutTotalPris.ToString("0.##") kr</td>
         </tr>
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Moms (12%):</td>
-            <td style="width:30%;"> @MomsPris.ToString("0.##") kr</td>
+            <td style="width:30%;">@MomsPris.ToString("0.##") kr</td>
         </tr>
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Frakt:</td>
-            <td style="width:30%;"> @Frakt.ToString("0.##") kr</td>
+            <td style="width:30%;" id="freight">@Frakt.ToString("0.##") kr</td>
         </tr>
         <tr style="column-span: all; font-size: 1.5em; align-self: flex-end;
         margin-right: 5px; text-align: right">
-            <td style="width:70%;">Total kostnad (ink moms):</td>
-            <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
+            <td style="width:70%;">Total kostnad (ink frakt):</td>
+            <td style="width:30%;" id="inkFrakt">@inkFrakt.ToString("0.##") kr</td>
         </tr>
-       
+
     </table>
 </form>
 
@@ -273,6 +274,25 @@ else
 <script>
     function myFunction() {
         document.getElementById("CompleteBuy").style.display = "";
+    }
+
+    function changeFreight0() {
+        document.getElementById("freight").innerHTML = "0 kr";
+    }
+
+    function changeFreight50() {
+        document.getElementById("freight").innerHTML = "50 kr";
+    }
+
+    function changeFreight75() {
+        document.getElementById("freight").innerHTML = "75 kr";
+    }
+
+    function finalPrice() {
+        var a = document.getElementById("price").innerHTML;
+        var b = document.getElementById("freight").innerHTML;
+        var c = parseFloat(a) + parseFloat(b) + " kr";
+        document.getElementById("inkFrakt").innerHTML = c;
     }
 
     
