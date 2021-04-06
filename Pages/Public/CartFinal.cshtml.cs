@@ -77,7 +77,7 @@ namespace DelliItalia_Razor.Pages.Public
                 }
             }
             
-            _context.Orders2.Add(ord);    
+            _context.Orders.Add(ord);        //////////////////////////////////////////////
             _context.SaveChanges();
 
             cartSano.Clear();
