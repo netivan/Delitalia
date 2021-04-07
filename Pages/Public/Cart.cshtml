@@ -107,17 +107,18 @@
             }
         </tbody>
         @{ MomsPris = SLutTotalPris * Moms;
-            InkMoms = MomsPris + SLutTotalPris;
-            if (InkMoms <= 200)
+            //InkMoms = MomsPris + SLutTotalPris;
+            decimal inkFrakt = 0;
+            if (SLutTotalPris <= 200)
             {
-                InkMoms += Frakt;
+                inkFrakt = SLutTotalPris + Frakt;
                 if (SLutTotalPris == 0)
                 {
                     Frakt = 0;
-                    InkMoms = 0;
+                    inkFrakt = 0;
                 }
             }
-            else { Frakt = 0; } }
+            else { inkFrakt = SLutTotalPris; Frakt = 0; } }
         <tr style="column-span: all; font-size: 1em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Kostnad:</td>
@@ -136,10 +137,10 @@
         <tr style="column-span: all; font-size: 1.5em; align-self: flex-end;
         margin-right: 5px; text-align: right">
             <td style="width:70%;">Total kostnad (ink moms):</td>
-            <td style="width:30%;"> @InkMoms.ToString("0.##") kr</td>
+            <td style="width:30%;"> @inkFrakt.ToString("0.##") kr</td>
         </tr>
     </table>
-    @if (InkMoms <= 200)
+    @if (SLutTotalPris <= 200)
     {
         <div class="text-lg-center">
             <h5 style="color:blue"><i>Fraktkostnad 50kr, Gratis ordinariefrakt för köp över 200 kr </i></h5>
@@ -150,13 +151,13 @@
 
 @if (!this.User.Identity.IsAuthenticated)
 {
-    
-<div style="margin-left: 30%">
-    <a asp-area="Identity" asp-page="/Account/Login">
-        <button class="btn-lg btn-primary col-6" type="button">Genomför köpet</button>
-    </a>
 
-</div>
+    <div style="margin-left: 30%">
+        <a asp-area="Identity" asp-page="/Account/Login">
+            <button class="btn-lg btn-primary col-6" type="button">Genomför köpet</button>
+        </a>
+
+    </div>
 }
 else
 {
@@ -165,7 +166,7 @@ else
 
         <div style="margin-left: 30%">
             <button class="btn-lg btn-primary col-6" type="button" onclick="window.location.href='./CartFinal'">Genomför köpet</button>
-           
+
         </div>
     }
     @*<a asp-page="./Products">Genomför köpet</a>
@@ -175,12 +176,8 @@ else
     {
         <p>Du är inloggad som Admin</p>
     }
-
-
-
-
-
 }
+
 
 <br />
 <br />
