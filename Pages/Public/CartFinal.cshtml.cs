@@ -64,7 +64,7 @@ namespace DelliItalia_Razor.Pages.Public
                    _context.ProductModel.Update(product); // update databasen
 
 
-                    ProductsBought item2 = new ProductsBought { Quantity = item.Quantity, ProductName = item.product.Name, IdProduct = product, Price = item.product.Price };    //updateDbKöp     
+                    ProductsBought item2 = new ProductsBought { Quantity = item.Quantity, ProductName = item.product.Name, IdProduct = product, Sale = item.product.Sale, Sale_procent = item.product.Sale_Percent, Price = item.product.Price };    //updateDbKöp     
 
                     ord.TotPrice += item.Quantity * item.product.Price;      // totalprice av singel order
 

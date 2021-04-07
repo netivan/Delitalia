@@ -12,6 +12,6 @@ namespace DelliItalia_Razor.Data
            : base(options)
         {
         }
-        public DbSet<DelliItalia_Razor.Model.Order> Orders { get; set; }
+        public DbSet<DelliItalia_Razor.Model.Order2> Orders { get; set; }
     }
 }
