@@ -47,6 +47,15 @@ namespace DelliItalia_Razor.Controllers
            
         }
 
+        [HttpPost]
+
+        public ActionResult<ProductModel>CreateProduct([FromBody] ProductModel product)
+        {
+            if (product == null) return BadRequest();
+            _context.ProductModel.Add(product);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(Get), new { id = product.Id }, product);
+        }
 
         public List<ProductModel> ReadData()
         {
