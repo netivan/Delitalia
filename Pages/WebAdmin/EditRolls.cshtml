@@ -1,0 +1,61 @@
+﻿@page
+@model EditRollsModel
+@using DelliItalia_Razor.ViewModel
+@using DelliItalia_Razor.Model
+@inject RoleManager<IdentityRole> rolMan
+@inject UserManager<WebshopUser> userMan
+@{
+    var vd = ViewData["Roll"] as EditRoleViewModel;
+}
+<h1>Ändra Roll/Behörighet</h1>
+
+<form method="post" class="mt-3">
+    <div class="form-group row">
+        <label asp-for="@vd.Id" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="@vd.Id" disabled class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@vd.RollName" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="@vd.RollName" disabled class="form-control" />
+            <span asp-validation-for="@vd.RollName" class="text-danger"></span>
+        </div>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            @*<button type="submit"
+                class="btn btn-primary">Ändra</button>*@
+            <a asp-page="AdminIndexUsers" class="btn btn-primary">Avbryt</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Användare i denna roll</h3>
+        </div>
+        <div class="card-body">
+
+            @*@if (userMan.Users.Any())
+                {
+                    foreach (var user in userMan.Users)
+                    {
+                        if (await userMan.IsInRoleAsync(user, Model.RollName))
+                        {
+                            <h5 class="card-title">@user</h5>
+                        }
+
+                    }
+                }
+                else
+                {
+                    <h5>Inga användare i denna roll</h5>
+                }*@
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-primary" style="width:auto">Lägg till användare</a>
+            <a href="#" class="btn btn-primary" style="width:auto">Ta bort användare</a>
+        </div>
+    </div>
+</form>

@@ -1,5 +1,8 @@
 ﻿@page
 @model DelliItalia_Razor.Pages.WebAdmin.AdminIndexUsersModel
+@using DelliItalia_Razor.Model
+@inject RoleManager<IdentityRole> rolMan
+@inject UserManager<WebshopUser> userMan
 
 @{
     ViewBag.Title = "Administrera användare";
@@ -25,17 +28,43 @@
         <td style="margin:10px; width:50px"></td>
         <td style="margin:10px">
             <h3>Användare och Roll/Behörighet</h3>
+            @{
+            }
             @if (Model.roleMod.Any())
             {
                 foreach (var roll in Model.roleMod)
                 {
-                    <div>
-                        <label>Användarnamn: <b>???</b>&nbsp;Behörighet: <b>@roll.Name</b></label>
-            </div>
+                    var rollen = await rolMan.FindByIdAsync(roll.Id);
+                    foreach (var user in userMan.Users)
+                    {@if (rollen.Name == "Admin")
+                        {
+                            if (await userMan.IsInRoleAsync(user, roll.Name))
+                            {
+                                <div>
+                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b></label>
+                                </div>
+                            }
+                        }
+                        else if (rollen.Name == "User")
+                        {
+                            if (await userMan.IsInRoleAsync(user, roll.Name))
+                            {
+                                <div>
+                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b></label>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div>
+                                <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>Ingen särskild behörighet</b></label>
+                            </div>
+                        }
+                }
             }
-            }
+        }
 
-            </td>
+        </td>
             </tr>
     <tr style="margin:10px; height:20px"></tr>
     <tr style="margin:10px ">
@@ -48,6 +77,12 @@
                             <div class="card mb-3" style="width:auto">
                                 <div class="card-header">Roll ID: @roll.Id</div>
                                 <div class="card-body"><h5 class="card-title">Roll Namn: @roll.Name</h5></div>
+                                <div class="card-footer">
+                                    @*<a class="btn btn-primary" href="@Url.Content("~/WebAdmin/EditRolls?"+roll.Id.ToString())">Ändra behörighet</a>*@
+                                    <a class="btn btn-primary" asp-page="EditRolls" asp-route-id="@roll.Id" >Ändra behörighet</a>
+                                    <a class="btn btn-danger"
+                                       href="#">Radera</a>
+                                </div>
                             </div>
                         }
 

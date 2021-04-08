@@ -37,7 +37,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         public async Task OnGetAsync()
         {
             roleMod = _roleMan.Roles;
-            var webUser = _webUser.Users;
+            webUser = _webUser.Users;
         }
 
         public async Task<IActionResult> OnPostAsync(RoleModel roller)
