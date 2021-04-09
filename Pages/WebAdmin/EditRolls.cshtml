@@ -6,7 +6,7 @@
 @inject UserManager<WebshopUser> userMan
 @{
     var vd = ViewData["Roll"] as EditRoleViewModel;
-    var userVD = ViewData["UserInRole"] as UserRoleViewModel;
+    var userVD = ViewData["UserInRole"] as UserRoleViewModel;   
 }
 <h1>Ändra Roll/Behörighet</h1>
 
@@ -42,11 +42,14 @@
             {
                 foreach (var user in userMan.Users)
                 {
-                    if (await userMan.IsInRoleAsync(user, vd.RollName))
+                    var inRole = await userMan.IsInRoleAsync(user, vd.RollName);
+                    if (inRole)
                     {
                         <div class="card-title">
                             <h5>
-                            <input type="checkbox" checked="checked" /> @user.FirstName @user.LastName
+                                <input type="hidden" asp-for="@user.Id" />
+                                <input type="checkbox" checked="checked" asp-for="@inRole" />
+                                @user.FirstName @user.LastName
                             </h5>
                         </div>
                     }
@@ -60,6 +63,10 @@
         <div class="card-footer">
             <a asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
                class="btn btn-primary" style="width:auto">Ta bort användare</a>
+            @*<button type="submit" asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
+                    class="btn btn-primary" style="width:auto">
+                Ta bort användare
+            </button>*@
         </div>
     </div>
 </form>
@@ -74,14 +81,16 @@
             {
                 foreach (var user in userMan.Users)
                 {
-                    if (!(await userMan.IsInRoleAsync(user, vd.RollName)))
+                    var notInRole = await userMan.IsInRoleAsync(user, vd.RollName);
+                    if (!notInRole)
                     {
                         <div class="card-title">
                             <h6 style="color:gray">
-                                <input type="checkbox" /> @user.FirstName @user.LastName
+                                <input type="hidden" asp-for="@user.Id" />
+                                <input type="checkbox" asp-for="@notInRole" />
+                                @user.FirstName @user.LastName @user.Email                               
                             </h6>
                         </div>
-
                     }
                 }
             }
@@ -91,8 +100,13 @@
             }
         </div>
         <div class="card-footer">
-            <a asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
-               class="btn btn-primary" style="width:auto">Lägg till användare</a>
+            <a  asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
+        class="btn btn-primary" style="width:auto">Lägg till användare</a>
+            @*<button type="submit" asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
+                    class="btn btn-primary" style="width:auto">
+                Lägg till användare
+            </button>*@
+
         </div>
     </div>
 </form>

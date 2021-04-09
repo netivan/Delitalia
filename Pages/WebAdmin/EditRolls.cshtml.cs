@@ -32,6 +32,8 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
         [BindProperty]
         public RoleModel roller { set; get; }
+        [BindProperty]
+        public UserRoleViewModel userRoleVM { set; get; }
         
 
         //public async Task OnGetAsync()
@@ -83,7 +85,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
             var model = new List<UserRoleViewModel>();
             foreach(var user in _webUser.Users)
             {
-                var userRoleVM = new UserRoleViewModel
+                userRoleVM = new UserRoleViewModel
                 {
                     UserId = user.Id,
                     UserName = user.UserName
