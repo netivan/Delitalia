@@ -12,11 +12,11 @@
 <header class="masthead" style="height: 600px">
     <div class="container">
         <div class="row h-100 align-items-center">
-           
+
         </div>
     </div>
     <div class="text-center border-bottom-0" style="padding-top:20px; padding-bottom:20px;">
-        <h6 class="display-4 align-bottom" ><i>DeliItalia hjälper dig att<br />smaksätta vardagen med medelhavsprodukter</i></h6>
+        <h6 class="display-4 align-bottom"><i>DeliItalia hjälper dig att<br />smaksätta vardagen med medelhavsprodukter</i></h6>
     </div>
 </header>
 
@@ -43,7 +43,7 @@
 
                                 @foreach (var item in Model.ProductModel.OrderByDescending(p => p.DateIn).Take(3))
                                 {
-                                    
+
                                     <div class="col-md-4 mb-3">
                                         <div class="card h-100">
                                             <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id"><img class="card-img-top" src="~/ImageProduct/@item.PhotoNamn" alt="produktbild" height="200"></a>
@@ -75,8 +75,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                 }
+
+                                }
 
                             </div>
                         </div>
@@ -132,37 +132,37 @@
                                 </div>
                                 @foreach (var item in Model.ProductModel.OrderByDescending(p => p.Sale).Take(3))
                                 {
-                            <div class="col-md-4 mb-3">
-                                <div class="card h-100">
-                                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id"><img class="card-img-top" src="~/ImageProduct/@item.PhotoNamn" alt="produktbild" height="200"></a>
-                                    <div class="card-body">
-                                        <h5 style="color:red">
-                                            @{ var rea = "Rea: -" + item.Sale + " kr";}
-                                            @if (item.Sale != 0)
-                                            {
-                                                @Html.DisplayFor(modelItem => rea)
-                                            }
-                                        </h5>
-                                        <h5 style="color:red">
-                                            @{ var reaP = "Rea: -" + item.Sale_Percent + " %";}
-                                            @if (item.Sale_Percent != 0)
-                                            {
-                                                @Html.DisplayFor(modelItem => reaP)
-                                            }
-                                        </h5>
-                                        <h4 class="card-title">
-                                            <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">@item.Name</a>
-                                        </h4>
-                                        <h5>@item.Price kr</h5>
-                                        <p class="card-text">@item.Description</p>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card h-100">
+                                            <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id"><img class="card-img-top" src="~/ImageProduct/@item.PhotoNamn" alt="produktbild" height="200"></a>
+                                            <div class="card-body">
+                                                <h5 style="color:red">
+                                                    @{ var rea = "Rea: -" + item.Sale + " kr";}
+                                                    @if (item.Sale != 0)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => rea)
+                                                    }
+                                                </h5>
+                                                <h5 style="color:red">
+                                                    @{ var reaP = "Rea: -" + item.Sale_Percent + " %";}
+                                                    @if (item.Sale_Percent != 0)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => reaP)
+                                                    }
+                                                </h5>
+                                                <h4 class="card-title">
+                                                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">@item.Name</a>
+                                                </h4>
+                                                <h5>@item.Price kr</h5>
+                                                <p class="card-text">@item.Description</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <a type="submit" asp-page="/Public/Cart" asp-page-handler="buyitem" asp-route-id="@item.Id">
+                                                    <button class="btn btn-lg btn-secondary">Köp</button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a type="submit" asp-page="/Public/Cart" asp-page-handler="buyitem" asp-route-id="@item.Id">
-                                            <button class="btn btn-lg btn-secondary">Köp</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                                 }
 
                             </div>
@@ -170,7 +170,7 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="~/Public/Products/?Category=Utvalda" class="mb-3"><h3 class="mb-3">Utvalda </h3></a> 
+                                    <a href="~/Public/Products/?Category=Utvalda" class="mb-3"><h3 class="mb-3">Utvalda </h3></a>
                                 </div>
                                 <div class="col-6 text-right">
                                     <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
@@ -182,37 +182,37 @@
                                 </div>
                                 @foreach (var item in Model.ProductModel.OrderByDescending(p => p.Chosen).Take(3))
                                 {
-                            <div class="col-md-4 mb-3">
-                                <div class="card h-100">
-                                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id"><img class="card-img-top" src="~/ImageProduct/@item.PhotoNamn" alt="produktbild" height="200"></a>
-                                    <div class="card-body">
-                                        <h5 style="color:red">
-                                            @{ var rea = "Rea: -" + item.Sale + " kr";}
-                                            @if (item.Sale != 0)
-                                            {
-                                                @Html.DisplayFor(modelItem => rea)
-                                            }
-                                        </h5>
-                                        <h5 style="color:red">
-                                            @{ var reaP = "Rea: -" + item.Sale_Percent + " %";}
-                                            @if (item.Sale_Percent != 0)
-                                            {
-                                                @Html.DisplayFor(modelItem => reaP)
-                                            }
-                                        </h5>
-                                        <h4 class="card-title">
-                                            <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">@item.Name</a>
-                                        </h4>
-                                        <h5>@item.Price kr</h5>
-                                        <p class="card-text">@item.Description</p>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card h-100">
+                                            <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id"><img class="card-img-top" src="~/ImageProduct/@item.PhotoNamn" alt="produktbild" height="200"></a>
+                                            <div class="card-body">
+                                                <h5 style="color:red">
+                                                    @{ var rea = "Rea: -" + item.Sale + " kr";}
+                                                    @if (item.Sale != 0)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => rea)
+                                                    }
+                                                </h5>
+                                                <h5 style="color:red">
+                                                    @{ var reaP = "Rea: -" + item.Sale_Percent + " %";}
+                                                    @if (item.Sale_Percent != 0)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => reaP)
+                                                    }
+                                                </h5>
+                                                <h4 class="card-title">
+                                                    <a asp-page="/Public/PublicDetalj" asp-route-id="@item.Id">@item.Name</a>
+                                                </h4>
+                                                <h5>@item.Price kr</h5>
+                                                <p class="card-text">@item.Description</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <a type="submit" asp-page="/Public/Cart" asp-page-handler="buyitem" asp-route-id="@item.Id">
+                                                    <button class="btn btn-lg btn-secondary">Köp</button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <a type="submit" asp-page="/Public/Cart" asp-page-handler="buyitem" asp-route-id="@item.Id">
-                                            <button class="btn btn-lg btn-secondary">Köp</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                                 }
                             </div>
                         </div>

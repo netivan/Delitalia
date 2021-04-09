@@ -4,14 +4,16 @@ using DelliItalia_Razor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DelliItalia_Razor.Migrations.Order
+namespace DelliItalia_Razor.Migrations
 {
-    [DbContext(typeof(OrderContext))]
-    partial class OrderContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DelliItalia_RazorContext))]
+    [Migration("20210406154758_deleteOrders")]
+    partial class deleteOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace DelliItalia_Razor.Migrations.Order
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders2");
                 });
 
             modelBuilder.Entity("DelliItalia_Razor.Model.ProductsBought", b =>

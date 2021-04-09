@@ -45,8 +45,10 @@
                 <div class="row col-12">
                     @foreach (var item in Model.ProductModel)
                     {
+                        if (item.Quantity > 0)                                       //////////////////////////
+                        {                                                            //////////////////////////
                         <partial name="_DisplayProductPartial" model="item" />
-
+                        }                                                            //////////////////////////
                     }
                 </div>
             </div>
