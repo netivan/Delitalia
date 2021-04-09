@@ -37,13 +37,15 @@
         </div>
         <div class="card-body">
 
-            @*@if (userMan.Users.Any())
+            @if (userMan.Users.Any())
                 {
                     foreach (var user in userMan.Users)
                     {
-                        if (await userMan.IsInRoleAsync(user, Model.RollName))
+                        if (await userMan.IsInRoleAsync(user, vd.RollName))
                         {
-                            <h5 class="card-title">@user</h5>
+                        <div class="card-title">
+                            <h5>@user.FirstName @user.LastName </h5>                            
+                        </div>
                         }
 
                     }
@@ -51,7 +53,7 @@
                 else
                 {
                     <h5>Inga användare i denna roll</h5>
-                }*@
+                }
         </div>
         <div class="card-footer">
             <a href="#" class="btn btn-primary" style="width:auto">Lägg till användare</a>
