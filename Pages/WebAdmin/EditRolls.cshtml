@@ -6,6 +6,7 @@
 @inject UserManager<WebshopUser> userMan
 @{
     var vd = ViewData["Roll"] as EditRoleViewModel;
+    var userVD = ViewData["UserInRole"] as UserRoleViewModel;
 }
 <h1>Ändra Roll/Behörighet</h1>
 
@@ -38,26 +39,61 @@
         <div class="card-body">
 
             @if (userMan.Users.Any())
+            {
+                foreach (var user in userMan.Users)
                 {
-                    foreach (var user in userMan.Users)
+                    if (await userMan.IsInRoleAsync(user, vd.RollName))
                     {
-                        if (await userMan.IsInRoleAsync(user, vd.RollName))
-                        {
                         <div class="card-title">
-                            <h5>@user.FirstName @user.LastName </h5>                            
+                            <h5>
+                            <input type="checkbox" checked="checked" /> @user.FirstName @user.LastName
+                            </h5>
                         </div>
-                        }
-
                     }
                 }
-                else
-                {
-                    <h5>Inga användare i denna roll</h5>
-                }
+            }
+            else
+            {
+                <h5>Inga användare i denna roll</h5>
+            }
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-primary" style="width:auto">Lägg till användare</a>
-            <a href="#" class="btn btn-primary" style="width:auto">Ta bort användare</a>
+            <a asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
+               class="btn btn-primary" style="width:auto">Ta bort användare</a>
         </div>
     </div>
 </form>
+<form method="post"  class="mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h3>Övriga Användare</h3>
+        </div>
+        <div class="card-body">
+
+            @if (userMan.Users.Any())
+            {
+                foreach (var user in userMan.Users)
+                {
+                    if (!(await userMan.IsInRoleAsync(user, vd.RollName)))
+                    {
+                        <div class="card-title">
+                            <h6 style="color:gray">
+                                <input type="checkbox" /> @user.FirstName @user.LastName
+                            </h6>
+                        </div>
+
+                    }
+                }
+            }
+            else
+            {
+                <h5>Inga användare i denna roll</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-page="EditRolls" asp-page-handler="EditUserRole" asp-route-roleId="@vd.Id"
+               class="btn btn-primary" style="width:auto">Lägg till användare</a>
+        </div>
+    </div>
+</form>
+<br /><br /><br />

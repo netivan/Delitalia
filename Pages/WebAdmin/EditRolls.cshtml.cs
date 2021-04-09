@@ -32,6 +32,7 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
         [BindProperty]
         public RoleModel roller { set; get; }
+        
 
         //public async Task OnGetAsync()
         //{
@@ -67,6 +68,37 @@ namespace DelliItalia_Razor.Pages.WebAdmin
 
 
 
+            return Page();
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditUsersRoles(string roleId)
+        {
+            ViewData["roleId"] = roleId;
+            var role = await _roleMan.FindByIdAsync(roleId);
+            if(role == null)
+            {
+                return Page();
+            }
+
+            var model = new List<UserRoleViewModel>();
+            foreach(var user in _webUser.Users)
+            {
+                var userRoleVM = new UserRoleViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName
+                };
+                if(await _webUser.IsInRoleAsync(user, role.Name))
+                {
+                    userRoleVM.IsSelected = true;
+                }
+                else
+                {
+                    userRoleVM.IsSelected = false;
+                }
+                model.Add(userRoleVM);
+            }
+           
             return Page();
         }
     }
