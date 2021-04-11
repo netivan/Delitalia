@@ -24,26 +24,17 @@ namespace DelliItalia_Razor.Pages.WebAdmin
             _webUser = webUser;
         }
 
-        [BindProperty]
-        public IEnumerable<IdentityRole> roleMod { get; set; }
-        public IEnumerable<WebshopUser> webUser { get; set; }
-        [BindProperty]
-        public EditRoleViewModel VMRoll { set; get; }
-
-        [BindProperty]
-        public RoleModel roller { set; get; }
+       
         [BindProperty]
         public UserRoleViewModel userRoleVM { set; get; }
-        
 
-        //public async Task OnGetAsync()
-        //{
-        //    roleMod = _roleMan.Roles;
-        //    webUser = _webUser.Users;
-        //}
+        [BindProperty]
+        public string RollNamn { get; set; }
+
         public async Task<IActionResult> OnGetAsync(string id)
         {
             var role = await _roleMan.FindByIdAsync(id);
+            RollNamn = role.Name;
             if (role == null)
             {
                 return RedirectToPage("./AdminIndexUsers");
@@ -67,19 +58,17 @@ namespace DelliItalia_Razor.Pages.WebAdmin
                 RollName = role.Name,
                 Users = model.Users
             };
-
-
-
             return Page();
         }
-        [HttpGet]
-        public async Task<IActionResult> EditUsersRoles(string roleId)
+       
+        public async Task<IActionResult> OnPostAsync(EditRoleViewModel userRole, string roleId)
         {
             ViewData["roleId"] = roleId;
-            var role = await _roleMan.FindByIdAsync(roleId);
+            var role = await _roleMan.FindByIdAsync(userRole.Id);
+            RollNamn = role.Name;
             if(role == null)
             {
-                return Page();
+                return RedirectToPage("./AdminIndexUsers");
             }
 
             var model = new List<UserRoleViewModel>();
@@ -99,9 +88,14 @@ namespace DelliItalia_Razor.Pages.WebAdmin
                     userRoleVM.IsSelected = false;
                 }
                 model.Add(userRoleVM);
+                ViewData["UserInRole"] = new UserRoleViewModel
+                {
+                    UserId = role.Id,
+                    UserName = role.Name
+                };
             }
-           
-            return Page();
+
+            return RedirectToPage("./AdminIndexUsers");
         }
     }
 }
