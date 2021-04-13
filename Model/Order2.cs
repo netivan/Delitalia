@@ -41,5 +41,7 @@ namespace DelliItalia_Razor.Model
           [Column(TypeName = "decimal(10,2)")]
           public decimal Price { get; set; }
 
-        }
+          public int Order2Id { get; set; }
+
+    }
 }

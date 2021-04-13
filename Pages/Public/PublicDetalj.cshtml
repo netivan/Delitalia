@@ -7,108 +7,113 @@
 
 @*<h1>Produkt detalj:</h1>*@
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: white">
-            <li class="breadcrumb-item"><a href="/Public/Products">Till produktsidan</a></li>
-        </ol>
-    </nav>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="background-color: white">
+        <li class="breadcrumb-item"><a href="/Public/Products">Till produktsidan</a></li>
+    </ol>
+</nav>
 
-    <table style="width:80%">
-        <td width="50%">
+<table style="width:80%">
+    <td width="50%">
 
-            <dl class="row">
+        <dl class="row">
 
-                <dd class="col-sm-10">
-                    <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="500" width="500" />
-                    @if (!Model.ProductModel.Eco)
-                    {
-                        <div style="font-size:2em; color:forestgreen;" hidden>
-                            @Html.DisplayNameFor(model => model.ProductModel.Eco)
-                            @Html.DisplayFor(model => model.ProductModel.Eco)
-                        </div>
-                    }
-                    else
-                    {<div style="font-size:2em; color:forestgreen;">
-                            @Html.DisplayNameFor(model => model.ProductModel.Eco)
-                        </div>
+            <dd class="col-sm-10">
+                <img src="~/ImageProduct/@Model.ProductModel.PhotoNamn" height="500" width="500" />
+                @if (!Model.ProductModel.Eco)
+                {
+                    <div style="font-size:2em; color:forestgreen;" hidden>
+                        @Html.DisplayNameFor(model => model.ProductModel.Eco)
+                        @Html.DisplayFor(model => model.ProductModel.Eco)
+                    </div>
+                }
+                else
+                {<div style="font-size:2em; color:forestgreen;">
+                        @Html.DisplayNameFor(model => model.ProductModel.Eco)
+                    </div>
 
-                    }
-                </dd>
-            </dl>
-
-        </td>
-
-        <td width="50%">
-            <dt class="col-sm">
-                @Html.DisplayNameFor(model => model.ProductModel.Name)
-            </dt>
-            <dd class="col-sm">
-                @Html.DisplayFor(model => model.ProductModel.Name)
+                }
             </dd>
-            <dt class="col-sm">
-                @Html.DisplayNameFor(model => model.ProductModel.Price)
-            </dt>
-            <dd class="col-sm">
-                @Html.DisplayFor(model => model.ProductModel.Price)
-            </dd>
+        </dl>
 
-            <dt class="col-sm">
-                @Html.DisplayNameFor(model => model.ProductModel.Description)
+    </td>
+
+    <td width="50%">
+        <dt class="col-sm">
+            @Html.DisplayNameFor(model => model.ProductModel.Name)
+        </dt>
+        <dd class="col-sm">
+            @Html.DisplayFor(model => model.ProductModel.Name)
+        </dd>
+        <dt class="col-sm">
+            @Html.DisplayNameFor(model => model.ProductModel.Price)
+        </dt>
+        <dd class="col-sm">
+            @Html.DisplayFor(model => model.ProductModel.Price)
+        </dd>
+
+        <dt class="col-sm">
+            @Html.DisplayNameFor(model => model.ProductModel.Description)
+        </dt>
+        <dd class="col-sm">
+            @Html.DisplayFor(model => model.ProductModel.Description)
+        </dd>
+        <dt class="col-sm">
+            @Html.DisplayNameFor(model => model.ProductModel.Category)
+        </dt>
+        <dd class="col-sm">
+            @Html.DisplayFor(model => model.ProductModel.Category)
+        </dd>
+        <dt class="col-sm">
+            @Html.DisplayNameFor(model => model.ProductModel.Quantity)
+        </dt>
+        <dd class="col-sm">
+            @Html.DisplayFor(model => model.ProductModel.Quantity)
+        </dd>
+        <dt class="col-sm" hidden>
+            @Html.DisplayNameFor(model => model.ProductModel.Chosen)
+        </dt>
+        <dd class="col-sm" hidden>
+            @Html.DisplayFor(model => model.ProductModel.Chosen)
+        </dd>
+        </dl>
+        @if (Model.ProductModel.Sale > 0)
+        {
+            <dt class="col-sm" style="color:red">
+                @Html.DisplayNameFor(model => model.ProductModel.Sale)
             </dt>
-            <dd class="col-sm">
-                @Html.DisplayFor(model => model.ProductModel.Description)
+            <dd class="col-sm" style="color:red">
+                @Html.DisplayFor(model => model.ProductModel.Sale)
             </dd>
-            <dt class="col-sm">
-                @Html.DisplayNameFor(model => model.ProductModel.Category)
+        }
+        @if (Model.ProductModel.Sale_Percent > 0)
+        {
+            <dt class="col-sm" style="color:red">
+                @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
             </dt>
-            <dd class="col-sm">
-                @Html.DisplayFor(model => model.ProductModel.Category)
+            <dd class="col-sm" style="color:red">
+                @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
             </dd>
-            <dt class="col-sm">
-                @Html.DisplayNameFor(model => model.ProductModel.Quantity)
-            </dt>
-            <dd class="col-sm">
-                @Html.DisplayFor(model => model.ProductModel.Quantity)
-            </dd>
-            <dt class="col-sm" hidden>
-                @Html.DisplayNameFor(model => model.ProductModel.Chosen)
-            </dt>
-            <dd class="col-sm" hidden>
-                @Html.DisplayFor(model => model.ProductModel.Chosen)
-            </dd>
-            </dl>
-            @if (Model.ProductModel.Sale > 0)
-            {
-                <dt class="col-sm" style="color:red">
-                    @Html.DisplayNameFor(model => model.ProductModel.Sale)
-                </dt>
-                <dd class="col-sm" style="color:red">
-                    @Html.DisplayFor(model => model.ProductModel.Sale)
-                </dd>
-            }
-            @if (Model.ProductModel.Sale_Percent > 0)
-            {
-                <dt class="col-sm" style="color:red">
-                    @Html.DisplayNameFor(model => model.ProductModel.Sale_Percent)
-                </dt>
-                <dd class="col-sm" style="color:red">
-                    @Html.DisplayFor(model => model.ProductModel.Sale_Percent)
-                </dd>
-            }
-            <div style="width:100%; text-align:center">
-                <div class="card-footer" style="text-align:center">
-                    <div class="row">
-                       
-                        <div class="col-sm" style="width:250px;  display:inline-flex;">
-                            <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
-                                <button><i class="fas fa-cart-plus"></i></button>
-                            </a>
-                        </div>
+        }
+        <div style="width:100%; text-align:center">
+            <div class="card-footer" style="text-align:center">
+                <div class="row">
+
+                    <div class="col-sm" style="width:250px;  display:inline-flex;">
+                        <a type="submit" style="margin-left:10px;  margin-right:10px" asp-page="Cart" asp-page-handler="buyitem" asp-route-id="@Model.ProductModel.Id">
+                            <button><i class="fas fa-cart-plus"></i></button>
+                        </a>
                     </div>
                 </div>
-
             </div>
 
-        </td>
+        </div>
 
-    </table>
+    </td>
+
+</table>
+
+<br />
+<br />
+<br />
+<br />
