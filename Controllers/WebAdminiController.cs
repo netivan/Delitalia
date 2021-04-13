@@ -3,6 +3,7 @@ using DelliItalia_Razor.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace DelliItalia_Razor.Controllers
 {
-    public class WebAdminController : Controller
+    public class WebAdminiController : Controller
     {
         private readonly IWebHostEnvironment _webHost;
         private readonly RoleManager<IdentityRole> _roleMan;
         private readonly UserManager<WebshopUser> _userMan;
 
-        public WebAdminController(IWebHostEnvironment webHost, RoleManager<IdentityRole> roleMan, UserManager<WebshopUser> userMan)
+        public WebAdminiController(IWebHostEnvironment webHost, RoleManager<IdentityRole> roleMan, UserManager<WebshopUser> userMan)
         {
             _webHost = webHost;
             _roleMan = roleMan;
@@ -44,7 +45,7 @@ namespace DelliItalia_Razor.Controllers
             
             if(role == null)
             {
-                return RedirectToAction("EditRoles", new { Id = id });
+                return null;
             }
 
             var model = new EditRoleViewModel
