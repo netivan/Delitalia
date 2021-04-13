@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor;
 
+
 namespace DelliItalia_Razor.Data
 {
     //test --force push
@@ -19,6 +20,8 @@ namespace DelliItalia_Razor.Data
 
         
         public DbSet<DelliItalia_Razor.Model.Order2> Orders { get; set; }
+
+        public DbSet<DelliItalia_Razor.Model.ProductsBought> ProductsBought { get; set; }
 
         //private List<ProductModel> ProductModelList;
         //public List<ProductModel> findAll()
