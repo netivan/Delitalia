@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace DelliItalia_Razor.ViewModel
 {
+   
     public class UserRoleViewModel
     {
         public string UserId { get; set; }
