@@ -1,0 +1,91 @@
+﻿@page
+@model DelliItalia_Razor.Pages.WebAdmin.AdminIndexUsersModel
+@using DelliItalia_Razor.Model
+@inject RoleManager<IdentityRole> rolMan
+@inject UserManager<WebshopUser> userMan
+
+@{
+    ViewBag.Title = "Administrera användare";
+}
+<h1>Administrera Användare </h1>
+
+<table style=" width:100%; margin:20px">
+    <tr style="margin:10px">
+        <td style="margin:10px">
+            <h3>Lägg till Roller</h3>
+            <div class="row">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="roller.RoleName"></label>
+                        <input asp-for="roller.RoleName" class="form-control" />
+                        <span asp-validation-for="roller.RoleName" class="text-danger" />
+                    </div>
+                    <button style="width:auto" type="submit" class="btn btn-primary">Skapa Roll</button>
+                </form>
+            </div>
+        </td>
+        <td style="margin:10px; width:50px"></td>
+        <td style="margin:10px">
+            <h3>Användare och Roll/Behörighet</h3>
+           
+            @if (Model.roleMod.Any())
+            {
+                foreach (var roll in Model.roleMod)
+                {
+                    var rollen = await rolMan.FindByIdAsync(roll.Id);
+                    foreach (var user in userMan.Users)
+                    {
+                        @if (rollen.Name.Length != 0)
+                        {
+                            if (await userMan.IsInRoleAsync(user, roll.Name))
+                            {
+                                <div>
+                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b>
+                                    </label>
+                                </div>
+                             }
+                        }
+                    }
+                }
+            }
+
+        </td>
+            </tr>
+    <tr style="margin:10px; height:20px"></tr>
+    <tr style="margin:10px ">
+        <td style="margin:10px; width:auto">
+                    <h3>Roll-lista</h3>
+                    @if (Model.roleMod.Any())
+                    {
+                        foreach (var roll in Model.roleMod)
+                        {
+                            <div class="card mb-3" style="width:auto">
+                                <div class="card-header">Roll ID: @roll.Id</div>
+                                <div class="card-body"><h5 class="card-title">Roll Namn: @roll.Name</h5></div>
+                                <div class="card-footer">
+                                    @*<a class="btn btn-primary" href="@Url.Content("~/WebAdmin/EditRolls?"+roll.Id.ToString())">Ändra behörighet</a>*@
+                                    @*<a class="btn btn-primary" asp-page="EditRolls" >Ändra behörighet</a>*@
+                                    <a class="btn btn-primary"
+                                       asp-controller = "WebAdmini" asp-action = "EditRoles"
+                                       asp-route-id="@roll.Id">Ändra behörighet</a>
+
+                                    <a class="btn btn-danger"
+                                       href="#">Radera</a>
+                                </div>
+                            </div>
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        <h5 style="color:red">Inga roller att visa<br /></h5>
+                    }
+
+                </td>
+                <td style="margin:10px; width:50px"></td>
+                <td style="margin:10px"></td>
+            </tr>
+</table>
+<br /><br /><br /><br /><br /><br />
