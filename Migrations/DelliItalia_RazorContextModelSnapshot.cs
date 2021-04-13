@@ -50,7 +50,7 @@ namespace DelliItalia_Razor.Migrations
                     b.Property<int?>("IdProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Order2Id")
+                    b.Property<int>("Order2Id")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -83,6 +83,9 @@ namespace DelliItalia_Razor.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AmountSold")
+                        .HasColumnType("int");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -134,7 +137,9 @@ namespace DelliItalia_Razor.Migrations
 
                     b.HasOne("DelliItalia_Razor.Model.Order2", null)
                         .WithMany("productsBoughts")
-                        .HasForeignKey("Order2Id");
+                        .HasForeignKey("Order2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

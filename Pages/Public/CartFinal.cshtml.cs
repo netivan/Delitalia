@@ -61,6 +61,8 @@ namespace DelliItalia_Razor.Pages.Public
                 {
                     product.Quantity -= item.Quantity;
 
+                    product.AmountSold += item.Quantity;
+
                    _context.ProductModel.Update(product); // update databasen
 
 
