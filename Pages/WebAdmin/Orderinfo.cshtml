@@ -5,36 +5,44 @@
 
 <table>
     <tr>
-        <th style="padding-right: 20px">OrderID</thstyle="padding-right:>
-        <th>UserID</th>
+        <th style="padding-right: 20px">OrderID</th>
+        <th>Username</th>
         <th>Orderdatum</th>
+        <th style="padding-right: 20px">Ordervärde</th>
         <th>Produktnamn</th>
         <th>Pris</th>
-        <th style="padding-right: 20px">Rabatt i kronor</th>
-        <th style="padding-right: 20px">Rabatt i procent</th>
+        <th style="padding-right: 20px">Rabatt i kr</th>
+        <th style="padding-right: 20px">Rabatt i %</th>
         <th>Antal</th>
     </tr>
 
-    @foreach (var item in Model.Orderinfos.OrderByDescending(o => o.Id))
+    @foreach (var orders in Model.OrderList.OrderByDescending(o => o.Id))
     {
+        foreach (var products in Model.ProductList)
+        {
+            if (orders.Id == products.Order2Id)
+            {
 
-        <tr>
-            <td>@item.Id</td>
-            <td style="padding-right: 20px">@item.UserId</td>
-            <td style="padding-right: 20px">@item.Datum</td>
-            <td style="padding-right: 20px">@item.Name</td>
-            <td style="padding-right: 20px">@item.Price kr</td>
-            <td>@item.Sale</td>
-            <td>@item.Sale_Percent</td>
-            <td>@item.Quantity</td>
-        </tr>
 
+<tr>
+    <td>@orders.Id</td>
+    <td style="padding-right: 20px">@orders.UserName</td>
+    <td style="padding-right: 20px">@orders.DatePurchase</td>
+    <td style="padding-right: 20px">@orders.TotPrice kr</td>
+    <td style="padding-right: 20px">@products.ProductName</td>
+    <td style="padding-right: 20px">@products.Price kr</td>
+    <td>@products.Sale</td>
+    <td>@products.Sale_procent</td>
+    <td>@products.Quantity</td>
+</tr>
+            }
+        }
     }
 </table>
 
 <br />
 
-@foreach (var item in Model.Orderinfos)
+@*@foreach (var item in Model.Orderinfos)
 {
     if (item.Sale != 0)
     {
@@ -48,14 +56,13 @@
     {
         Model.TotalSales += item.Price * item.Quantity;
     }
-}
+}*@
 
 <br />
 
+@foreach (var item in Model.OrderList)
+{
+    Model.TotalSales += item.TotPrice;
+}
+
 <p>Den totala försäljningen är: <b> @Math.Round(Model.TotalSales, 2) kr </b></p>
-
-
-@*@foreach (var item in Model.Orderinfos)
-	{
-		 Model.SoldProducts.Add(new MostSold {Name = item.Name, Sold = item.Quantity };
-	}*@

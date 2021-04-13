@@ -66,7 +66,22 @@ namespace DelliItalia_Razor.Pages.Public
 
                     ProductsBought item2 = new ProductsBought { Quantity = item.Quantity, ProductName = item.product.Name, IdProduct = product, Sale = item.product.Sale, Sale_procent = item.product.Sale_Percent, Price = item.product.Price };    //updateDbKöp     
 
-                    ord.TotPrice += item.Quantity * item.product.Price;      // totalprice av singel order
+                 //   ord.TotPrice += item.Quantity * item.product.Price;      // totalprice av singel order
+
+                    
+                        if (item.product.Sale != 0)
+                        {
+                            ord.TotPrice += (item.product.Price - item.product.Sale) * item.Quantity;
+                        }
+                        else if (item.product.Sale_Percent != 0)
+                        {
+                            ord.TotPrice += (item.product.Price * ((100 - item.product.Sale_Percent) / 100)) * item.Quantity;
+                        }
+                        else
+                        {
+                            ord.TotPrice += item.product.Price * item.Quantity;
+                        }
+                    
 
                     ord.productsBoughts.Add(item2);
 

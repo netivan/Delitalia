@@ -15,22 +15,19 @@ namespace DelliItalia_Razor.Pages.WebAdmin
         {
             _context = context;
         }
-
-        public List<Model.Order> Orderinfos { get; set; }
+        [BindProperty]
+        public List<Model.Order2> OrderList { get; set; }
         [BindProperty]
         public decimal TotalSales { get; set; }
         [BindProperty]
-        public List<MostSold> SoldProducts { get; set; }
+        public List<Model.ProductsBought> ProductList { get; set; }
 
         public void OnGet()
         {
-            Orderinfos = _context.Orders.ToList();
+            OrderList = _context.Orders.ToList();
+            ProductList = _context.ProductsBought.ToList();
         }
     }
 
-    public class MostSold
-    {
-        public string Name { get; set; }
-        public int Sold { get; set; }
-    }
+ 
 }
