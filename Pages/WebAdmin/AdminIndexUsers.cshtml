@@ -28,36 +28,27 @@
         <td style="margin:10px; width:50px"></td>
         <td style="margin:10px">
             <h3>Användare och Roll/Behörighet</h3>
-            @{
-            }
+           
             @if (Model.roleMod.Any())
             {
                 foreach (var roll in Model.roleMod)
                 {
                     var rollen = await rolMan.FindByIdAsync(roll.Id);
                     foreach (var user in userMan.Users)
-                    {@if (rollen.Name == "Admin")
+                    {
+                        @if (rollen.Name.Length != 0)
                         {
                             if (await userMan.IsInRoleAsync(user, roll.Name))
                             {
                                 <div>
-                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b></label>
+                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b>
+                                    </label>
                                 </div>
-                            }
+                             }
                         }
-                        else if (rollen.Name == "User")
-                        {
-                            if (await userMan.IsInRoleAsync(user, roll.Name))
-                            {
-                                <div>
-                                    <label>Användarnamn: <b>@user.FirstName @user.LastName</b>&nbsp;Behörighet: <b>@roll.Name</b></label>
-                                </div>
-                            }
-                        }
-                       
+                    }
                 }
             }
-        }
 
         </td>
             </tr>
