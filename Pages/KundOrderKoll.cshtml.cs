@@ -33,7 +33,7 @@ namespace DelliItalia_Razor.Pages
                    join p in ProKopt on ord.Id equals p.Order2Id   
                    where ord.UserName == User.Identity.Name
                    orderby ord.DatePurchase
-                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Quantity = p.Quantity };  /
+                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Quantity = p.Quantity };  
 
             ProductsBought = q.ToList();
 
