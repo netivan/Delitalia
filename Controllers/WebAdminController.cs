@@ -44,7 +44,7 @@ namespace DelliItalia_Razor.Controllers
             
             if(role == null)
             {
-                return RedirectToPage("AdminIndexUsers");
+                return RedirectToAction("EditRoles", new { Id = id });
             }
 
             var model = new EditRoleViewModel
@@ -95,7 +95,7 @@ namespace DelliItalia_Razor.Controllers
             var roll = await _roleMan.FindByIdAsync(roleId);
             if (roll == null)
             {
-                return View();
+                return RedirectToAction("EditRoles", new { Id = roleId });
             }
             var model = new List<UserRoleViewModel>();
             foreach(var user in _userMan.Users)
@@ -120,9 +120,44 @@ namespace DelliItalia_Razor.Controllers
         [HttpPost]
         public async Task<IActionResult> UserRoles(List<UserRoleViewModel> model, string roleId)
         {
+            var role = await _roleMan.FindByIdAsync(roleId);
+            if(role == null)
+            {
+                return RedirectToAction("EditRoles", new { Id = roleId });
+            }
+            for(int i = 0; i < model.Count; i++)
+            {
+                var user = await _userMan.FindByIdAsync(model[i].UserId);
 
-            return View();
-        }
-         
+                IdentityResult result = null;
+                
+                if(model[i].IsSelected && !(await _userMan.IsInRoleAsync(user, role.Name)))
+                {
+                    result = await _userMan.AddToRoleAsync(user, role.Name);
+                }
+                else if (!model[i].IsSelected && await _userMan.IsInRoleAsync(user, role.Name))
+                {
+                    result = await _userMan.RemoveFromRoleAsync(user, role.Name );
+                }
+                else
+                {
+                    continue;
+                }
+                if (result.Succeeded)
+                {
+                    if(i < (model.Count - 1))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return RedirectToAction("EditRoles", new { Id = roleId});
+                    }
+                }
+
+                
+            }
+            return RedirectToAction("EditRoles", new { Id = roleId });
+        }         
     }
 }
