@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace DelliItalia_Razor.Controllers
 {
+    //reservVersionSano
     public class WebAdminiController : Controller
     {
         private readonly IWebHostEnvironment _webHost;
