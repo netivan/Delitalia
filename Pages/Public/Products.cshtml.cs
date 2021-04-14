@@ -87,6 +87,10 @@ namespace DelliItalia_Razor.Pages.Public
                         {
                             return ProductModel = await _context.ProductModel.Where(p => ((p.Sale != 0)||(p.Sale_Percent != 0)) ).ToListAsync();
                         }
+                        else if (Category.Equals("Utvalda"))
+                        {
+                            return ProductModel = await _context.ProductModel.OrderByDescending(p => p.Chosen).Take(5).ToListAsync();
+                        }
 
                         ProductModel = _context.ProductModel.Where(p => p.Category.Contains(Category)).ToList();
                         if (ProductModel.Count == 0)

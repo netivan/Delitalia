@@ -19,6 +19,64 @@ namespace DelliItalia_Razor.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("DelliItalia_Razor.Model.Order2", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DatePurchase")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotPrice")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("DelliItalia_Razor.Model.ProductsBought", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Order2Id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Sale")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Sale_procent")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdProductId");
+
+                    b.HasIndex("Order2Id");
+
+                    b.ToTable("ProductsBought");
+                });
+
             modelBuilder.Entity("DelliItalia_Razor.ProductModel", b =>
                 {
                     b.Property<int>("Id")
@@ -66,6 +124,17 @@ namespace DelliItalia_Razor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductModel");
+                });
+
+            modelBuilder.Entity("DelliItalia_Razor.Model.ProductsBought", b =>
+                {
+                    b.HasOne("DelliItalia_Razor.ProductModel", "IdProduct")
+                        .WithMany()
+                        .HasForeignKey("IdProductId");
+
+                    b.HasOne("DelliItalia_Razor.Model.Order2", null)
+                        .WithMany("productsBoughts")
+                        .HasForeignKey("Order2Id");
                 });
 #pragma warning restore 612, 618
         }

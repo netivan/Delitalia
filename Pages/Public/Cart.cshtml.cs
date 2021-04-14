@@ -35,9 +35,11 @@ namespace DelliItalia_Razor.Pages.Public
             string sessionCart = HttpContext.Session.GetString("cart");
             ProductModel product = _context.ProductModel.SingleOrDefault(p => p.Id == Id);
 
-            if(sessionCart == null)
+         
+            if (sessionCart == null)
             {
                 List<CartItem> cartItem = new List<CartItem>();
+
                 cartItem.Add(new CartItem {
                     product = new CartProduct
                     {
@@ -78,7 +80,7 @@ namespace DelliItalia_Razor.Pages.Public
                 }
                 else
                 {
-                    cartItem[index].Quantity++;
+                   if(cartItem[index].Quantity < cartItem[index].product.Stock) cartItem[index].Quantity++;
                 }
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cartItem));                
             }
