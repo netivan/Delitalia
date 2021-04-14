@@ -64,12 +64,10 @@
                                 <div class="card-header">Roll ID: @roll.Id</div>
                                 <div class="card-body"><h5 class="card-title">Roll Namn: @roll.Name</h5></div>
                                 <div class="card-footer">
-                                    @*<a class="btn btn-primary" href="@Url.Content("~/WebAdmin/EditRolls?"+roll.Id.ToString())">Ändra behörighet</a>*@
-                                    @*<a class="btn btn-primary" asp-page="EditRolls" >Ändra behörighet</a>*@
                                     <a class="btn btn-primary"
-                                       asp-controller = "WebAdmini" asp-action = "EditRoles"
+                                       asp-controller="WebAdmini" asp-action="EditRoles"
                                        asp-route-id="@roll.Id">Ändra behörighet</a>
-
+                                    
                                     <a class="btn btn-danger"
                                        href="#">Radera</a>
                                 </div>
