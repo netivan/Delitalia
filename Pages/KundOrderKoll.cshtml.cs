@@ -33,7 +33,7 @@ namespace DelliItalia_Razor.Pages
                    join p in ProKopt on ord.Id equals p.Order2Id   
                    where ord.UserName == User.Identity.Name
                    orderby ord.DatePurchase
-                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Quantity = p.Quantity };  // col select ci prendiamo solo le colonne che ci interessano
+                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Sale = p.Sale, Sale_procent = p.Sale_procent, Quantity = p.Quantity, TotalPris = p.Quantity * p.Price - (p.Quantity * p.Sale) - (p.Quantity * p.Sale_procent) };
 
             ProductsBought = q.ToList();
 
