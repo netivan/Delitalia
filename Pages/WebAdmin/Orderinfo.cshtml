@@ -1,0 +1,68 @@
+﻿@page
+@model WebAdmin.OrderinfoModel
+@{
+}
+
+<table>
+    <tr>
+        <th style="padding-right: 20px">OrderID</th>
+        <th>Username</th>
+        <th>Orderdatum</th>
+        <th style="padding-right: 20px">Ordervärde</th>
+        <th>Produktnamn</th>
+        <th>Pris</th>
+        <th style="padding-right: 20px">Rabatt i kr</th>
+        <th style="padding-right: 20px">Rabatt i %</th>
+        <th>Antal</th>
+    </tr>
+
+    @foreach (var orders in Model.OrderList.OrderByDescending(o => o.Id))
+    {
+        foreach (var products in Model.ProductList)
+        {
+            if (orders.Id == products.Order2Id)
+            {
+
+
+<tr>
+    <td>@orders.Id</td>
+    <td style="padding-right: 20px">@orders.UserName</td>
+    <td style="padding-right: 20px">@orders.DatePurchase</td>
+    <td style="padding-right: 20px">@orders.TotPrice kr</td>
+    <td style="padding-right: 20px">@products.ProductName</td>
+    <td style="padding-right: 20px">@products.Price kr</td>
+    <td>@products.Sale</td>
+    <td>@products.Sale_procent</td>
+    <td>@products.Quantity</td>
+</tr>
+            }
+        }
+    }
+</table>
+
+<br />
+
+@*@foreach (var item in Model.Orderinfos)
+{
+    if (item.Sale != 0)
+    {
+        Model.TotalSales += (item.Price - item.Sale) * item.Quantity;
+    }
+    else if (item.Sale_Percent != 0)
+    {
+        Model.TotalSales += (item.Price * ((100 - item.Sale_Percent) / 100)) * item.Quantity;
+    }
+    else
+    {
+        Model.TotalSales += item.Price * item.Quantity;
+    }
+}*@
+
+<br />
+
+@foreach (var item in Model.OrderList)
+{
+    Model.TotalSales += item.TotPrice;
+}
+
+<p>Den totala försäljningen är: <b> @Math.Round(Model.TotalSales, 2) kr </b></p>

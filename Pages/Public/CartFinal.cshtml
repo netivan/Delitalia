@@ -169,10 +169,10 @@
 <hr />
 <!-- Användar Info-->
 <div>
-    <label style="color:blue; font-size:large"> Leverans adress:</label>
+    <label style="color:blue; font-size:large"> Leveransadress:</label>
     <table style="font-size:large; margin:5px;">
         <tr>
-            <td>För- och Efternamn: &nbsp;</td>
+            <td>För- och efternamn: &nbsp;</td>
             <td>@user.FirstName&nbsp;@user.LastName </td>
         </tr>
         <tr>
@@ -190,14 +190,13 @@
 
     </table>
     <a href="~/Identity/Account/Manage" style="color:blue">
-        <h6>Ändra Leverans uppgifter</h6>
+        <h6>Ändra leveransuppgifter</h6>
     </a>
-
-
 
 
 </div>
 <hr />
+
 
 @if (!this.User.Identity.IsAuthenticated)
 {
@@ -243,9 +242,9 @@ else
             String.IsNullOrEmpty(user.Mobile)
          )
             {
-                <p style="color:red">Leverans informationen måste ifyllas</p>
+                <p style="color:red">Leveransinformationen måste ifyllas</p>
                 <a href="~/Identity/Account/Manage" style="color:blue">
-                    <h6>Ändra Leverans uppgifter</h6>
+                    <h6>Ändra Leveransuppgifter</h6>
                 </a>
             }
             else

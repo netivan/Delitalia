@@ -39,5 +39,8 @@ namespace DelliItalia_Razor
         public int Quantity { get; set; }
         [DisplayName("Utvald:")]
         public string Chosen { get; set; }
+
+        public int AmountSold { get; set; }
+
     }
 }

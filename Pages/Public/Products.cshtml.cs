@@ -91,6 +91,10 @@ namespace DelliItalia_Razor.Pages.Public
                         {
                             return ProductModel = await _context.ProductModel.OrderByDescending(p => p.Chosen).Take(5).ToListAsync();
                         }
+                        else if (Category.Equals("Popularaste"))
+                        {
+                            return ProductModel = await _context.ProductModel.OrderByDescending(p => p.AmountSold).Take(5).ToListAsync();
+                        }
 
                         ProductModel = _context.ProductModel.Where(p => p.Category.Contains(Category)).ToList();
                         if (ProductModel.Count == 0)

@@ -140,6 +140,6 @@ namespace DelliItalia_Razor.Pages.Public
            
         }
 
-        
+
     }
 }
