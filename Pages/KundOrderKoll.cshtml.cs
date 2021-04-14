@@ -25,15 +25,15 @@ namespace DelliItalia_Razor.Pages
 
         public async Task OnGetAsync()
         {
-           var KundOrder = await _context.Orders.ToListAsync();      // lista av alla köp dvs tabellen Orders
+           var KundOrder = await _context.Orders.ToListAsync();      
 
            var  ProKopt = await _context.ProductsBought.ToListAsync();
 
            var q = from ord in KundOrder
-                   join p in ProKopt on ord.Id equals p.Order2Id     // mette orders e productbought insieme
+                   join p in ProKopt on ord.Id equals p.Order2Id   
                    where ord.UserName == User.Identity.Name
                    orderby ord.DatePurchase
-                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Sale = p.Sale, Sale_procent = p.Sale_procent, Quantity = p.Quantity, TotalPris = p.Quantity * p.Price - (p.Quantity * p.Sale) - (p.Quantity * p.Sale_procent) };
+                   select new ProductBought2 { ProductName = p.ProductName, DatePurchase = ord.DatePurchase, Price = p.Price, Quantity = p.Quantity };  // col select ci prendiamo solo le colonne che ci interessano
 
             ProductsBought = q.ToList();
 
@@ -42,7 +42,7 @@ namespace DelliItalia_Razor.Pages
 
     }
 
-    public class ProductBought2   // (Del modello di stampa)
+    public class ProductBought2   
     {
 
         //public int Id { get; set; }
@@ -60,7 +60,6 @@ namespace DelliItalia_Razor.Pages
         public decimal Price { get; set; }
 
         public decimal TotalPris { get; set; }
-
         public int Order2Id { get; set; }
 
     }
