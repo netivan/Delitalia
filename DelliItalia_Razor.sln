@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelliItalia_Razor", "DelliItalia_Razor.csproj", "{545D9114-7DCF-4CFC-9B65-8F5636726322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterntAPI", "..\InterntAPI\InterntAPI.csproj", "{1A10893F-BEEA-4AAF-88C8-B81F118CED10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterntAPI", "..\InterntAPI\InterntAPI.csproj", "{1A10893F-BEEA-4AAF-88C8-B81F118CED10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
