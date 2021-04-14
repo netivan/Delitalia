@@ -8,7 +8,7 @@
 <h1>KundOrderKoll</h1>
 
 <p>
-    <a>Hej @User.Identity.Name  här har du alla dina köp</a>
+    <a>Hej @User.Identity.Name  <br />här har du alla dina köp</a>
 </p>
 <table class="table">
     <thead>
@@ -34,8 +34,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductsBought[0].TotalPris)
             </th>
-
-            <th></th>
+                      
         </tr>
     </thead>
     <tbody>
@@ -62,8 +61,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPris)
             </td>
-
         </tr>
 }
     </tbody>
 </table>
+
+<br/>
+<br/>
