@@ -1,0 +1,72 @@
+﻿@page
+@model DelliItalia_Razor.Pages.KundOrderKollModel
+
+@{
+    ViewData["Title"] = "KundOrderKoll";
+}
+
+<h1>KundOrderKoll</h1>
+
+<p>
+    <a>Hej @User.Identity.Name  <br />här har du alla dina köp</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].DatePurchase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].Sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].Sale_procent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductsBought[0].TotalPris)
+            </th>
+            <th></th>
+                      
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProductsBought) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePurchase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sale_procent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPris)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+<br/>
+<br/>
