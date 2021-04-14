@@ -5,34 +5,34 @@
     ViewData["Title"] = "KundOrderKoll";
 }
 
-<h1>KundOrderKoll</h1>
+<h1>Orderhistorik</h1>
 
 <p>
-    <a>Hej @User.Identity.Name  <br />här har du alla dina köp</a>
+    <a>Hej, @User.Identity.Name,  <br />här hittar du alla dina köp.</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].DatePurchase)
+                Orderdatum
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].ProductName)
+                Produktnamn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].Sale)
+                Rabatt i kr
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].Sale_procent)
+                Rabatt i %
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].Quantity)
+                Antal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].Price)
+                Pris
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductsBought[0].TotalPris)
+                Totalpris
             </th>
             <th></th>
                       
@@ -48,19 +48,19 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sale)
+                @Html.DisplayFor(modelItem => item.Sale) kr
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sale_procent)
+                @Html.DisplayFor(modelItem => item.Sale_procent) %
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.Price) kr
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalPris)
+                @Html.DisplayFor(modelItem => item.TotalPris) kr
             </td>
 
         </tr>
