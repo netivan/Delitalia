@@ -12,19 +12,40 @@
             <h3>Användare och Roller/Behörighet</h3>
         </div>
         <div class="card-body">
+            <h5>Användare i denna Roll</h5>
             @for (int i = 0; i < Model.Count; i++)
             {
-                
-            <div class="form-check m-1">
-                <input type="hidden" asp-for="@Model[i].UserName"/>
-                <input type="hidden" asp-for="@Model[i].UserId" />
-                <input asp-for="@Model[i].IsSelected"
-                       type="checkbox" class="form-check-input" />
-                <label class="form-check-label"
-                       asp-for="@Model[i].IsSelected">
-                    @Model[i].UserName
-                </label>
-            </div>
+                if (@Model[i].IsSelected == true)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model[i].UserName" />
+                        <input type="hidden" asp-for="@Model[i].UserId" />
+                        <input asp-for="@Model[i].IsSelected"
+                               type="checkbox" class="form-check-input" />
+                        <label class="form-check-label"
+                               asp-for="@Model[i].IsSelected">
+                            @Model[i].UserName
+                        </label>
+                    </div>
+                }
+            }
+            <br />
+            <h5>Användare i andra Roller</h5>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (@Model[i].IsSelected == false)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model[i].UserName" />
+                        <input type="hidden" asp-for="@Model[i].UserId" />
+                        <input asp-for="@Model[i].IsSelected"
+                               type="checkbox" class="form-check-input" />
+                        <label class="form-check-label"
+                               asp-for="@Model[i].IsSelected">
+                            @Model[i].UserName
+                        </label>
+                    </div>
+                }
             }
         </div>
         <div class="card-footer">
