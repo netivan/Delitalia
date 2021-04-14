@@ -70,7 +70,7 @@ namespace DelliItalia_Razor.Controllers
 
             if (role == null)
             {
-                return RedirectToPage("~/WebAdmin/AdminIndexUsers");
+                return RedirectToPage("/WebAdmin/AdminIndexUsers");
             }
             else
             {
@@ -79,7 +79,7 @@ namespace DelliItalia_Razor.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("WebAdmin","AdminIndexUsers");
+                    return RedirectToPage("/WebAdmin/AdminIndexUsers");
                 }
                 foreach(var error in result.Errors)
                 {
