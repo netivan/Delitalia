@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DelliItalia_Razor.Data;
 using DelliItalia_Razor.Model;
+using System.ComponentModel;
 
 namespace DelliItalia_Razor.Pages
 {
@@ -46,19 +47,20 @@ namespace DelliItalia_Razor.Pages
     {
 
         //public int Id { get; set; }
+        [DisplayName("Produktnamn")]
         public string ProductName { get; set; }
         public ProductModel IdProduct { get; set; }
-              
+        [DisplayName("Inköpsdatum")]
         public DateTime DatePurchase { get; set; }
-
+        [DisplayName("Rea 'SEK'")]
         public decimal Sale { get; set; }
-                
+        [DisplayName("Rea '%'")]
         public decimal Sale_procent { get; set; }
-
+        [DisplayName("Antal")]
         public int Quantity { get; set; }
-
+        [DisplayName("Pris")]
         public decimal Price { get; set; }
-
+        [DisplayName("Totalpris")]
         public decimal TotalPris { get; set; }
         public int Order2Id { get; set; }
 

@@ -12,7 +12,7 @@
 
 
 
-<h1>Köpvagn</h1>
+<h1>Varukorg</h1>
 
 <p>
     <a asp-page="./Products">Produktsidan</a>
@@ -128,13 +128,13 @@
         @if (SLutTotalPris <= 200)
         {
             <tr>
-                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight50(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight50(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till ditt närmaste ombud&emsp;&emsp; <b>50 kr</b></td>
             </tr>
         }
         else
         {
             <tr>
-                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight0(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till din närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
+                <td style="border: 1px solid"><input type="radio" name="fraktalternativ" checked="checked" onchange="changeFreight0(); finalPrice()" />&ensp;<b>Postnord</b>&ensp; Till ditt närmaste ombud&emsp;&emsp; <b>0 kr</b></td>
             </tr>
         }
         <tr>
@@ -185,7 +185,7 @@
         </tr>
         <tr>
             <td>Postnummer och stad: &nbsp;</td>
-            <td>@user.PostCode &nbsp; @user.City </td>
+            <td>@user.PostCode&nbsp;@user.City </td>
         </tr>
 
     </table>

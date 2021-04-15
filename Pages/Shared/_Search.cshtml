@@ -1,12 +1,9 @@
 ﻿
-@*@model DelliItalia_Razor.Model.BaseModel*@
-
 <div class="navbar-nav">
   
         <form class="nav-item" asp-page="/Public/Products" asp-page-handler="search" asp-route-query="" style="width:100%">
             <div style="display:inline-flex">
-                <input style="width:80%; min-width:50px" placeholder="Produkten du söker" class="form-control" type="search" name="query" />
-                @*<button>Sök</button>*@
+                <input style="width:80%; min-width:50px" placeholder="Sök efter produkt" class="form-control" type="search" name="query" />
                 <button class="btn btn-light">Sök</button>
             </div>
         </form>

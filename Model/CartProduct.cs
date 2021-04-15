@@ -10,15 +10,15 @@ namespace DelliItalia_Razor.Model
     public class CartProduct
     {
         public int Id { get; set; }       
-        [DisplayName("Namn:")]
+        [DisplayName("Namn")]
         public string Name { get; set; }        
-        [DisplayName("Pris:")]
+        [DisplayName("Pris")]
         public decimal Price { get; set; }
-        [DisplayName("Foto namn:")]
+        [DisplayName("Produktbild")]
         public string PhotoNamn { get; set; }
-        [DisplayName("Rea i kronor:")]
+        [DisplayName("Rea 'SEK'")]
         public decimal Sale { get; set; }
-        [DisplayName("Rea i procent:")]
+        [DisplayName("Rea '%'")]
         public decimal Sale_Percent { get; set; }
 
 

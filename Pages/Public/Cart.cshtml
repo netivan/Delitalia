@@ -2,7 +2,7 @@
 @model DelliItalia_Razor.Pages.Public.CartModel
 @{ ViewData["Title"] = "Cart"; }
 
-<h1>Köpvagn</h1>
+<h1>Varukorg</h1>
 
 <p>
     <a asp-page="./Products">Produktsidan</a>
@@ -19,29 +19,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.Id)
                 </th>
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.PhotoNamn)
                 </th>
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.Name)
                 </th>
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.Price)
                 </th>
 
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.Sale)
                 </th>
-                <th>
+                <th style="width:auto">
                     @Html.DisplayNameFor(model => model.cart[0].product.Sale_Percent)
                 </th>
-                <th>
+                <th style="width:auto">
                     Antal
                 </th>
-                <th>
+                <th style="width:auto">
                     Kostnad
                 </th>
                 <th></th>
@@ -143,7 +143,7 @@
     @if (SLutTotalPris <= 200)
     {
         <div class="text-lg-center">
-            <h5 style="color:blue"><i>Fraktkostnad 50kr, Gratis ordinariefrakt för köp över 200 kr </i></h5>
+            <h5 style="color:blue"><i>Gratis frakt vid köp över 200 kr </i></h5>
         </div>
         <br />
     }
